@@ -1,0 +1,77 @@
+{
+    "messaging_product": "whatsapp",
+    "recipient_type": "individual",
+    "to": "221775867968",
+    "type": "template",
+    "template": {
+        "name": "Test",
+        "language": {
+            "code": "English"
+        },
+        "components": [
+            {
+                "type": "header",
+                "parameters": [
+                    {
+                        "type": "image",
+                        "image": {
+                            "link": "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "body",
+                "parameters": [
+                    {
+                        "type": "text",
+                        "text": "This is my text let's try to make it *bold* _italic_ ```function main(){ console.log('Hello world');} ``` 😂"
+                    },
+                    {
+                        "type": "currency",
+                        "currency": {
+                            "fallback_value": "1 500 F CFA",
+                            "code": "XOF",
+                            "amount_1000": 2500
+                        }
+                    },
+                    {
+                        "type": "date_time",
+                        "date_time": {
+                            "fallback_value": "February 25, 1977",
+                            "day_of_week": 5,
+                            "year": 1977,
+                            "month": 2,
+                            "day_of_month": 25,
+                            "hour": 15,
+                            "minute": 33,
+                            "calendar": "GREGORIAN"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "button",
+                "sub_type": "quick_reply",
+                "index": "0",
+                "parameters": [
+                    {
+                        "type": "payload",
+                        "payload": "aGlzIHRoaXMgaXMgY29v"
+                    }
+                ]
+            },
+            {
+                "type": "button",
+                "sub_type": "quick_reply",
+                "index": "1",
+                "parameters": [
+                    {
+                        "type": "payload",
+                        "payload": "9rwnB8RbYmPF5t2Mn09x4h"
+                    }
+                ]
+            }
+        ]
+    }
+}
