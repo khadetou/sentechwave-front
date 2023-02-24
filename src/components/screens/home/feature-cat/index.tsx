@@ -1,4 +1,6 @@
+import { useAppSelector } from "hooks/index";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from "react";
 import Slider, { Settings } from "react-slick";
 import NextArrow from "../arrows/next-arrow";
@@ -49,16 +51,49 @@ const FeaturedCat = () => {
   //   refdes.current!.appendChild(next);
   // }, [refdes]);
 
+  const { categories } = useAppSelector((store) => store.product);
+
+  const featuredCats = categories.filter((category: any) => {
+    return (
+      category.name === "Ordinateurs et accessoires" ||
+      category.name === "Télévisions" ||
+      category.name === "Ordinateurs et accessoires" ||
+      category.name === "Téléphones portables" ||
+      category.name === "Montres intelligentes" ||
+      category.name === "Gadgets de jeux vidéo" ||
+      category.name === "PC de bureau" ||
+      category.name === "Ordinateur portables et tablettes"
+    );
+  });
+
+  const images = [
+    "/imgs/page/homepage1/smartphone.png",
+    "/imgs/page/homepage1/computer.png",
+    "/imgs/page/homepage1/television.png",
+    "/imgs/page/homepage1/computer.png",
+    "/imgs/page/homepage1/electric.png",
+    "/imgs/page/homepage1/laptop.png",
+    "/imgs/page/homepage1/smartwatches.png",
+    "/imgs/page/homepage1/gaming.png",
+    "/imgs/page/homepage1/outdoor.png",
+  ];
+
+  const featuredCategories = featuredCats.map((category: any, idx: any) => {
+    return {
+      ...category,
+      image: images[idx],
+    };
+  });
   return (
     <section className="section-box">
       <div className="containers">
         <div className="row">
           <div className="col-lg-5">
             <h3 className="text-[32px] font-bold leading-[41px]">
-              Featured Categories
+              Catégories en vedette.
             </h3>
             <p className="font-base">
-              Choose your necessary products from this feature categories.
+              Choisissez vos produits parmi ces catégories en vedette.
             </p>
           </div>
           <div className="col-lg-7">
@@ -145,382 +180,53 @@ const FeaturedCat = () => {
         </div>
         <div className="mt-50">
           <div className="row">
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/smartphone.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Smart Phone</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Phone Accessories
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Phone Cases
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Postpaid Phones
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Refurbished Phones
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/television.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Television</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        HD DVD Players
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Projection Screens
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Television Accessories
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        TV-DVD Combos
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
+            {featuredCategories.map((category: any) => (
+              <div
+                key={category._id}
+                className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12"
+              >
+                <div className="card-grid-style-2 card-grid-style-2-small hover-up">
+                  <div className="image-box">
+                    <Link href={`/products?category=${category._id}`}>
+                      <Image
+                        src={category.image}
+                        alt="Ecom"
+                        width={363}
+                        height={363}
+                      />
+                    </Link>
+                  </div>
+                  <div className="info-right">
+                    <a
+                      className="color-brand-3 font-sm-bold"
+                      href="shop-grid.html"
+                    >
+                      <h6 className="truncate max-w-[183px]">
+                        {category.name}
+                      </h6>
+                    </a>
+                    <ul className="list-links-disc !max-h-[155px] scrollbar">
+                      {category.subcategories.slice(0, 4).map((subcat: any) => (
+                        <li key={subcat._id}>
+                          <Link
+                            className="font-sm truncate max-w-[183.4px]"
+                            href={`/products?souscategory=${subcat._id}`}
+                          >
+                            {subcat.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      className="btn btn-gray-abs"
+                      href={`/products?category=${category._id}`}
+                    >
+                      Afficher tout
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/computer.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Computers</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Computer Components
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Computer Accessories
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Desktops
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Monitors
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/electric.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Electronics</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Office Electronics
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Portable Audio &amp; Video
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Washing Machine
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Accessories &amp; Supplies
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/laptop.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Laptop &amp; Tablet</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Office laptop
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Gaming laptop
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Laptop accessories
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Tablet
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/smartwatches.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Smartwatches</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Sport Watches
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Chronograph Watches
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Kids Watches
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Luxury Watches
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/gaming.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Gaming</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Game Controllers
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Gaming Keyboards
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        PC Gaming Mice
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        PC Game Headsets
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12">
-              <div className="card-grid-style-2 card-grid-style-2-small hover-up">
-                <div className="image-box">
-                  <a href="shop-grid.html">
-                    <Image
-                      src="/imgs/page/homepage1/outdoor.png"
-                      alt="Ecom"
-                      width={363}
-                      height={363}
-                    />
-                  </a>
-                </div>
-                <div className="info-right">
-                  <a
-                    className="color-brand-3 font-sm-bold"
-                    href="shop-grid.html"
-                  >
-                    <h6>Outdoor Camera</h6>
-                  </a>
-                  <ul className="list-links-disc">
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Security &amp; Surveillance
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Surveillance DVR Kits
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Surveillance NVR Kits
-                      </a>
-                    </li>
-                    <li>
-                      <a className="font-sm" href="shop-grid.html">
-                        Smart Outdoor Lighting
-                      </a>
-                    </li>
-                  </ul>
-                  <a className="btn btn-gray-abs" href="shop-grid.html">
-                    View all
-                  </a>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>

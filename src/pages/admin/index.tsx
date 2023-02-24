@@ -34,6 +34,7 @@ const Dashboard = () => {
       <SEO />
       <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
         <DashboardBody />
+        <DashFooter />
       </main>
       <ToastContainer />
     </Layout>

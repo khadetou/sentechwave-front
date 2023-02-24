@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
+import { IoLinkSharp } from "react-icons/io5";
 import SlideDown from "react-slidedown";
 
 interface AsideProps {
@@ -137,6 +138,7 @@ const Aside: FC<AsideProps> = ({ open, setOpen }) => {
               name="sidemenu"
               id="ecommerce"
             />
+
             <label
               className="flex items-center justify-between w-full cursor-pointer py-[17px] px-[21px] focus:outline-none peer-checked:border-transparent"
               htmlFor="ecommerce"
@@ -153,6 +155,7 @@ const Aside: FC<AsideProps> = ({ open, setOpen }) => {
                 </span>
               </div>{" "}
             </label>
+
             <Image
               className="absolute right-2 transition-all duration-150 caret-icon pointer-events-none peer-checked:rotate-180 top-[22px]"
               src="/imgs/icons/icon-arrow-down.svg"
@@ -163,54 +166,39 @@ const Aside: FC<AsideProps> = ({ open, setOpen }) => {
             <div className="hidden peer-checked:block">
               <ul className="text-gray-500 child-menu z-10 pl-[53px]">
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="index-2.html">
+                  <Link className="text-normal" href="/admin">
                     Dashboards
-                  </a>
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="product-list.html">
-                    Products List
-                  </a>
+                  <Link className="text-normal" href="/admin/products">
+                    Produits
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="product-grid.html">
-                    Products Grid
-                  </a>
+                  <Link className="text-normal" href="/admin/create-product">
+                    Créer un produit
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="product-details.html">
-                    Product Details
-                  </a>
+                  <Link className="text-normal" href="/admin/category">
+                    Catégories
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="order-list.html">
-                    Order List
-                  </a>
+                  <Link className="text-normal" href="/orders">
+                    Commandes
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="order-details.html">
-                    Order Details
-                  </a>
+                  <Link className="text-normal" href="/admin/profile">
+                    Profile
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="transactions-list.html">
-                    Transactions
-                  </a>
-                </li>
-                <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="customers-lists.html">
-                    Customers List
-                  </a>
-                </li>
-                <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="reviews-list.html">
-                    Customers Review
-                  </a>
-                </li>
-                <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="seller-details.html">
-                    Seller Details
-                  </a>
+                  <Link className="text-normal" href="/admin/users">
+                    Clients
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -255,34 +243,27 @@ const Aside: FC<AsideProps> = ({ open, setOpen }) => {
             <div className="hidden peer-checked:block">
               <ul className="text-gray-500 child-menu z-10 pl-[53px]">
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="cms-dashboard.html">
-                    Dashboard
-                  </a>
+                  <Link className="text-normal" href="/admin/blog">
+                    Blog
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="cms-post-listing-grid.html">
-                    Posts Grid
-                  </a>
+                  <Link className="text-normal" href="/admin/blog/create-blog">
+                    Créer blog
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="cms-post-listing-list.html">
-                    Post List
-                  </a>
+                  <Link
+                    className="text-normal"
+                    href="/admin/blog/create-category"
+                  >
+                    Créer catégories
+                  </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="cms-media.html">
-                    Media
-                  </a>
-                </li>
-                <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="cms-add-post.html">
-                    Add Post
-                  </a>
-                </li>
-                <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <a className="text-normal" href="cms-comment.html">
-                    Comments
-                  </a>
+                  <Link className="text-normal" href="/admin/blog/create-tag">
+                    Créer tag
+                  </Link>
                 </li>
               </ul>
             </div>

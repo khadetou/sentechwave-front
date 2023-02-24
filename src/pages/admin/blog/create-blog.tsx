@@ -1,5 +1,6 @@
 import Layout from "components/admin/Layout";
 import CreateBlogPage from "components/admin/screens/blog/create-blog";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
@@ -16,7 +17,10 @@ const CreateBlog = () => {
   return (
     <Layout>
       <SEO />
-      <CreateBlogPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <CreateBlogPage />
+        <DashFooter />
+      </main>
       <ToastContainer />
     </Layout>
   );

@@ -12,8 +12,13 @@ import { ToastContainer } from "react-toastify";
 import { getCookie } from "redux/auth/authService";
 import { logout, getUser } from "redux/auth/authSlice";
 import {
+  getAllItemCategories,
+  getAllProductCategories,
   getAllProducts,
+  getAllSubCategories,
+  getAllSubSubCategories,
   getFiltersProducts,
+  getTopProducts,
 } from "redux/products/productSlice";
 import { wrapper } from "redux/store";
 import { Data } from "utils/interface";
@@ -86,6 +91,11 @@ export const getServerSideProps: GetServerSideProps =
     };
     await store.dispatch<any>(getAllProducts(data));
     await store.dispatch<any>(getFiltersProducts(dataf));
+    await store.dispatch(getAllProductCategories());
+    await store.dispatch(getAllSubCategories());
+    await store.dispatch(getAllSubSubCategories());
+    await store.dispatch(getAllItemCategories());
+    await store.dispatch<any>(getTopProducts());
 
     if (token) {
       if (jwtDecode<any>(token).exp < Date.now() / 1000) {

@@ -27,7 +27,7 @@ const MainProduct = () => {
       <Bottom />
       <div className="containers mt-20">
         <div className="text-center">
-          <a href="#">
+          <a>
             <Image
               width={1011}
               height={172}

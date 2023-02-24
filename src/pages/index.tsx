@@ -32,12 +32,14 @@ import LatestNews from "components/screens/latest-news";
 import Services from "components/screens/home/services";
 import Newsletter from "components/screens/home/newsletter";
 import Footer from "components/Footer";
+import Advantages from "components/advantages";
+import NewsletterProduct from "components/newsletter";
 
 const Home: NextPage = () => {
   const [isLocationOpen, setIsLocationOpen] = useState(false);
   const [isOpenCat, setIsOpenCat] = useState(false);
   const [open, setOpen] = useState(false);
-  const [state, setState] = useState("initials");
+  const [id, setId] = useState("");
   return (
     <Layout
       isLocationOpen={isLocationOpen}
@@ -67,9 +69,9 @@ const Home: NextPage = () => {
         <Features />
         <ProductTabs />
         <LatestNews />
-        <Services />
-        <Newsletter />
-        <Modal />
+        <Advantages />
+        <NewsletterProduct />
+        <Modal id={id} />
         <ToastContainer position="bottom-center" />
       </main>
       <Footer />
@@ -114,7 +116,6 @@ export const getServerSideProps: GetServerSideProps =
     await store.dispatch(getAllProductCategories());
     await store.dispatch(getAllSubCategories());
     await store.dispatch(getAllSubSubCategories());
-
     await store.dispatch(getAllItemCategories());
 
     await store.dispatch<any>(getAllProducts(data));

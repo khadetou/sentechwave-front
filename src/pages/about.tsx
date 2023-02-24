@@ -35,8 +35,8 @@ const About = () => {
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}
+        open={open}
       />
-      <Mobile open={open} setOpen={setOpen} />
       <AboutPage />
     </Layout>
   );

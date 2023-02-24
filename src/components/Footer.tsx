@@ -8,14 +8,16 @@ const Footer = () => {
         <div className="containers">
           <div className="row">
             <div className="col-lg-3 width-25 mb-30">
-              <h4 className="mb-30 color-gray-1000">Contact</h4>
+              <h4 className="mb-30 color-gray-1000 text-2xl font-bold">
+                Contactez-nous
+              </h4>
               <div className="font-md mb-20 color-gray-900">
-                <strong className="font-md-bold">Address:</strong> 502 New
-                Design Str, Melbourne, San Francisco, CA 94110, United States
+                <strong className="font-md-bold">Adresse:</strong> 39 Castor 1
+                Dakar Sénégal
               </div>
               <div className="font-md mb-20 color-gray-900">
-                <strong className="font-md-bold">Phone:</strong> (+01)
-                123-456-789
+                <strong className="font-md-bold">Téléphone:</strong> 77 586 79
+                68
               </div>
               <div className="font-md mb-20 color-gray-900">
                 <strong className="font-md-bold">E-mail:</strong>
@@ -24,7 +26,7 @@ const Footer = () => {
                   className="__cf_email__"
                   data-cfemail="84e7ebeaf0e5e7f0c4e1e7ebe9a9e9e5f6efe1f0aae7ebe9"
                 >
-                  [email&#160;protected]
+                  contact@hotcodesagency.com
                 </a>
               </div>
               <div className="font-md mb-20 color-gray-900">
@@ -39,80 +41,88 @@ const Footer = () => {
               </div>
             </div>
             <div className="col-lg-3 width-20 mb-30">
-              <h4 className="mb-30 color-gray-1000">Make Money with Us</h4>
+              <h4 className="mb-30 color-gray-1000 text-2xl font-bold">
+                Gagnez de l&apos;argent avec nous
+              </h4>
               <ul className="menu-footer">
                 <li>
-                  <a href="page-about-us.html">Mission &amp; Vision</a>
+                  <a href="page-about-us.html">Notre mission et vision</a>
                 </li>
                 <li>
-                  <a href="page-about-us.html">Our Team</a>
+                  <a href="page-about-us.html">Notre équipe</a>
                 </li>
                 <li>
-                  <a href="page-careers.html">Careers</a>
+                  <a href="page-careers.html">Carrières</a>
                 </li>
                 <li>
-                  <a href="#">Press &amp; Media</a>
+                  <a href="#">Presse et médias</a>
                 </li>
                 <li>
-                  <a href="#">Advertising</a>
+                  <a href="#">Publicité</a>
                 </li>
                 <li>
-                  <a href="#">Testimonials</a>
+                  <a href="#">Témoignages</a>
                 </li>
               </ul>
             </div>
             <div className="col-lg-3 width-16 mb-30">
-              <h4 className="mb-30 color-gray-1000">Company</h4>
+              <h4 className="mb-30 color-gray-1000 text-2xl font-bold">
+                Entreprise
+              </h4>
               <ul className="menu-footer">
                 <li>
-                  <a href="blog-2.html">Our Blog</a>
+                  <a href="blog-2.html">Notre blog</a>
                 </li>
                 <li>
-                  <a href="#">Plans &amp; Pricing</a>
+                  <a href="#">Plans et tarification</a>
                 </li>
                 <li>
-                  <a href="#">Knowledge Base</a>
+                  <a href="#">Base de connaissances</a>
                 </li>
                 <li>
-                  <a href="#">Cookie Policy</a>
+                  <a href="#">Politique de cookies</a>
                 </li>
                 <li>
-                  <a href="#">Office Center</a>
+                  <a href="#">Centre de bureaux</a>
                 </li>
                 <li>
-                  <a href="blog.html">News &amp; Events</a>
+                  <a href="blog.html">Actualités et événements</a>
                 </li>
               </ul>
             </div>
             <div className="col-lg-3 width-16 mb-30">
-              <h4 className="mb-30 color-gray-1000">My account</h4>
+              <h4 className="mb-30 color-gray-1000 text-2xl font-bold">
+                Mon compte
+              </h4>
               <ul className="menu-footer">
                 <li>
-                  <a href="#">FAQs</a>
+                  <a href="#">FAQ</a>
                 </li>
                 <li>
-                  <a href="#">Editor Help</a>
+                  <a href="#">Aide éditoriale</a>
                 </li>
                 <li>
-                  <a href="#">Community</a>
+                  <a href="#">Communauté</a>
                 </li>
                 <li>
-                  <a href="#">Live Chatting</a>
+                  <a href="#">Chat en direct</a>
                 </li>
                 <li>
-                  <a href="page-contact.html">Contact Us</a>
+                  <a href="page-contact.html">Contactez-nous</a>
                 </li>
                 <li>
-                  <a href="#">Support Center</a>
+                  <a href="#">Centre de support</a>
                 </li>
               </ul>
             </div>
             <div className="col-lg-3 width-23">
-              <h4 className="mb-30 color-gray-1000">App &amp; Payment</h4>
+              <h4 className="mb-30 color-gray-1000 text-2xl font-bold">
+                Application et paiement
+              </h4>
               <div>
                 <p className="font-md color-gray-900">
-                  Download our Apps and get extra 15% Discount on your first
-                  Order&mldr;!
+                  Téléchargez nos applications et obtenez une remise
+                  supplémentaire de 15% sur votre première commande !
                 </p>
                 <div className="mt-20">
                   <a className="mr-10" href="#">
@@ -135,7 +145,7 @@ const Footer = () => {
                   </a>
                 </div>
                 <p className="font-md color-gray-900 mt-20 mb-10">
-                  Secured Payment Gateways
+                  Passerelle de paiement sécurisée
                 </p>
                 <Image
                   src="/imgs/template/payment-method.png"
@@ -164,68 +174,60 @@ const Footer = () => {
                 EcomMarket.com
               </a>
               <a className="font-xs color-gray-1000" href="#">
-                Ecom Partners
+                Partenaires Ecom
               </a>
               <a className="font-xs color-gray-1000" href="#">
-                Ecom Bussiness
+                Entreprise Ecom
               </a>
               <a className="font-xs color-gray-1000" href="#">
-                Ecom Factory
+                Usine Ecom
               </a>
             </div>
             <div className="footer-2-bottom">
               <div className="head-left-footer">
-                <h6 className="color-gray-1000">Electronic:</h6>
+                <h6 className="color-gray-1000 font-bold">Électronique:</h6>
               </div>
               <div className="tags-footer">
-                <a href="shop-fullwidth.html">Cell Phones</a>
-                <a href="shop-grid.html">Headphones</a>
-                <a href="shop-grid-2.html">Television &amp; Video</a>
-                <a href="shop-list.html">Game Controller</a>
+                <a href="shop-fullwidth.html">Téléphones portables</a>
+                <a href="shop-grid.html">Casques</a>
+                <a href="shop-grid-2.html">Télévision et vidéo</a>
+                <a href="shop-list.html">Manette de jeu</a>
                 <a href="shop-list-2.html">Apple Watch</a>
                 <a href="shop-grid.html">HTC</a>
                 <a href="shop-grid.html">Ipad</a>
-                <a href="shop-grid.html">Keyboard</a>
+                <a href="shop-grid.html">Clavier</a>
                 <a href="shop-grid.html">Samsung</a>
-                <a href="shop-grid.html">Wireless Speaker</a>
+                <a href="shop-grid.html">Haut-parleur sans fil</a>
                 <a href="shop-grid.html">Samsung Galaxy</a>
-                <a href="shop-grid.html">Gaming Mouse</a>
-                <a href="shop-grid.html">eBook Readers</a>
+                <a href="shop-grid.html">Souris de jeu</a>
+                <a href="shop-grid.html">Lecteurs d&rsquo;ebook</a>
                 <a href="shop-grid.html">Service Plans</a>
-                <a href="shop-grid.html">Home Audio</a>
-                <a href="shop-grid.html">Office Electronics</a>
+                <a href="shop-grid.html">Systèmes audio pour la maison</a>
+                <a href="shop-grid.html">Électronique de bureau</a>
                 <a href="shop-grid.html">Lenovo</a>
                 <a href="shop-grid.html">Mackbook Pro M1</a>
-                <a href="shop-grid.html">HD Videos Player</a>
+                <a href="shop-grid.html">Lecteur vidéo HD</a>
               </div>
             </div>
             <div className="footer-2-bottom">
               <div className="head-left-footer">
-                <h6 className="color-gray-1000">Furniture:</h6>
+                <h6 className="color-gray-1000 font-bold">Meubles:</h6>
               </div>
               <div className="tags-footer">
-                <a href="shop-grid.html">Sofa</a>
-                <a href="shop-grid.html">Chair</a>
-                <a href="shop-grid.html">Dining Table</a>
-                <a href="shop-grid.html">Living Room</a>
-                <a href="shop-grid.html">Table Lamp</a>
-                <a href="shop-grid.html">Night Stand</a>
-                <a href="shop-grid.html">Computer Desk</a>
-                <a href="shop-grid.html">Bar Table</a>
-                <a href="shop-grid.html">Pillow</a>
+                <a href="shop-grid.html">Canapé</a>
+                <a href="shop-grid.html">Chaise</a>
+                <a href="shop-grid.html">Table à manger</a>
+                <a href="shop-grid.html">Salle de séjour</a>
+                <a href="shop-grid.html">Lampe de table</a>
+                <a href="shop-grid.html">Table de nuit</a>
+                <a href="shop-grid.html">Bureau d&rsquo;ordinateur</a>
+                <a href="shop-grid.html">Table de bar</a>
+                <a href="shop-grid.html">Oreiller</a>
                 <a href="shop-grid.html">Radio</a>
-                <a href="shop-grid.html">Clock</a>
-                <a href="shop-grid.html">Bad Room</a>
-                <a href="shop-grid.html">Stool</a>
+                <a href="shop-grid.html">Horloge</a>
+                <a href="shop-grid.html">Chambre à coucher</a>
+                <a href="shop-grid.html">Tabouret</a>
                 <a href="shop-grid.html">Television</a>
-                <a href="shop-grid.html">wardrobe</a>
-                <a href="shop-grid.html">Living Room Tables</a>
-                <a href="shop-grid.html">Dressers</a>
-                <a href="shop-grid.html">Patio Sofas</a>
-                <a href="shop-grid.html">Nursery</a>
-                <a href="shop-grid.html">Kitchen</a>
-                <a href="shop-grid.html">Accent Furniture</a>
-                <a href="shop-grid.html">Replacement Parts</a>
               </div>
             </div>
           </div>
@@ -235,19 +237,19 @@ const Footer = () => {
             <div className="row">
               <div className="col-lg-6 col-md-12 text-center text-lg-start">
                 <span className="color-gray-900 font-sm">
-                  Copyright &copy; 2022 Ecom Market. All rights reserved.
+                  Copyright © 2022 Ecom Market. Tous droits réservés.
                 </span>
               </div>
               <div className="col-lg-6 col-md-12 text-center text-lg-end">
                 <ul className="menu-bottom">
                   <li>
                     <a className="font-sm color-gray-900" href="page-term.html">
-                      Conditions of Use
+                      Conditions d&rsquo;utilisation
                     </a>
                   </li>
                   <li>
                     <a className="font-sm color-gray-900" href="page-term.html">
-                      Privacy Notice
+                      Avis de confidentialité
                     </a>
                   </li>
                   <li>
@@ -255,7 +257,7 @@ const Footer = () => {
                       className="font-sm color-gray-900"
                       href="page-careers.html"
                     >
-                      Interest-Based Ads
+                      Annonces basées sur les centres d&rsquo;intérêt
                     </a>
                   </li>
                 </ul>

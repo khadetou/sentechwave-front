@@ -1,5 +1,7 @@
+import { useAppSelector } from "hooks/index";
 import Image from "next/image";
 const Bottom = () => {
+  const { product } = useAppSelector((store) => store.product);
   return (
     <section className="section-box shop-template">
       <div className="containers">
@@ -25,7 +27,7 @@ const Bottom = () => {
                 aria-controls="tab-specification"
                 aria-selected="true"
               >
-                Specification
+                Spécifications
               </a>
             </li>
             <li>
@@ -36,7 +38,7 @@ const Bottom = () => {
                 aria-controls="tab-additional"
                 aria-selected="true"
               >
-                Additional information
+                Informations supplémentaires
               </a>
             </li>
             <li>
@@ -47,18 +49,7 @@ const Bottom = () => {
                 aria-controls="tab-reviews"
                 aria-selected="true"
               >
-                Reviews (2)
-              </a>
-            </li>
-            <li>
-              <a
-                href="#tab-vendor"
-                data-bs-toggle="tab"
-                role="tab"
-                aria-controls="tab-vendor"
-                aria-selected="true"
-              >
-                Vendor
+                Avis (2)
               </a>
             </li>
           </ul>
@@ -70,81 +61,13 @@ const Bottom = () => {
               aria-labelledby="tab-description"
             >
               <div className="display-text-short">
-                <p>
-                  It is a paradisematic country, in which roasted parts of
-                  sentences fly into your mouth. Even the all-powerful Pointing
-                  has no control about the blind texts it is an almost
-                  unorthographic life One day however a small line of blind text
-                  by the name of Lorem Ipsum decided to leave for the far World
-                  of Grammar. The Big Oxmox advised her not to do so, because
-                  there were thousands of bad Commas, wild Question Marks and
-                  devious Semikoli, but the Little Blind Text didn’t listen. She
-                  packed her seven versalia, put her initial into the belt and
-                  made herself on the way.
-                </p>
-                <p>
-                  When she reached the first hills of the Italic Mountains, she
-                  had a last view back on the skyline of her hometown
-                  Bookmarksgrove, the headline of Alphabet Village and the
-                  subline of her own road, the Line Lane. Pityful a rethoric
-                  question ran over her cheek, then she continued her way. On
-                  her way she met a copy. The copy warned the Little Blind Text,
-                  that where it came from it would have been rewritten a
-                  thousand times and everything that was left from its origin
-                  would be the word “and” and the Little Blind Text should turn
-                  around and return to its own, safe country. It is a
-                  paradisematic country, in which roasted parts of sentences fly
-                  into your mouth. Even the all-powerful Pointing has no control
-                  about the blind texts it is an almost unorthographic life One
-                  day however a small line of blind text by the name of Lorem
-                  Ipsum decided to leave for the far World of Grammar.
-                </p>
-                <p>
-                  <Image
-                    width={1280}
-                    height={492}
-                    src="/imgs/page/product/product-banner.jpg"
-                    alt="Ecom"
-                  />
-                </p>
-                <p>
-                  It is a paradisematic country, in which roasted parts of
-                  sentences fly into your mouth. Even the all-powerful Pointing
-                  has no control about the blind texts it is an almost
-                  unorthographic life One day however a small line of blind text
-                  by the name of Lorem Ipsum decided to leave for the far World
-                  of Grammar. The Big Oxmox advised her not to do so, because
-                  there were thousands of bad Commas, wild Question Marks and
-                  devious Semikoli, but the Little Blind Text didn’t listen. She
-                  packed her seven versalia, put her initial into the belt and
-                  made herself on the way.
-                </p>
-                <p>
-                  <Image
-                    width={1280}
-                    height={198}
-                    src="/imgs/page/product/product-banner-2.jpg"
-                    alt="Ecom"
-                  />
-                </p>
-                <p>
-                  When she reached the first hills of the Italic Mountains, she
-                  had a last view back on the skyline of her hometown
-                  Bookmarksgrove, the headline of Alphabet Village and the
-                  subline of her own road, the Line Lane. Pityful a rethoric
-                  question ran over her cheek, then she continued her way. On
-                  her way she met a copy. The copy warned the Little Blind Text,
-                  that where it came from it would have been rewritten a
-                  thousand times and everything that was left from its origin
-                  would be the word “and” and the Little Blind Text should turn
-                  around and return to its own, safe country.
-                </p>
+                <p>{product && product.description}</p>
               </div>
-              <div className="mt-20 text-center">
+              {/* <div className="mt-20 text-center">
                 <a className="btn btn-border font-sm-bold pl-80 pr-80 btn-expand-more">
                   More Details
                 </a>
-              </div>
+              </div> */}
             </div>
             <div
               className="tab-pane fade"
@@ -226,8 +149,27 @@ const Bottom = () => {
             >
               <div className="comments-area">
                 <div className="row">
+                  <div className="col-lg-12">
+                    <div className="form-group">
+                      <textarea
+                        className="form-control"
+                        placeholder="Message"
+                        rows={5}
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div className="col-lg-12">
+                    <div className="form-group">
+                      <input
+                        className="btn btn-buy w-auto"
+                        type="submit"
+                        value="Send message"
+                      />
+                    </div>
+                  </div>
+
                   <div className="col-lg-8">
-                    <h4 className="mb-30 title-question">
+                    <h4 className="mb-30 title-question font-bold">
                       Customer questions &amp; answers
                     </h4>
                     <div className="comment-list">
@@ -360,7 +302,9 @@ const Bottom = () => {
                     </div>
                   </div>
                   <div className="col-lg-4">
-                    <h4 className="mb-30 title-question">Customer reviews</h4>
+                    <h4 className="mb-30 title-question font-bold">
+                      Customer reviews
+                    </h4>
                     <div className="d-flex mb-30">
                       <div className="product-rate d-inline-block mr-15">
                         <div
@@ -427,96 +371,7 @@ const Bottom = () => {
                 </div>
               </div>
             </div>
-            <div
-              className="tab-pane fade"
-              id="tab-vendor"
-              role="tabpanel"
-              aria-labelledby="tab-vendor"
-            >
-              <div className="vendor-logo d-flex mb-30">
-                <Image
-                  src="/imgs/page/product/futur.png"
-                  alt=""
-                  width={95}
-                  height={49}
-                />
-                <div className="vendor-name ml-15">
-                  <h6>
-                    <a href="shop-vendor-single.html">Futur Tech.</a>
-                  </h6>
-                  <div className="product-rate-cover text-end">
-                    <div className="product-rate d-inline-block">
-                      <div
-                        className="product-rating"
-                        style={{ width: "90%" }}
-                      ></div>
-                    </div>
-                    <span className="font-small ml-5 text-muted">
-                      {" "}
-                      (32 reviews)
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <ul className="contact-infor mb-50">
-                <li>
-                  <Image
-                    src="/imgs/page/product/icon-location.svg"
-                    width={50}
-                    height={50}
-                    alt=""
-                  />
-                  <strong>Address:</strong>
-                  <span>
-                    {" "}
-                    5171 W Campbell Ave undefined Kent, Utah 53127 United States
-                  </span>
-                </li>
-                <li>
-                  <Image
-                    src="/imgs/page/product/icon-contact.svg"
-                    width={50}
-                    height={50}
-                    alt=""
-                  />
-                  <strong>Contact Seller:</strong>
-                  <span> (+91) - 540-025-553</span>
-                </li>
-              </ul>
-              <div className="d-flex mb-25">
-                <div className="mr-30">
-                  <p className="color-brand-1 font-xs">Rating</p>
-                  <h4 className="mb-0">92%</h4>
-                </div>
-                <div className="mr-30">
-                  <p className="color-brand-1 font-xs">Ship on time</p>
-                  <h4 className="mb-0">100%</h4>
-                </div>
-                <div>
-                  <p className="color-brand-1 font-xs">Chat response</p>
-                  <h4 className="mb-0">89%</h4>
-                </div>
-              </div>
-              <p className="font-sm color-gray-500 mb-15">
-                Noodles &amp; Company is an American fast-casual restaurant that
-                offers international and American noodle dishes and pasta in
-                addition to soups and salads. Noodles &amp; Company was founded
-                in 1995 by Aaron Kennedy and is headquartered in Broomfield,
-                Colorado. The company went public in 2013 and recorded a $457
-                million revenue in 2017.In late 2018, there were 460 Noodles
-                &amp; Company locations across 29 states and Washington, D.C.
-              </p>
-              <p className="font-sm color-gray-500">
-                Proin congue dapibus rhoncus. Curabitur ipsum orci, malesuada in
-                porttitor a, porttitor quis diam. Nunc at arcu ut turpis
-                facilisis volutpat. Proin tristique, mauris non gravida
-                dignissim, purus mauris malesuada tellus, in tincidunt orci enim
-                eget ligula. Quisque bibendum, ipsum id malesuada placerat,
-                purus felis vehicula risus, vel fringilla justo erat ullamcorper
-                ligula. Fusce congue ullamcorper ligula, at commodo turpis
-                molestie vel.
-              </p>
-            </div>
+
             <div className="border-bottom pt-30 mb-50"></div>
             <h4 className="color-brand-3 text-2xl font-bold">
               Related Products

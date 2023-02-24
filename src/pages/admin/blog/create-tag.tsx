@@ -1,5 +1,7 @@
 import Layout from "components/admin/Layout";
 import CreateTagPage from "components/admin/screens/blog/create-tag";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
+import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
 import { ToastContainer } from "react-toastify";
@@ -13,7 +15,11 @@ import { Data } from "utils/interface";
 const CreateTag = () => {
   return (
     <Layout>
-      <CreateTagPage />
+      <SEO />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <CreateTagPage />
+        <DashFooter />
+      </main>
       <ToastContainer />
     </Layout>
   );

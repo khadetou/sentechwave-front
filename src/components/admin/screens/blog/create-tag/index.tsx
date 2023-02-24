@@ -74,7 +74,9 @@ const CreateTagPage = () => {
     <section className="content-main">
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label className="text-muted">Tag</label>
+          <label className=" capitalize text-gray-1100 font-bold text-[28px] leading-[35px]">
+            Tag
+          </label>
           <input
             type="text"
             className="form-control"

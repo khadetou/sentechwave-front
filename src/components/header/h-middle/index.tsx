@@ -21,6 +21,7 @@ import { IoCaretDownOutline } from "react-icons/io5";
 import { getFiltersProducts } from "redux/products/productSlice";
 import { Data } from "utils/interface";
 import { filterText } from "utils/index";
+import { FaSearch } from "react-icons/fa";
 
 interface HMiddleProps {
   setIsLocationOpen: Dispatch<SetStateAction<boolean>>;
@@ -51,7 +52,16 @@ const HMiddle: FC<HMiddleProps> = ({
   const [Items, setItems] = useState<Item[]>([]);
   const [totalsWishlist, setTotalsWishlist] = useState(0);
   const [cartTotals, setCartTotals] = useState(0);
-  const { pathname } = useRouter();
+
+  useEffect(() => {
+    setTotals(totalItems);
+    setTotalsWishlist(totalWishlistItems);
+    setEmpty(isEmpty);
+    setItems(items);
+    setCartTotals(cartTotal);
+  }, [totalItems, isEmpty, cartTotal, items, totalWishlistItems]);
+
+  const { pathname, push } = useRouter();
 
   const [userDropdown, setUserDropdown] = useState(false);
   const [openc, setOpenc] = useState(false);
@@ -116,14 +126,6 @@ const HMiddle: FC<HMiddleProps> = ({
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [ref, setIsOpenCat]);
-
-  useEffect(() => {
-    setTotals(totalItems);
-    setTotalsWishlist(totalWishlistItems);
-    setEmpty(isEmpty);
-    setItems(items);
-    setCartTotals(cartTotal);
-  }, [totalItems, isEmpty, cartTotal, items, totalWishlistItems]);
 
   //   REACT SELECT STYLING
   const selectStyles: StylesConfig<any, false> = {
@@ -208,19 +210,32 @@ const HMiddle: FC<HMiddleProps> = ({
     }),
   };
 
-  const [value, setValue] = useState<any>(undefined);
+  const [value, setValue] = useState<
+    { value: string; label: string } | undefined
+  >(undefined);
 
   const onSelectChange = (value: any) => {
     setIsOpenCat(false);
     setValue(value);
   };
-  const { products, filters } = useAppSelector((store) => store.product);
-  const categories = filters.map((product: any) => product.category);
-  const filteredcat = [...new Set(categories)];
-  const filterOptions = filteredcat.map((category: any) => {
+  const { products, categories, filters } = useAppSelector(
+    (store) => store.product
+  );
+  // const catname = categories.map((category: any) => category.name);
+  // const filteredcat = [...new Set(catname)];
+  // const filterOptions = filteredcat.map((category: any) => {
+  //   return {
+  //     value: category,
+  //     label: category,
+  //   };
+  // });
+
+  // const catname = categories.map((category: any) => category.name);
+  // const filteredcat = [...new Set(catname)];
+  const filterOptions = categories.map((category: any) => {
     return {
-      value: category,
-      label: category,
+      value: category._id,
+      label: category.name,
     };
   });
 
@@ -252,7 +267,6 @@ const HMiddle: FC<HMiddleProps> = ({
     if (keyword.current?.value.trim()) {
       setSearchOpen(true);
     }
-
     setSearch(keyword.current!.value);
     localStorage.setItem("kew", keyword.current!.value);
   };
@@ -262,14 +276,14 @@ const HMiddle: FC<HMiddleProps> = ({
       <div className="main-header">
         <div className="header-left">
           <div className="header-logo">
-            <a className="d-flex" href="index.html">
+            <Link className="d-flex" href="/">
               <Image
                 alt="Ecom"
                 width={111}
                 height={37}
                 src="/imgs/template/logo.svg"
               />
-            </a>
+            </Link>
           </div>
           <div className="header-search">
             <div className="box-header-search">
@@ -282,7 +296,7 @@ const HMiddle: FC<HMiddleProps> = ({
                   >
                     <span className=" relative pl-2 pr-[10px] w-full ">
                       <p className="text-ellipsis whitespace-nowrap w-full overflow-hidden">
-                        {value ? value.value : "Tous les categories"}
+                        {value ? value.label : "Tous les categories"}
                       </p>
                     </span>
                     <IoCaretDownOutline
@@ -315,7 +329,7 @@ const HMiddle: FC<HMiddleProps> = ({
                     />
                   </div>
                 </div>
-                <div className="box-keysearch">
+                <div className="box-keysearch relative flex">
                   <input
                     className="form-control font-xs"
                     type="text"
@@ -324,8 +338,20 @@ const HMiddle: FC<HMiddleProps> = ({
                     value={search}
                     onChange={onChange}
                   />
+                  <Link
+                    className="!p-2"
+                    href={
+                      value === undefined
+                        ? "/"
+                        : value!.value === "Tous les categories"
+                        ? "/products"
+                        : `/products?category=${value!.value}`
+                    }
+                  >
+                    <FaSearch />
+                  </Link>
                   {search && products.length !== 0 && (
-                    <div className="absolute flex p-2 rounded-bl-lg rounded-br-lg flex-col items-start top-10 z-[20000] w-full h-auto bg-white">
+                    <div className="absolute flex !p-5 rounded-bl-lg rounded-br-lg flex-col items-start top-10 z-[20000] w-full min-w-[500px] max-h-[500px] overflow-y-auto rounded-lg h-auto bg-white">
                       {filters.map((product: any, idx: any) => (
                         <Link
                           key={idx}
@@ -345,8 +371,8 @@ const HMiddle: FC<HMiddleProps> = ({
                                 className="max-w-[60px]"
                               />
                             </div>
-                            <div className="ml-2">
-                              <h3 className="text-base font-bold group-hover:bg-red-600">
+                            <div className="ml-2 w-[77%]">
+                              <h3 className="text-base w-full truncate font-bold ">
                                 {product.name}
                               </h3>
                               <p>
@@ -401,7 +427,7 @@ const HMiddle: FC<HMiddleProps> = ({
                   <Link href="/blog">Blog</Link>
                 </li>
                 <li>
-                  <Link href="/contact">Nous Contacter</Link>
+                  <Link href="/contact-us">Nous Contacter</Link>
                 </li>
               </ul>
             </nav>
@@ -463,16 +489,23 @@ const HMiddle: FC<HMiddleProps> = ({
                       <Link href="/dashboard">Paramètre</Link>
                     </li>
                     <li>
-                      <a onClick={() => dispatch(logout())}>Deconnecter</a>
+                      <a
+                        className="cursor-pointer"
+                        onClick={() => dispatch(logout())}
+                      >
+                        Deconnecter
+                      </a>
                     </li>
                   </ul>
                 </div>
               </div>
             ) : (
               <div className="d-inline-block box-dropdown-cart">
-                <span className="font-lg icon-list icon-account">
-                  <span>Account</span>
-                </span>
+                <Link href="/login">
+                  <span className="font-lg icon-list icon-account">
+                    <span>Account</span>
+                  </span>
+                </Link>
               </div>
             )}
             <Link className="font-lg icon-list icon-wishlist" href="/wishlist">
@@ -496,52 +529,37 @@ const HMiddle: FC<HMiddleProps> = ({
                   openc ? "dropdown-cart dropdown-open" : "dropdown-cart"
                 }`}
               >
-                <div className="item-cart mb-20">
-                  <div className="cart-image">
-                    <Image
-                      width={648}
-                      height={438}
-                      src="/imgs/page/homepage1/imgsp5.png"
-                      alt="Ecom"
-                    />
+                {Items.map((item) => (
+                  <div key={item.id} className="item-cart mb-20">
+                    <div className="cart-image">
+                      <Image
+                        width={648}
+                        height={438}
+                        src={item.images[0].url}
+                        alt="Ecom"
+                      />
+                    </div>
+                    <div className="cart-info">
+                      <Link
+                        className="font-sm-bold color-brand-3"
+                        href={`/products/${item.id}`}
+                      >
+                        2022 Apple iMac with Retina 5K Display 8GB RAM, 256GB
+                        SSD
+                      </Link>
+                      <p>
+                        <span className="color-brand-2 font-sm-bold">
+                          {item.quantity} x{" "}
+                          {Number(item.price).toLocaleString("fr-FR", {
+                            style: "currency",
+                            currency: "XOF",
+                          })}
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                  <div className="cart-info">
-                    <a
-                      className="font-sm-bold color-brand-3"
-                      href="shop-single-product.html"
-                    >
-                      2022 Apple iMac with Retina 5K Display 8GB RAM, 256GB SSD
-                    </a>
-                    <p>
-                      <span className="color-brand-2 font-sm-bold">
-                        1 x $2856.4
-                      </span>
-                    </p>
-                  </div>
-                </div>
-                <div className="item-cart mb-20">
-                  <div className="cart-image">
-                    <Image
-                      width={648}
-                      height={438}
-                      src="/imgs/page/homepage1/imgsp4.png"
-                      alt="Ecom"
-                    />
-                  </div>
-                  <div className="cart-info">
-                    <a
-                      className="font-sm-bold color-brand-3"
-                      href="shop-single-product-2.html"
-                    >
-                      2022 Apple iMac with Retina 5K Display 8GB RAM, 256GB SSD
-                    </a>
-                    <p>
-                      <span className="color-brand-2 font-sm-bold">
-                        1 x $2856.4
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                ))}
+
                 <div className="border-bottom pt-0 mb-15"></div>
                 <div className="cart-total">
                   <div className="row">
@@ -550,23 +568,23 @@ const HMiddle: FC<HMiddleProps> = ({
                     </div>
                     <div className="col-6">
                       <span className="font-md-bold color-brand-1">
-                        {cartTotal}
+                        {Number(cartTotals).toLocaleString("fr-FR", {
+                          style: "currency",
+                          currency: "XOF",
+                        })}
                       </span>
                     </div>
                   </div>
                   <div className="row mt-15">
                     <div className="col-6 text-start">
-                      <a className="btn btn-cart w-auto" href="shop-cart.html">
+                      <Link className="btn btn-cart w-auto" href="/cart">
                         View cart
-                      </a>
+                      </Link>
                     </div>
                     <div className="col-6">
-                      <a
-                        className="btn btn-buy w-auto"
-                        href="shop-checkout.html"
-                      >
+                      <Link className="btn btn-buy w-auto" href="/checkout">
                         Checkout
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

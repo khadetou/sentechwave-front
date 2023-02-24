@@ -54,9 +54,9 @@ const LatestNews = () => {
       <div className="containers">
         <div className="head-main">
           <h3 className="mb-5 font-bold text-[31px]">
-            Latest News &amp; Events
+            Dernières actualités et événements
           </h3>
-          <p className="font-base color-gray-500">From our blog, forum</p>
+          <p className="font-base color-gray-500">De notre blog, forum</p>
           <div ref={ref} className="box-button-slider el"></div>
         </div>
       </div>
@@ -75,17 +75,20 @@ const LatestNews = () => {
                   />
                 </div>
                 <a className="tag-dot font-xs" href="blog-list.html">
-                  Technology
+                  Technologie
                 </a>
                 <a className="color-gray-1100" href="blog-single-2.html">
-                  <h4>The latest technologies to be used for VR in 2022</h4>
+                  <h4>
+                    Les dernières technologies à utiliser pour la réalité
+                    virtuelle en 2022
+                  </h4>
                 </a>
                 <div className="mt-20">
                   <span className="color-gray-500 font-xs mr-30">
-                    September 02, 2022
+                    2 septembre 2022
                   </span>
                   <span className="color-gray-500 font-xs">
-                    4<span> Mins read</span>
+                    4<span> min de lecture</span>
                   </span>
                 </div>
               </div>
@@ -102,17 +105,20 @@ const LatestNews = () => {
                   />
                 </div>
                 <a className="tag-dot font-xs" href="blog-list.html">
-                  Technology
+                  Technologie
                 </a>
                 <a className="color-gray-1100" href="blog-single.html">
-                  <h4>How can Web 3.0 Bring Changes to the Gaming?</h4>
+                  <h4>
+                    Comment Web 3.0 peut apporter des changements dans les jeux
+                    vidéo ?
+                  </h4>
                 </a>
                 <div className="mt-20">
                   <span className="color-gray-500 font-xs mr-30">
-                    August 30, 2022
+                    30 août 2022
                   </span>
                   <span className="color-gray-500 font-xs">
-                    5<span> Mins read</span>
+                    5<span> min de lecture</span>
                   </span>
                 </div>
               </div>
@@ -129,17 +135,17 @@ const LatestNews = () => {
                   />
                 </div>
                 <a className="tag-dot font-xs" href="blog-list.html">
-                  Gaming
+                  Jeux vidéo
                 </a>
                 <a className="color-gray-1100" href="blog-single-3.html">
-                  <h4>NFT Blockchain Games That Might Take Off</h4>
+                  <h4>Jeux NFT Blockchain qui pourraient décoller</h4>
                 </a>
                 <div className="mt-20">
                   <span className="color-gray-500 font-xs mr-30">
-                    August 25, 2022
+                    25 août 2022
                   </span>
                   <span className="color-gray-500 font-xs">
-                    3<span> Mins read</span>
+                    3<span> min de lecture</span>
                   </span>
                 </div>
               </div>
@@ -159,14 +165,14 @@ const LatestNews = () => {
                   Blockchain
                 </a>
                 <a className="color-gray-1100" href="blog-single-2.html">
-                  <h4>Blockchain Gaming And Its Three Challenges</h4>
+                  <h4>Jeux blockchain et ses trois défis</h4>
                 </a>
                 <div className="mt-20">
                   <span className="color-gray-500 font-xs mr-30">
-                    August 15, 2022
+                    15 août 2022
                   </span>
                   <span className="color-gray-500 font-xs">
-                    7<span> Mins read</span>
+                    7<span> min de lecture</span>
                   </span>
                 </div>
               </div>
@@ -183,17 +189,20 @@ const LatestNews = () => {
                   />
                 </div>
                 <a className="tag-dot font-xs" href="blog-list.html">
-                  Development
+                  Développement
                 </a>
                 <a className="color-gray-1100" href="blog-single-2.html">
-                  <h4>HTML5 – The Future of Mobile App Development</h4>
+                  <h4>
+                    HTML5 - L&rsquo;avenir du développement d&rsquo;applications
+                    mobiles
+                  </h4>
                 </a>
                 <div className="mt-20">
                   <span className="color-gray-500 font-xs mr-30">
-                    August 12, 2022
+                    12 août 2022
                   </span>
                   <span className="color-gray-500 font-xs">
-                    9<span> Mins read</span>
+                    9<span> min de lecture</span>
                   </span>
                 </div>
               </div>

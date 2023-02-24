@@ -7,12 +7,12 @@ const NewsletterProduct = () => {
         <div className="row">
           <div className="col-lg-6 col-md-7 col-sm-12">
             <h3 className="color-white">
-              Subscrible &amp; Get
-              <span className="color-warning">10%</span> Discount
+              Abonnez-vous et obtenez une réduction de
+              <span className="color-warning"> 10%</span>
             </h3>
             <p className="font-lg color-white">
-              Get E-mail updates about our latest shop and
-              <span className="font-lg-bold">special offers.</span>
+              Recevez des mises à jour par e-mail sur notre dernière boutique et
+              <span className="font-lg-bold"> nos offres spéciales</span>
             </p>
           </div>
           <div className="col-lg-4 col-md-5 col-sm-12">
@@ -23,7 +23,7 @@ const NewsletterProduct = () => {
                   value=""
                   placeholder="Your email Address"
                 />
-                <button className="btn btn-brand-2">Sign Up</button>
+                <button className="btn btn-brand-2">S&apos;inscrire</button>
               </form>
             </div>
           </div>

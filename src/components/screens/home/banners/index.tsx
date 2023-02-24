@@ -8,31 +8,31 @@ const Banners = () => {
           <div className="col-xl-3 col-lg-5 col-md-5 col-sm-12 mb-30">
             <div className="bg-5 block-iphone">
               <span className="color-brand-3 font-sm-lh32">
-                Starting from $899
+                À partir de 550 000 F CFA
               </span>
-              <h3 className="font-xl mb-10">iPhone 12 Pro 128Gb</h3>
-              <p className="font-base color-brand-3 mb-10">Special Sale</p>
+              <h3 className="font-xl mb-10 font-bold">iPhone 12 Pro 128Gb</h3>
+              <p className="font-base color-brand-3 mb-10">Vente spéciale</p>
               <a className="btn btn-arrow" href="shop-grid.html">
-                learn more
+                En savoir plus
               </a>
             </div>
           </div>
           <div className="col-xl-4 col-lg-7 col-md-7 col-sm-12 mb-30">
             <div className="bg-4 block-samsung">
-              <span className="color-brand-3 font-sm-lh32">New Arrivals</span>
-              <h3 className="font-xl mb-10">Samsung 2022 Led TV</h3>
-              <p className="font-base color-brand-3 mb-20">Special Sale</p>
+              <span className="color-brand-3 font-sm-lh32">Nouveautés</span>
+              <h3 className="font-xl mb-10 font-bold">Samsung 2022 Led TV</h3>
+              <p className="font-base color-brand-3 mb-20">Vente spéciale</p>
               <a
                 className="btn btn-brand-2 btn-arrow-right"
                 href="shop-grid.html"
               >
-                learn more
+                En savoir plus
               </a>
             </div>
           </div>
           <div className="col-xl-5 col-lg-12 col-md-12 col-sm-12">
             <div className="bg-6 block-drone">
-              <h3 className="font-33 mb-20">
+              <h3 className="font-33 mb-20 font-bold">
                 Drone Quadcopter UAV - DJI Air 2S
               </h3>
               <div className="mb-30">
@@ -42,7 +42,7 @@ const Banners = () => {
                 className="btn btn-brand-2 btn-arrow-right"
                 href="shop-grid.html"
               >
-                learn more
+                En savoir plus
               </a>
             </div>
           </div>

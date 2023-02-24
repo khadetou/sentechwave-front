@@ -1,5 +1,6 @@
 import Layout from "components/admin/Layout";
 import EditBlogPage from "components/admin/screens/blog/edit-blog";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
@@ -17,7 +18,10 @@ const EditProduct = () => {
   return (
     <Layout>
       <SEO />
-      <EditBlogPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <EditBlogPage />
+        <DashFooter />
+      </main>
       <ToastContainer />
     </Layout>
   );

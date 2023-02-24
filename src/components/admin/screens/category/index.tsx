@@ -5,11 +5,11 @@ import CatHeader from "./cat-header";
 
 const CategoryPage = () => {
   return (
-    <section className="content-main">
+    <div>
       <CatHeader />
       <CatCard />
       <ToastContainer />
-    </section>
+    </div>
   );
 };
 

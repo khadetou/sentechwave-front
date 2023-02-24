@@ -161,25 +161,30 @@ const CatCard = () => {
       }
     });
   };
+  const [itemLoadig, setItemLoading] = useState("");
 
   // useEffect(() => {
   //   dispatch(getAllSubSubCategories());
   // }, [dispatch]);
   return (
-    <div className="card">
+    <div className="border bg-white border-neutral  rounded-2xl px-[25px] pt-[25px] pb-[68px]">
       <div className="card-body">
         <div className="row">
           <div className="col-md-3">
             <form>
-              <div className="mb-4">
-                <label htmlFor="product_name" className="form-label">
-                  Category
-                </label>
+              <label
+                htmlFor="product_name"
+                className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]"
+              >
+                Category
+              </label>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
                 <input
                   type="text"
                   placeholder="Catégorie"
-                  className="form-control placeholder:!tw-text-sm"
+                  className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
                   id="product_name"
+                  value={categories.name}
                   onChange={(e) =>
                     setCategory({ ...category, ["name"]: e.target.value })
                   }
@@ -187,37 +192,53 @@ const CatCard = () => {
               </div>
 
               {subcategories.length > 0 && (
-                <div className="mb-4">
-                  <label className="form-label">Sous Catégories</label>
-                  <select
-                    className="form-select"
-                    onChange={(e) =>
-                      setCategory({ ...category, ["_id"]: e.target.value })
-                    }
-                  >
-                    <option value="">Sous Cat</option>
-                    {subcategories.map(({ _id, name, slug }: any) => (
-                      <option key={_id} value={_id}>
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <>
+                  <label className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]">
+                    Sous Catégories
+                  </label>
+                  <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
+                    <select
+                      className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
+                      onChange={(e) =>
+                        setCategory({ ...category, ["_id"]: e.target.value })
+                      }
+                    >
+                      <option value="">Sous Cat</option>
+                      {subcategories.map(({ _id, name, slug }: any) => (
+                        <option key={_id} value={_id}>
+                          {name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               )}
-              <div className="d-grid tw-mb-2" onClick={onSubmitCategory}>
-                <button className="btn btn-primary">
-                  {isLoading ? <ButtonLoading /> : "Créer category"}
+              <div className="d-grid mb-2" onClick={onSubmitCategory}>
+                <button
+                  onClick={() => {
+                    setItemLoading("create category");
+                  }}
+                  className="flex items-center justify-between w-full cursor-pointer text-white font-bold !py-4 px-[21px] focus:outline-none rounded-xl peer-checked:border-transparent bg-blue-600 active"
+                >
+                  {isLoading && itemLoadig === "create category" ? (
+                    <ButtonLoading />
+                  ) : (
+                    "Créer category"
+                  )}
                 </button>
               </div>
 
-              <div className="mb-4">
-                <label htmlFor="product_slug" className="form-label">
-                  Sous Category
-                </label>
+              <label
+                htmlFor="product_slug"
+                className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]"
+              >
+                Sous Category
+              </label>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
                 <input
                   type="text"
                   placeholder="Sous Catégorie"
-                  className="form-control placeholder:!tw-text-sm"
+                  className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
                   id="product_slug"
                   onChange={(e) =>
                     setSousCategory({
@@ -228,46 +249,60 @@ const CatCard = () => {
                 />
               </div>
               {subsubcategories.length > 0 && (
-                <div className="mb-4">
-                  <label className="form-label">Sous Catégories</label>
-                  <select
-                    className="form-select"
-                    onChange={(e) =>
-                      setSousCategory({
-                        ...sousCategory,
-                        ["_id"]: e.target.value,
-                      })
-                    }
-                  >
-                    <option value="">Sous Sous Cat</option>
-                    {subsubcategories.map(({ _id, name, slug }: any) => (
-                      <option
-                        onDoubleClick={() => onDeleteSubSubCategory(slug)}
-                        key={slug}
-                        value={_id}
-                      >
-                        {name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+                <>
+                  <label className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]">
+                    Sous Catégories
+                  </label>
+                  <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
+                    <select
+                      className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
+                      onChange={(e) =>
+                        setSousCategory({
+                          ...sousCategory,
+                          ["_id"]: e.target.value,
+                        })
+                      }
+                    >
+                      <option value="">Sous Sous Cat</option>
+                      {subsubcategories.map(({ _id, name, slug }: any) => (
+                        <option
+                          onDoubleClick={() => onDeleteSubSubCategory(slug)}
+                          key={slug}
+                          value={_id}
+                        >
+                          {name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </>
               )}
-              <div className="d-grid tw-mb-2">
+              <div className="d-grid mb-2">
                 <button
-                  className="btn btn-primary"
-                  onClick={onSumbitSousCategory}
+                  className="flex items-center justify-between w-full cursor-pointer text-white font-bold !py-4 px-[21px] focus:outline-none rounded-xl peer-checked:border-transparent bg-blue-600 active"
+                  onClick={(e) => {
+                    setItemLoading("create sub cat");
+                    onSumbitSousCategory(e);
+                  }}
                 >
-                  {isLoading ? <ButtonLoading /> : "Créer sous category"}
+                  {isLoading && itemLoadig === "create sub cat" ? (
+                    <ButtonLoading />
+                  ) : (
+                    "Créer sous category"
+                  )}
                 </button>
               </div>
-              <div className="mb-4">
-                <label htmlFor="product_slug" className="form-label">
-                  Sous Sous Category
-                </label>
+              <label
+                htmlFor="product_slug"
+                className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]"
+              >
+                Sous Sous Category
+              </label>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
                 <input
                   type="text"
                   placeholder="Sous Sous Catégorie"
-                  className="form-control placeholder:!tw-text-sm"
+                  className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
                   id="product_slug"
                   onChange={(e) =>
                     setSsousCategory({
@@ -278,8 +313,10 @@ const CatCard = () => {
                 />
               </div>
               {itemscategories.length > 0 && (
-                <div className="mb-4">
-                  <label className="form-label">Sous Catégories</label>
+                <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
+                  <label className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]">
+                    Sous Catégories
+                  </label>
                   <select
                     className="form-select"
                     onChange={(e) =>
@@ -299,55 +336,72 @@ const CatCard = () => {
                   </select>
                 </div>
               )}
-              <div className="d-grid tw-mb-2">
+              <div className="d-grid mb-2">
                 <button
-                  className="btn btn-primary"
-                  onClick={onSumbitSsousCategory}
+                  className="flex items-center justify-between w-full cursor-pointer text-white font-bold !py-4 px-[21px] focus:outline-none rounded-xl peer-checked:border-transparent bg-blue-600 active"
+                  onClick={(e) => {
+                    onSumbitSsousCategory(e);
+                    setItemLoading("create sub su");
+                  }}
                 >
-                  {isLoading ? <ButtonLoading /> : "Créer sous sous category"}
+                  {isLoading && itemLoadig === "create sub sub" ? (
+                    <ButtonLoading />
+                  ) : (
+                    "Créer sous sous category"
+                  )}
                 </button>
               </div>
-              <div className="mb-4">
-                <label htmlFor="product_slug" className="form-label">
-                  Items Category
-                </label>
+              <label
+                htmlFor="product_slug"
+                className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]"
+              >
+                Items Category
+              </label>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
                 <input
                   type="text"
                   placeholder="Items Catégories"
-                  className="form-control placeholder:!tw-text-sm"
+                  className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
                   id="product_slug"
                   onChange={(e) => setItemsCategory(e.target.value)}
                 />
               </div>
-              <div className="d-grid tw-mb-2">
+              <div className="d-grid mb-2">
                 <button
-                  className="btn btn-primary"
-                  onClick={onSumbitItemsCategory}
+                  className="flex items-center justify-between w-full cursor-pointer text-white font-bold !py-4 px-[21px] focus:outline-none rounded-xl peer-checked:border-transparent bg-blue-600 active"
+                  onClick={(e) => {
+                    onSumbitItemsCategory(e);
+                    setItemLoading("create item");
+                  }}
                 >
-                  {isLoading ? <ButtonLoading /> : "Créer items category"}
+                  {isLoading && itemLoadig === "create item" ? (
+                    <ButtonLoading />
+                  ) : (
+                    "Créer items category"
+                  )}
                 </button>
               </div>
-              {/* <div className="mb-4">
-                <label className="form-label">Parent</label>
+              {/* <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
+                <label className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]">Parent</label>
                 <select className="form-select">
                   <option>Fruit</option>
                   <option>Snack</option>
                 </select>
               </div>
-              <div className="mb-4">
-                <label className="form-label">Description</label>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] !mb-3">
+                <label className="my-2 text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px]">Description</label>
                 <textarea
                   placeholder="Catégorie"
-                  className="form-control placeholder:!tw-text-sm"
+                   className="input  w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] placeholder:text-inherit"
                 ></textarea>
               </div>
               <div className="d-grid">
-                <button className="btn btn-primary">Create category</button>
+                <button className="flex items-center justify-between w-full cursor-pointer text-white font-bold !py-4 px-[21px] focus:outline-none rounded-xl peer-checked:border-transparent bg-blue-600 active">Create category</button>
               </div> */}
             </form>
           </div>
           <div className="col-md-9">
-            <h2 className="tw-font-bold tw-text-[20px]">Catégories</h2>
+            <h2 className="font-bold text-[20px]">Catégories</h2>
 
             {categories.length > 0 &&
               categories.map(({ slug, _id, name }: any) => (
@@ -355,15 +409,13 @@ const CatCard = () => {
                   key={_id}
                   title="Double click to delete"
                   onDoubleClick={() => onDeleteProductCategory(slug)}
-                  className="btn btn-outline tw-border-secondary tw-text-secondary hover:!tw-bg-secondary tw-mr-1 tw-ml-1 tw-mt-3"
+                  className="btn btn-outline border-secondary text-secondary font-bold hover:!text-white hover:!bg-secondary mr-1 ml-1 mt-3"
                 >
                   {name}
                 </button>
               ))}
             {subcategories.length > 0 && (
-              <h2 className="tw-font-bold tw-text-[20px] tw-mt-2">
-                Sous Catégories
-              </h2>
+              <h2 className="font-bold text-[20px] mt-2">Sous Catégories</h2>
             )}
             {subcategories.length > 0 &&
               subcategories.map(({ slug, _id, name }: any) => (
@@ -371,13 +423,13 @@ const CatCard = () => {
                   key={_id}
                   title="Double click to delete"
                   onDoubleClick={() => onDeleteSubCategory(slug)}
-                  className="btn btn-outline tw-border-secondary tw-text-secondary hover:!tw-bg-secondary tw-mr-1 tw-ml-1 tw-mt-3"
+                  className="btn btn-outline border-secondary text-secondary hover:!text-white hover:!bg-secondary mr-1 ml-1 mt-3"
                 >
                   {name}
                 </button>
               ))}
             {subsubcategories.length > 0 && (
-              <h2 className="tw-font-bold tw-text-[20px] tw-mt-2">
+              <h2 className="font-bold text-[20px] mt-2">
                 Sous Sous Catégories
               </h2>
             )}
@@ -388,15 +440,13 @@ const CatCard = () => {
                   key={_id}
                   title="Double click to delete"
                   onDoubleClick={() => onDeleteSubSubCategory(slug)}
-                  className="btn btn-outline tw-border-secondary tw-text-secondary hover:!tw-bg-secondary tw-mr-1 tw-ml-1 tw-mt-3"
+                  className="btn btn-outline border-secondary text-secondary hover:!bg-secondary mr-1 ml-1 mt-3"
                 >
                   {name}
                 </button>
               ))}
             {itemscategories.length > 0 && (
-              <h2 className="tw-font-bold tw-text-[20px] tw-mt-2">
-                Items Catégories
-              </h2>
+              <h2 className="font-bold text-[20px] mt-2">Items Catégories</h2>
             )}
 
             {itemscategories.length > 0 &&
@@ -405,7 +455,7 @@ const CatCard = () => {
                   key={_id}
                   title="Double click to delete"
                   onDoubleClick={() => onDeleteItemsCategory(slug)}
-                  className="btn btn-outline tw-border-secondary tw-text-secondary hover:!tw-bg-secondary tw-mr-1 tw-ml-1 tw-mt-3"
+                  className="btn btn-outline border-secondary text-secondary hover:!bg-secondary mr-1 ml-1 mt-3"
                 >
                   {name}
                 </button>

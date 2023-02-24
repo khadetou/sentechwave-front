@@ -1,5 +1,6 @@
 import Layout from "components/admin/Layout";
 import CategoryPage from "components/admin/screens/category";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
@@ -19,7 +20,10 @@ const Category = () => {
   return (
     <Layout>
       <SEO />
-      <CategoryPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <CategoryPage />
+        <DashFooter />
+      </main>
     </Layout>
   );
 };

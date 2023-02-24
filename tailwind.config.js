@@ -17,7 +17,7 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwind-scrollbar")({ nocompatible: true })],
 };
 // .location {
 //   line-height: 40px;

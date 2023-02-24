@@ -1,4 +1,5 @@
 import Layout from "components/admin/Layout";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import OrdersPage from "components/admin/screens/orders";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
@@ -19,7 +20,10 @@ const Orders = () => {
   return (
     <Layout>
       <SEO />
-      <OrdersPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <OrdersPage />
+        <DashFooter />
+      </main>
     </Layout>
   );
 };

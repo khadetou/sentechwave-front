@@ -15,8 +15,8 @@ const FilterModal = () => {
       <div className="modal-dialog modal-xl">
         <div className="modal-content apply-job-form">
           <div className="modal-header">
-            <h5 className="modal-title color-gray-1000 filters-icon">
-              Addvance Fillters
+            <h5 className="modal-title color-gray-1000 filters-icon text-xl font-bold">
+              Filtres Avancés
             </h5>
             <button
               className="btn-close"
@@ -28,7 +28,9 @@ const FilterModal = () => {
           <div className="modal-body p-30">
             <div className="row">
               <div className="col-w-1">
-                <h6 className="color-gray-900 mb-0">Brands</h6>
+                <h6 className="color-gray-900 mb-0 font-bold text-base">
+                  Marques
+                </h6>
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
@@ -110,26 +112,28 @@ const FilterModal = () => {
                 </ul>
               </div>
               <div className="col-w-1">
-                <h6 className="color-gray-900 mb-0">Special offers</h6>
+                <h6 className="color-gray-900 mb-0 font-bold text-base">
+                  Offres spéciales
+                </h6>
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">On sale</span>
+                      <span className="text-small">En solde</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" checked />
-                      <span className="text-small">FREE shipping</span>
+                      <span className="text-small">Livraison GRATUITE</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">Big deals</span>
+                      <span className="text-small">Grosses affaires</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
@@ -141,20 +145,50 @@ const FilterModal = () => {
                     </label>
                   </li>
                 </ul>
-                <h6 className="color-gray-900 mb-0 mt-40">Ready to ship in</h6>
+                <h6 className="color-gray-900 mb-0 font-bold text-base mt-40">
+                  Expédition prête en
+                </h6>
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">1 business day</span>
+                      <span className="text-small">1 jour ouvrable</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" checked />
+                      <span className="text-small">1 à 3 jours ouvrables</span>
+                      <span className="checkmark"></span>
+                    </label>
+                  </li>
+                  <li>
+                    <label className="cb-container">
+                      <input type="checkbox" />
+                      <span className="text-small">en 1 semaine</span>
+                      <span className="checkmark"></span>
+                    </label>
+                  </li>
+                  <li>
+                    <label className="cb-container">
+                      <input type="checkbox" />
+                      <span className="text-small">Expédition immédiate</span>
+                      <span className="checkmark"></span>
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-w-1">
+                <h6 className="color-gray-900 mb-0 font-bold text-base">
+                  Options de commande
+                </h6>
+                <ul className="list-checkbox">
+                  <li>
+                    <label className="cb-container">
+                      <input type="checkbox" />
                       <span className="text-small">
-                        1&ndash;3 business days
+                        Accepte les cartes-cadeaux
                       </span>
                       <span className="checkmark"></span>
                     </label>
@@ -162,52 +196,32 @@ const FilterModal = () => {
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">in 1 week</span>
-                      <span className="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="cb-container">
-                      <input type="checkbox" />
-                      <span className="text-small">Shipping now</span>
-                      <span className="checkmark"></span>
-                    </label>
-                  </li>
-                </ul>
-              </div>
-              <div className="col-w-1">
-                <h6 className="color-gray-900 mb-0">Ordering options</h6>
-                <ul className="list-checkbox">
-                  <li>
-                    <label className="cb-container">
-                      <input type="checkbox" />
-                      <span className="text-small">Accepts gift cards</span>
-                      <span className="checkmark"></span>
-                    </label>
-                  </li>
-                  <li>
-                    <label className="cb-container">
-                      <input type="checkbox" />
-                      <span className="text-small">Customizable</span>
+                      <span className="text-small">Personnalisable</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" checked />
-                      <span className="text-small">Can be gift-wrapped</span>
+                      <span className="text-small">
+                        Peut être emballé en cadeau
+                      </span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">Installment 0%</span>
+                      <span className="text-small">
+                        0% d&rsquo;intérêt sur versements
+                      </span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                 </ul>
-                <h6 className="color-gray-900 mb-0 mt-40">Rating</h6>
+                <h6 className="color-gray-900 mb-0 font-bold text-base mt-40">
+                  Évaluation
+                </h6>
                 <ul className="list-checkbox">
                   <li className="mb-5">
                     <a href="#">
@@ -422,7 +436,9 @@ const FilterModal = () => {
                 </ul>
               </div>
               <div className="col-w-2">
-                <h6 className="color-gray-900 mb-0">Material</h6>
+                <h6 className="color-gray-900 mb-0 font-bold text-base">
+                  Matériau
+                </h6>
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
@@ -434,7 +450,7 @@ const FilterModal = () => {
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">Tempered Glass (5)</span>
+                      <span className="text-small">Verre trempé (5)</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
@@ -442,7 +458,7 @@ const FilterModal = () => {
                     <label className="cb-container">
                       <input type="checkbox" checked />
                       <span className="text-small">
-                        Liquid Silicone Rubber (5)
+                        Caoutchouc de silicone liquide (5)
                       </span>
                       <span className="checkmark"></span>
                     </label>
@@ -450,30 +466,34 @@ const FilterModal = () => {
                   <li>
                     <label className="cb-container">
                       <input type="checkbox" />
-                      <span className="text-small">Aluminium Alloy (3)</span>
+                      <span className="text-small">
+                        Alliage d&rsquo;aluminium (3)
+                      </span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                 </ul>
-                <h6 className="color-gray-900 mb-20 mt-40">Product tags</h6>
+                <h6 className="color-gray-900 mb-20 mt-40">
+                  Étiquettes de produit
+                </h6>
                 <div>
                   <a className="btn btn-border mr-5" href="#">
-                    Games
+                    Jeux
                   </a>
                   <a className="btn btn-border mr-5" href="#">
-                    Electronics
+                    Électronique
                   </a>
                   <a className="btn btn-border mr-5" href="#">
-                    Video
+                    Vidéo
                   </a>
                   <a className="btn btn-border mr-5" href="#">
-                    Cellphone
+                    Téléphone portable
                   </a>
                   <a className="btn btn-border mr-5" href="#">
-                    Indoor
+                    Intérieur
                   </a>
                   <a className="btn btn-border mr-5" href="#">
-                    VGA Card
+                    Carte VGA
                   </a>
                   <a className="btn btn-border mr-5" href="#">
                     USB
@@ -482,7 +502,7 @@ const FilterModal = () => {
                     Lightning
                   </a>
                   <a className="btn btn-border mr-5" href="#">
-                    Camera
+                    Caméra
                   </a>
                 </div>
               </div>
@@ -490,10 +510,10 @@ const FilterModal = () => {
           </div>
           <div className="modal-footer justify-content-start pl-30">
             <a className="btn btn-buy w-auto" href="#">
-              Apply Fillter
+              Appliquer le filtre
             </a>
             <a className="btn font-sm-bold color-gray-500" href="#">
-              Reset Fillter
+              Réinitialiser le filtre
             </a>
           </div>
         </div>

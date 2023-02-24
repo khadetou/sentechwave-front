@@ -4599,7 +4599,7 @@ a.text-brand-3:hover {
   top: 112px;
   left: 0px;
   background-color: #ffffff;
-  min-width: 320px;
+  min-width: 365px;
   border-right: 1px solid #d5dfe4;
   border-bottom: 1px solid #d5dfe4;
 }
@@ -8178,7 +8178,7 @@ a.text-brand-3:hover {
   right: 0px;
   z-index: 1;
   height: 100%;
-  align-items: end;
+  align-items: flex-end;
   display: flex;
 }
 .banner-small-home10 .box-img-banner img.img1 {
@@ -10616,12 +10616,12 @@ a:hover span {
     margin-bottom: 25px;
   }
   h1 {
-    font-size: 44px;
-    line-height: 63px;
+    font-size: 44px !important;
+    line-height: 63px !important;
   }
   h2 {
-    font-size: 35px;
-    line-height: 45px;
+    font-size: 35px !important;
+    line-height: 45px !important;
   }
   .box-newsletter {
     padding-bottom: 110px;
@@ -10905,12 +10905,12 @@ a:hover span {
     padding: 20px 15px;
   }
   .font-33 {
-    font-size: 20px;
-    line-height: 23px;
+    font-size: 20px !important;
+    line-height: 23px !important;
   }
   .font-18 {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 16px !important;
+    line-height: 20px !important;
   }
   .bg-phone {
     background-color: #ddd3fa;
@@ -10957,12 +10957,12 @@ a:hover span {
     padding: 10px 5px;
   }
   h1 {
-    font-size: 29px;
-    line-height: 45px;
+    font-size: 29px !important;
+    line-height: 45px !important;
   }
   h2 {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 20px !important;
+    line-height: 30px !important;
   }
   .banner-hero.banner-1 .banner-big {
     padding: 60px 20px 25px 20px;
@@ -11499,14 +11499,14 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 /* SIDE BAR DASHBOARD */
-html.dark .moon-icon img:first-child,
+/* html.dark .moon-icon img:first-child,
 html.dark .sun-icon img:last-child {
   display: none;
 }
 html.dark .moon-icon img:last-child,
 html.dark .sun-icon img:first-child {
   display: block;
-}
+} */
 html .moon-icon img:last-child,
 html .sun-icon img:first-child {
   display: none;
@@ -11711,6 +11711,11 @@ html:not(.dark) .minimize .moon-icon {
   display: block;
   order: -10000;
 }
+
+.collapse {
+  visibility: visible !important;
+}
+
 /* HIDE SCROLL BAR */
 .scrollbar-hide {
   -ms-overflow-style: none;
@@ -11719,6 +11724,22 @@ html:not(.dark) .minimize .moon-icon {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* REACT QUILL */
+.ql-toolbar {
+  @apply !border-none;
+}
+
+.ql-editor.ql-blank {
+  p {
+    @apply !min-h-[100px];
+  }
+}
+
+.ql-container.ql-snow {
+  @apply !border-none;
+}
+
 /* Tailwindcss 💞💞💞 */
 @tailwind base;
 @tailwind components;

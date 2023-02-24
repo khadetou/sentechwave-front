@@ -15,9 +15,11 @@ const Advantages = () => {
                 />
               </div>
               <div className="info-right">
-                <h5 className="font-lg-bold color-gray-100">Free Delivery</h5>
-                <p className="font-sm color-gray-500">
-                  From all orders over $10
+                <h5 className="font-lg-bold text-base color-gray-100">
+                  Livraison gratuite
+                </h5>
+                <p className="text-xs color-gray-500">
+                  Commandes {">"} 90 000 FCFA .
                 </p>
               </div>
             </div>
@@ -33,8 +35,10 @@ const Advantages = () => {
                 />
               </div>
               <div className="info-right">
-                <h5 className="font-lg-bold color-gray-100">Support 24/7</h5>
-                <p className="font-sm color-gray-500">Shop with an expert</p>
+                <h5 className="font-lg-bold text-base color-gray-100">
+                  Support 24/7
+                </h5>
+                <p className="text-xs color-gray-500">Achetez avec un expert</p>
               </div>
             </div>
           </li>
@@ -49,8 +53,10 @@ const Advantages = () => {
                 />
               </div>
               <div className="info-right">
-                <h5 className="font-lg-bold color-gray-100">Gift voucher</h5>
-                <p className="font-sm color-gray-500">Refer a friend</p>
+                <h5 className="font-lg-bold text-base color-gray-100">
+                  Bon cadeau
+                </h5>
+                <p className="text-xs color-gray-500">Parrainez un ami</p>
               </div>
             </div>
           </li>
@@ -65,10 +71,12 @@ const Advantages = () => {
                 />
               </div>
               <div className="info-right">
-                <h5 className="font-lg-bold color-gray-100">
-                  Return &amp; Refund
+                <h5 className="font-lg-bold text-base color-gray-100">
+                  Retour & remb.
                 </h5>
-                <p className="font-sm color-gray-500">Free return over $200</p>
+                <p className="text-xs color-gray-500">
+                  Retour gratuit {">"} 50 000 FCFA.
+                </p>
               </div>
             </div>
           </li>
@@ -83,8 +91,10 @@ const Advantages = () => {
                 />
               </div>
               <div className="info-right">
-                <h5 className="font-lg-bold color-gray-100">Secure payment</h5>
-                <p className="font-sm color-gray-500">100% Protected</p>
+                <h5 className="font-lg-bold text-base color-gray-100">
+                  Paiement sécurisé
+                </h5>
+                <p className="text-xs color-gray-500">100% protégé</p>
               </div>
             </div>
           </li>

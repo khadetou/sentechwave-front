@@ -1,4 +1,5 @@
 import Layout from "components/admin/Layout";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import UserPage from "components/admin/screens/users/user";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
@@ -11,7 +12,10 @@ const User = () => {
   return (
     <Layout>
       <SEO />
-      <UserPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <UserPage />
+        <DashFooter />
+      </main>
     </Layout>
   );
 };

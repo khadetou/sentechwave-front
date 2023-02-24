@@ -7,8 +7,11 @@ import { toast } from "react-toastify";
 import { useCart } from "react-use-cart";
 import moment from "moment";
 import "moment/locale/fr";
-
+import ReactHtmlParser from "react-html-parser";
 import { useState, useEffect, useMemo } from "react";
+import Slider, { Settings } from "react-slick";
+import { useDispatch } from "react-redux";
+import { getProductById } from "redux/products/productSlice";
 
 moment.locale("fr");
 const Deals = () => {
@@ -37,6 +40,50 @@ const Deals = () => {
   }, [timer, timeLeft]);
 
   const [days, hours, minutes, secondes] = timing.split(":");
+  const settings: Settings = {
+    dots: true,
+    infinite: true,
+    speed: 1000,
+    arrows: true,
+    autoplay: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true,
+  };
+
+  const processLiElements = (liArray: any) => {
+    // Split liArray
+    liArray = liArray.split(/<li>|<\/li>/).filter((item: any) => item !== "");
+    // Remove the <ul> and </ul> tags from the array
+    liArray = liArray.filter(
+      (item: any) => item !== "<ul>" && item !== "</ul>"
+    );
+
+    // Count the number of li tags in the array
+
+    // If the number of li tags in the array is less than or equal to 3, return all of them
+
+    if (liArray.length <= 3) {
+      // Join the selected li elements back into a string
+      // const outputString = `${liArray.map((li: any) => `<li>${li}</li>`)}`;
+      // return outputString.replace(/,/g, "");
+      return liArray;
+    }
+    // Otherwise, return only the first three li tags
+    else {
+      // Return 3 elements of li
+      const selectedLis = liArray.slice(0, 3);
+      // const outputString = `${selectedLis.map((li: any) => `<li>${li}</li>`)}`;
+      // return outputString.replace(/,/g, "");
+      return selectedLis;
+    }
+  };
+  const dispatch = useDispatch();
+  const handleQuickviewClick = (event: any) => {
+    const productId = event.target.dataset.productId;
+    dispatch(getProductById(productId));
+  };
+  const { addItem: addWishlist } = useWishlist();
 
   return (
     <section className="section-box pt-50">
@@ -45,18 +92,22 @@ const Deals = () => {
           <div className="row">
             <div className="col-lg-6">
               <h3 className="mb-5 text-[31px] font-bold leading-[41px]">
-                Latest Deals
+                Dernières offres
               </h3>
               <p className="font-base color-gray-500">
-                Special products in this month.
+                Des produits spéciaux ce mois-ci.
               </p>
             </div>
             <div className="col-lg-6 text-end">
               <div className="box-all-hurry">
                 <div className="d-inline-block box-text-hurryup">
-                  <span className="font-md-bold color-gray-900">Hurry up!</span>
+                  <span className="font-md-bold color-gray-900">
+                    Dépêchez-vous!
+                  </span>
                   <br />
-                  <span className="font-xs color-gray-500">Offers end in:</span>
+                  <span className="font-xs color-gray-500">
+                    Les offres se terminent dans:
+                  </span>
                 </div>
                 <div className="box-count box-count-square hide-period">
                   <div
@@ -68,7 +119,7 @@ const Deals = () => {
                         {days}
                       </span>
                       <span className="countdown-period lh-14 font-xs">
-                        day
+                        jours
                       </span>
                     </span>
                     <span className="countdown-section">
@@ -76,7 +127,7 @@ const Deals = () => {
                         {hours}
                       </span>
                       <span className="countdown-period font-xs lh-14">
-                        hour
+                        heurs
                       </span>
                     </span>
                     <span className="countdown-section">
@@ -97,12 +148,12 @@ const Deals = () => {
                     </span>
                   </div>
                 </div>
-                <a
+                <Link
                   className="btn btn-view-all font-md-bold"
-                  href="shop-single-product.html"
+                  href="/products"
                 >
-                  View All
-                </a>
+                  Voir plus
+                </Link>
               </div>
             </div>
           </div>
@@ -129,15 +180,19 @@ const Deals = () => {
                     aria-label="Quick view"
                     href="#ModalQuickview"
                     data-bs-toggle="modal"
+                    data-product-id="63f3b6f4fc67302abab27bd5"
+                    onClick={handleQuickviewClick}
                   ></a>
                 </div>
                 <span className="label">
-                  <span className="font-lg-bold color-white">Hurry Up!</span>
+                  <span className="font-lg-bold color-white">
+                    Dépêchez-vous!
+                  </span>
                 </span>
                 <div className="image-box">
                   <div className="box-swiper">
                     <div className="swiper-container swiper-group-1">
-                      <div className="swiper-wrapper pt-5">
+                      <Slider {...settings} className="swiper-wrapper pt-5">
                         <div className="swiper-slide">
                           <Image
                             src="/imgs/page/homepage1/screen.png"
@@ -162,15 +217,15 @@ const Deals = () => {
                             height={689}
                           />
                         </div>
-                      </div>
+                      </Slider>
                       <div className="swiper-pagination swiper-pagination-2"></div>
                     </div>
                   </div>
                 </div>
                 <div className="text-center mt-10 mb-15">
-                  <h4>Special Offer</h4>
+                  <h4 className="text-[24px] font-bold">Offre spéciale</h4>
                   <p className="font-base color-gray-500">
-                    Remains until the end of the offer
+                    Valable jusqu&rsquo;à la fin de l&rsquo;offre
                   </p>
                 </div>
                 <div className="box-count box-count-square">
@@ -183,7 +238,7 @@ const Deals = () => {
                         {days}
                       </span>
                       <span className="countdown-period lh-14 font-xs">
-                        day
+                        jour
                       </span>
                     </span>
                     <span className="countdown-section">
@@ -191,7 +246,7 @@ const Deals = () => {
                         {hours}
                       </span>
                       <span className="countdown-period font-xs lh-14">
-                        hour
+                        heur
                       </span>
                     </span>
                     <span className="countdown-section">
@@ -220,7 +275,7 @@ const Deals = () => {
                     className="color-brand-3 font-sm-bold"
                     href="shop-single-product.html"
                   >
-                    <h5>2022 Apple iMac Retina 5K Display</h5>
+                    <h5>IMac Retina 5K Display Apple 2022.</h5>
                   </a>
                   <div className="rating">
                     <Image
@@ -262,9 +317,11 @@ const Deals = () => {
                   </div>
                   <div className="price-info">
                     <h3 className="color-brand-3 price-main d-inline-block">
-                      $2856.3
+                      2 500 000 F CFA
                     </h3>
-                    <span className="color-gray-500 price-line">$3225.6</span>
+                    <span className="color-gray-500 price-line">
+                      3 000 000 F CFA
+                    </span>
                   </div>
                   <div className="box-progress">
                     <div className="progress-bar">
@@ -273,21 +330,24 @@ const Deals = () => {
                     <div className="row">
                       <div className="col-lg-6 col-md-6 col-sm-6 col-6">
                         <span className="font-xs color-gray-500">
-                          Available:
+                          Disponible:
                         </span>
                         <span className="font-xs-bold color-gray-900">568</span>
                       </div>
                       <div className="col-lg-6 col-md-6 col-sm-6 col-6 text-end">
-                        <span className="font-xs color-gray-500">Sold:</span>
+                        <span className="font-xs color-gray-500">Vendu:</span>
                         <span className="font-xs-bold color-gray-900">289</span>
                       </div>
                     </div>
                   </div>
                   <div className="divide"></div>
                   <ul className="list-features">
-                    <li> 27-inch (diagonal) Retina 5K display</li>
-                    <li>3.1GHz 6-core 10th-generation Intel Core i5</li>
-                    <li>AMD Radeon Pro 5300 graphics</li>
+                    <li>Écran Retina 5K de 27 pouces (diagonale)</li>
+                    <li>
+                      Processeur Intel Core i5 6 cœurs de 10ème génération à 3,1
+                      GHz
+                    </li>
+                    <li>Graphismes AMD Radeon Pro 5300.</li>
                   </ul>
                 </div>
               </div>
@@ -295,1136 +355,278 @@ const Deals = () => {
           </div>
           <div className="col-lg-8">
             <div className="row">
-              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="card-grid-style-3">
-                  <div className="card-grid-inner">
-                    <div className="tools">
-                      <a
-                        className="btn btn-trend btn-tooltip mb-10"
-                        href="#"
-                        aria-label="Trend"
-                      ></a>
-                      <a
-                        className="btn btn-wishlist btn-tooltip mb-10"
-                        href="shop-wishlist.html"
-                        aria-label="Add To Wishlist"
-                      ></a>
-                      <a
-                        className="btn btn-compare btn-tooltip mb-10"
-                        href="shop-compare.html"
-                        aria-label="Compare"
-                      ></a>
-                      <a
-                        className="btn btn-quickview btn-tooltip"
-                        aria-label="Quick view"
-                        href="#ModalQuickview"
-                        data-bs-toggle="modal"
-                      ></a>
-                    </div>
-                    <div className="image-box">
-                      <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
-                        <Image
-                          src="/imgs/page/homepage1/imgsp1.png"
-                          alt="Ecom"
-                          width={800}
-                          height={689}
-                        />
-                      </a>
-                    </div>
-                    <div className="info-right">
-                      <span className="font-xs color-gray-500">Samsung</span>
-                      <br />
-                      <a
-                        className="color-brand-3 font-sm-bold"
-                        href="shop-single-product.html"
-                      >
-                        Samsung 30-100 inches The Freestyle FHD HDR Smart
-                        Projector
-                      </a>
-                      <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
+              {products.slice(0, 5).map((product: any) => (
+                <div
+                  key={product._id}
+                  className="col-lg-4 col-md-6 col-sm-6 col-12"
+                >
+                  <div className="card-grid-style-3">
+                    <div className="card-grid-inner">
+                      <div className="tools">
+                        <a
+                          className="btn btn-trend btn-tooltip mb-10"
+                          href="#"
+                          aria-label="Trend"
+                        ></a>
+                        <a
+                          className="btn btn-wishlist btn-tooltip mb-10"
+                          href="shop-wishlist.html"
+                          aria-label="Add To Wishlist"
+                        ></a>
+                        <a
+                          className="btn btn-compare btn-tooltip mb-10"
+                          href="shop-compare.html"
+                          aria-label="Compare"
+                        ></a>
+                        <a
+                          className="btn btn-quickview btn-tooltip"
+                          aria-label="Quick view"
+                          href="#ModalQuickview"
+                          data-bs-toggle="modal"
+                          data-product-id={product._id}
+                          onClick={handleQuickviewClick}
+                        ></a>
                       </div>
-                      <div className="price-info">
-                        <strong className="font-lg-bold color-brand-3 price-main">
-                          $2856.3
-                        </strong>
-                        <span className="color-gray-500 price-line">
-                          $3225.6
-                        </span>
-                      </div>
-                      <div className="mt-20">
-                        <a className="btn btn-cart" href="shop-cart.html">
-                          Add To Cart
+                      <div className="image-box">
+                        <span className="label bg-brand-2">-17%</span>
+                        <a>
+                          <Image
+                            src={product.images[0].url}
+                            alt="Ecom"
+                            width={product.images[0].width}
+                            height={product.images[0].height}
+                          />
                         </a>
                       </div>
-                      <ul className="list-features">
-                        <li> 27-inch (diagonal) Retina 5K display</li>
-                      </ul>
+                      <div className="info-right">
+                        <span className="font-xs color-gray-500">Samsung</span>
+                        <br />
+                        <a className="color-brand-3 font-sm-bold">
+                          Samsung 30-100 inches The Freestyle FHD HDR Smart
+                          Projector
+                        </a>
+                        <div className="rating">
+                          <Image
+                            src="/imgs/template/icons/star.svg"
+                            alt="Ecom"
+                            className="inline"
+                            width={12}
+                            height={12}
+                          />
+                          <Image
+                            src="/imgs/template/icons/star.svg"
+                            alt="Ecom"
+                            className="inline"
+                            width={12}
+                            height={12}
+                          />
+                          <Image
+                            src="/imgs/template/icons/star.svg"
+                            alt="Ecom"
+                            className="inline"
+                            width={12}
+                            height={12}
+                          />
+                          <Image
+                            src="/imgs/template/icons/star.svg"
+                            alt="Ecom"
+                            className="inline"
+                            width={12}
+                            height={12}
+                          />
+                          <Image
+                            src="/imgs/template/icons/star.svg"
+                            alt="Ecom"
+                            className="inline"
+                            width={12}
+                            height={12}
+                          />
+                          <span className="font-xs color-gray-500">(65)</span>
+                        </div>
+                        <div className="price-info">
+                          <strong className="font-lg-bold color-brand-3 price-main">
+                            {Number(product.price).toLocaleString("fr-FR", {
+                              style: "currency",
+                              currency: "XOF",
+                            })}
+                          </strong>
+                          <span className="color-gray-500 price-line">
+                            {Number(product.oldPrice).toLocaleString("fr-FR", {
+                              style: "currency",
+                              currency: "XOF",
+                            })}
+                          </span>
+                        </div>
+                        <div className="mt-20">
+                          <a
+                            className="btn btn-cart"
+                            onClick={() => {
+                              addItem({
+                                ...product,
+                                id: product._id,
+                              });
+                              toast.success("Produit ajouté au panier");
+                            }}
+                          >
+                            Ajouter au panier
+                          </a>
+                        </div>
+                        <ul className="list-features">
+                          <li>
+                            {ReactHtmlParser(
+                              processLiElements(product.specification)[0]
+                            )}
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="card-grid-style-3">
-                  <div className="card-grid-inner">
-                    <div className="tools">
-                      <a
-                        className="btn btn-trend btn-tooltip mb-10"
-                        href="#"
-                        aria-label="Trend"
-                      ></a>
-                      <a
-                        className="btn btn-wishlist btn-tooltip mb-10"
-                        href="shop-wishlist.html"
-                        aria-label="Add To Wishlist"
-                      ></a>
-                      <a
-                        className="btn btn-compare btn-tooltip mb-10"
-                        href="shop-compare.html"
-                        aria-label="Compare"
-                      ></a>
-                      <a
-                        className="btn btn-quickview btn-tooltip"
-                        aria-label="Quick view"
-                        href="#ModalQuickview"
-                        data-bs-toggle="modal"
-                      ></a>
-                    </div>
-                    <div className="image-box">
-                      <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
-                        <Image
-                          src="/imgs/page/homepage1/imgsp2.png"
-                          alt="Ecom"
-                          width={800}
-                          height={689}
-                        />
-                      </a>
-                    </div>
-                    <div className="info-right">
-                      <span className="font-xs color-gray-500">Apple</span>
-                      <br />
-                      <a
-                        className="color-brand-3 font-sm-bold"
-                        href="shop-single-product.html"
-                      >
-                        Lenovo Legion 5i 15.6&quot; Laptop, Intel Core i5-10500H
-                      </a>
-                      <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
-                      </div>
-                      <div className="price-info">
-                        <strong className="font-lg-bold color-brand-3 price-main">
-                          $2856.3
-                        </strong>
-                        <span className="color-gray-500 price-line">
-                          $3225.6
-                        </span>
-                      </div>
-                      <div className="mt-20">
-                        <a className="btn btn-cart" href="shop-cart.html">
-                          Add To Cart
-                        </a>
-                      </div>
-                      <ul className="list-features">
-                        <li> 27-inch (diagonal) Retina 5K display</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="card-grid-style-3">
-                  <div className="card-grid-inner">
-                    <div className="tools">
-                      <a
-                        className="btn btn-trend btn-tooltip mb-10"
-                        href="#"
-                        aria-label="Trend"
-                      ></a>
-                      <a
-                        className="btn btn-wishlist btn-tooltip mb-10"
-                        href="shop-wishlist.html"
-                        aria-label="Add To Wishlist"
-                      ></a>
-                      <a
-                        className="btn btn-compare btn-tooltip mb-10"
-                        href="shop-compare.html"
-                        aria-label="Compare"
-                      ></a>
-                      <a
-                        className="btn btn-quickview btn-tooltip"
-                        aria-label="Quick view"
-                        href="#ModalQuickview"
-                        data-bs-toggle="modal"
-                      ></a>
-                    </div>
-                    <div className="image-box">
-                      <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
-                        <Image
-                          src="/imgs/page/homepage1/imgsp3.png"
-                          alt="Ecom"
-                          width={800}
-                          height={689}
-                        />
-                      </a>
-                    </div>
-                    <div className="info-right">
-                      <span className="font-xs color-gray-500">Apple</span>
-                      <br />
-                      <a
-                        className="color-brand-3 font-sm-bold"
-                        href="shop-single-product.html"
-                      >
-                        Apple AirPods Pro with MagSafe Charging Case
-                      </a>
-                      <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
-                      </div>
-                      <div className="price-info">
-                        <strong className="font-lg-bold color-brand-3 price-main">
-                          $2856.3
-                        </strong>
-                        <span className="color-gray-500 price-line">
-                          $3225.6
-                        </span>
-                      </div>
-                      <div className="mt-20">
-                        <a className="btn btn-cart" href="shop-cart.html">
-                          Add To Cart
-                        </a>
-                      </div>
-                      <ul className="list-features">
-                        <li> 27-inch (diagonal) Retina 5K display</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="card-grid-style-3">
-                  <div className="card-grid-inner">
-                    <div className="tools">
-                      <a
-                        className="btn btn-trend btn-tooltip mb-10"
-                        href="#"
-                        aria-label="Trend"
-                      ></a>
-                      <a
-                        className="btn btn-wishlist btn-tooltip mb-10"
-                        href="shop-wishlist.html"
-                        aria-label="Add To Wishlist"
-                      ></a>
-                      <a
-                        className="btn btn-compare btn-tooltip mb-10"
-                        href="shop-compare.html"
-                        aria-label="Compare"
-                      ></a>
-                      <a
-                        className="btn btn-quickview btn-tooltip"
-                        aria-label="Quick view"
-                        href="#ModalQuickview"
-                        data-bs-toggle="modal"
-                      ></a>
-                    </div>
-                    <div className="image-box">
-                      <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
-                        <Image
-                          src="/imgs/page/homepage1/imgsp4.png"
-                          alt="Ecom"
-                          width={800}
-                          height={689}
-                        />
-                      </a>
-                    </div>
-                    <div className="info-right">
-                      <span className="font-xs color-gray-500">Apple</span>
-                      <br />
-                      <a
-                        className="color-brand-3 font-sm-bold"
-                        href="shop-single-product.html"
-                      >
-                        Razer Power Up Gaming Bundle V2 - Cynosa Lite, Gigantus
-                      </a>
-                      <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
-                      </div>
-                      <div className="price-info">
-                        <strong className="font-lg-bold color-brand-3 price-main">
-                          $2856.3
-                        </strong>
-                        <span className="color-gray-500 price-line">
-                          $3225.6
-                        </span>
-                      </div>
-                      <div className="mt-20">
-                        <a className="btn btn-cart" href="shop-cart.html">
-                          Add To Cart
-                        </a>
-                      </div>
-                      <ul className="list-features">
-                        <li> 27-inch (diagonal) Retina 5K display</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="card-grid-style-3">
-                  <div className="card-grid-inner">
-                    <div className="tools">
-                      <a
-                        className="btn btn-trend btn-tooltip mb-10"
-                        href="#"
-                        aria-label="Trend"
-                      ></a>
-                      <a
-                        className="btn btn-wishlist btn-tooltip mb-10"
-                        href="shop-wishlist.html"
-                        aria-label="Add To Wishlist"
-                      ></a>
-                      <a
-                        className="btn btn-compare btn-tooltip mb-10"
-                        href="shop-compare.html"
-                        aria-label="Compare"
-                      ></a>
-                      <a
-                        className="btn btn-quickview btn-tooltip"
-                        aria-label="Quick view"
-                        href="#ModalQuickview"
-                        data-bs-toggle="modal"
-                      ></a>
-                    </div>
-                    <div className="image-box">
-                      <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
-                        <Image
-                          src="/imgs/page/homepage1/imgsp5.png"
-                          alt="Ecom"
-                          width={800}
-                          height={689}
-                        />
-                      </a>
-                    </div>
-                    <div className="info-right">
-                      <span className="font-xs color-gray-500">Apple</span>
-                      <br />
-                      <a
-                        className="color-brand-3 font-sm-bold"
-                        href="shop-single-product.html"
-                      >
-                        ASUS ROG Strix GL10 Gaming Desktop, AMD Ryzen 5-3600X
-                      </a>
-                      <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
-                      </div>
-                      <div className="price-info">
-                        <strong className="font-lg-bold color-brand-3 price-main">
-                          $2856.3
-                        </strong>
-                        <span className="color-gray-500 price-line">
-                          $3225.6
-                        </span>
-                      </div>
-                      <div className="mt-20">
-                        <a className="btn btn-cart" href="shop-cart.html">
-                          Add To Cart
-                        </a>
-                      </div>
-                      <ul className="list-features">
-                        <li> 27-inch (diagonal) Retina 5K display</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-                <div className="card-grid-style-3">
-                  <div className="card-grid-inner">
-                    <div className="tools">
-                      <a
-                        className="btn btn-trend btn-tooltip mb-10"
-                        href="#"
-                        aria-label="Trend"
-                      ></a>
-                      <a
-                        className="btn btn-wishlist btn-tooltip mb-10"
-                        href="shop-wishlist.html"
-                        aria-label="Add To Wishlist"
-                      ></a>
-                      <a
-                        className="btn btn-compare btn-tooltip mb-10"
-                        href="shop-compare.html"
-                        aria-label="Compare"
-                      ></a>
-                      <a
-                        className="btn btn-quickview btn-tooltip"
-                        aria-label="Quick view"
-                        href="#ModalQuickview"
-                        data-bs-toggle="modal"
-                      ></a>
-                    </div>
-                    <div className="image-box">
-                      <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
-                        <Image
-                          src="/imgs/page/homepage1/imgsp6.png"
-                          alt="Ecom"
-                          width={800}
-                          height={689}
-                        />
-                      </a>
-                    </div>
-                    <div className="info-right">
-                      <span className="font-xs color-gray-500">Apple</span>
-                      <br />
-                      <a
-                        className="color-brand-3 font-sm-bold"
-                        href="shop-single-product.html"
-                      >
-                        Fujifilm INSTAX Mini Link 2 Smartphone Printer Exclusive
-                      </a>
-                      <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          className="inline"
-                          width={12}
-                          height={12}
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
-                      </div>
-                      <div className="price-info">
-                        <strong className="font-lg-bold color-brand-3 price-main">
-                          $2856.3
-                        </strong>
-                        <span className="color-gray-500 price-line">
-                          $3225.6
-                        </span>
-                      </div>
-                      <div className="mt-20">
-                        <a className="btn btn-cart" href="shop-cart.html">
-                          Add To Cart
-                        </a>
-                      </div>
-                      <ul className="list-features">
-                        <li> 27-inch (diagonal) Retina 5K display</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
         <div className="list-products-5">
-          <div className="card-grid-style-3">
-            <div className="card-grid-inner">
-              <div className="tools">
-                <a
-                  className="btn btn-trend btn-tooltip mb-10"
-                  href="#"
-                  aria-label="Trend"
-                ></a>
-                <a
-                  className="btn btn-wishlist btn-tooltip mb-10"
-                  href="shop-wishlist.html"
-                  aria-label="Add To Wishlist"
-                ></a>
-                <a
-                  className="btn btn-compare btn-tooltip mb-10"
-                  href="shop-compare.html"
-                  aria-label="Compare"
-                ></a>
-                <a
-                  className="btn btn-quickview btn-tooltip"
-                  aria-label="Quick view"
-                  href="#ModalQuickview"
-                  data-bs-toggle="modal"
-                ></a>
-              </div>
-              <div className="image-box">
-                <span className="label bg-brand-2">-17%</span>
-                <a href="shop-single-product.html">
-                  <Image
-                    src="/imgs/page/homepage1/imgsp3.png"
-                    alt="Ecom"
-                    width={800}
-                    height={689}
-                  />
-                </a>
-              </div>
-              <div className="info-right">
-                <span className="font-xs color-gray-500">Apple</span>
-                <br />
-                <a
-                  className="color-brand-3 font-sm-bold"
-                  href="shop-single-product.html"
-                >
-                  Klipsch ProMedia 2.1 Bluetooth Computer Speakers
-                </a>
-                <div className="rating">
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    className="inline"
-                    width={12}
-                    height={12}
-                  />
-
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <span className="font-xs color-gray-500">(65)</span>
+          {products.slice(0, 5).map((product: any) => (
+            <div key={product._id} className="card-grid-style-3">
+              <div className="card-grid-inner">
+                <div className="tools">
+                  <a
+                    className="btn btn-trend btn-tooltip mb-10"
+                    href="#"
+                    aria-label="Trend"
+                    data-bs-placement="left"
+                  ></a>
+                  <a
+                    className="btn btn-wishlist btn-tooltip mb-10"
+                    aria-label="Add To Wishlist"
+                    onClick={() => {
+                      addWishlist({
+                        ...product,
+                        id: product._id,
+                      });
+                      toast.success("Produit ajouté au liste de souhait!");
+                    }}
+                  ></a>
+                  <a
+                    className="btn btn-compare btn-tooltip mb-10"
+                    href="shop-compare.html"
+                    aria-label="Compare"
+                  ></a>
+                  <a
+                    className="btn btn-quickview btn-tooltip"
+                    aria-label="Quick view"
+                    href="#ModalQuickview"
+                    data-bs-toggle="modal"
+                    data-product-id={product._id}
+                    onClick={handleQuickviewClick}
+                  ></a>
                 </div>
-                <div className="price-info">
-                  <strong className="font-lg-bold color-brand-3 price-main">
-                    $2856.3
-                  </strong>
-                  <span className="color-gray-500 price-line">$3225.6</span>
-                </div>
-                <div className="mt-20">
-                  <a className="btn btn-cart" href="shop-cart.html">
-                    Add To Cart
+                <div className="image-box">
+                  <span className="label bg-brand-2">-17%</span>
+                  <a href="shop-single-product.html">
+                    <Image
+                      src={product.images[1].url}
+                      alt="Ecom"
+                      width={648}
+                      height={438}
+                    />
                   </a>
                 </div>
-                <ul className="list-features">
-                  <li> 27-inch (diagonal) Retina 5K display</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="card-grid-style-3">
-            <div className="card-grid-inner">
-              <div className="tools">
-                <a
-                  className="btn btn-trend btn-tooltip mb-10"
-                  href="#"
-                  aria-label="Trend"
-                ></a>
-                <a
-                  className="btn btn-wishlist btn-tooltip mb-10"
-                  href="shop-wishlist.html"
-                  aria-label="Add To Wishlist"
-                ></a>
-                <a
-                  className="btn btn-compare btn-tooltip mb-10"
-                  href="shop-compare.html"
-                  aria-label="Compare"
-                ></a>
-                <a
-                  className="btn btn-quickview btn-tooltip"
-                  aria-label="Quick view"
-                  href="#ModalQuickview"
-                  data-bs-toggle="modal"
-                ></a>
-              </div>
-              <div className="image-box">
-                <span className="label bg-brand-2">-17%</span>
-                <a href="shop-single-product.html">
-                  <Image
-                    src="/imgs/page/homepage1/imgsp4.png"
-                    alt="Ecom"
-                    width={800}
-                    height={689}
-                  />
-                </a>
-              </div>
-              <div className="info-right">
-                <span className="font-xs color-gray-500">Apple</span>
-                <br />
-                <a
-                  className="color-brand-3 font-sm-bold"
-                  href="shop-single-product.html"
-                >
-                  Apple TV HD 32GB (2nd Generation) (Latest Model)
-                </a>
-                <div className="rating">
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <span className="font-xs color-gray-500">(65)</span>
-                </div>
-                <div className="price-info">
-                  <strong className="font-lg-bold color-brand-3 price-main">
-                    $2856.3
-                  </strong>
-                  <span className="color-gray-500 price-line">$3225.6</span>
-                </div>
-                <div className="mt-20">
-                  <a className="btn btn-cart" href="shop-cart.html">
-                    Add To Cart
+                <div className="info-right">
+                  <a
+                    className="font-xs color-gray-500"
+                    href="shop-vendor-single.html"
+                  >
+                    {product.brand}
                   </a>
+                  <br />
+                  <Link
+                    className="color-brand-3 truncate max-w-[219px] block font-sm-bold"
+                    href={`/products/${product._id}`}
+                  >
+                    {product.name}
+                  </Link>
+                  <div className="rating">
+                    <Image
+                      src="/imgs/template/icons/star.svg"
+                      alt="Ecom"
+                      width={12}
+                      height={12}
+                      className="inline"
+                    />
+                    <Image
+                      src="/imgs/template/icons/star.svg"
+                      alt="Ecom"
+                      width={12}
+                      height={12}
+                      className="inline"
+                    />
+                    <Image
+                      src="/imgs/template/icons/star.svg"
+                      alt="Ecom"
+                      width={12}
+                      height={12}
+                      className="inline"
+                    />
+                    <Image
+                      src="/imgs/template/icons/star.svg"
+                      alt="Ecom"
+                      width={12}
+                      height={12}
+                      className="inline"
+                    />
+                    <Image
+                      src="/imgs/template/icons/star.svg"
+                      alt="Ecom"
+                      width={12}
+                      height={12}
+                      className="inline"
+                    />
+                    <span className="font-xs color-gray-500">(65)</span>
+                  </div>
+                  <div className="price-info">
+                    <strong className="font-lg-bold color-brand-3 price-main">
+                      {Number(product.price).toLocaleString("fr-FR", {
+                        style: "currency",
+                        currency: "XOF",
+                      })}
+                    </strong>
+                    <br />
+                    <span className="color-gray-500 price-line">
+                      {Number(product.oldPrice).toLocaleString("fr-FR", {
+                        style: "currency",
+                        currency: "XOF",
+                      })}
+                    </span>
+                  </div>
+                  <div className="mt-20 box-btn-cart">
+                    <a
+                      className="btn btn-cart"
+                      onClick={() => {
+                        addItem({
+                          ...product,
+                          id: product._id,
+                        });
+                        toast.success("Produit ajouté au panier");
+                      }}
+                    >
+                      Ajouter au panier
+                    </a>
+                  </div>
+                  <ul className="list-features">
+                    {processLiElements(product.specification).map(
+                      (li: any, idx: any) => (
+                        <li className="truncate" key={idx}>
+                          {ReactHtmlParser(li)}
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </div>
-                <ul className="list-features">
-                  <li> 27-inch (diagonal) Retina 5K display</li>
-                </ul>
               </div>
             </div>
-          </div>
-          <div className="card-grid-style-3">
-            <div className="card-grid-inner">
-              <div className="tools">
-                <a
-                  className="btn btn-trend btn-tooltip mb-10"
-                  href="#"
-                  aria-label="Trend"
-                ></a>
-                <a
-                  className="btn btn-wishlist btn-tooltip mb-10"
-                  href="shop-wishlist.html"
-                  aria-label="Add To Wishlist"
-                ></a>
-                <a
-                  className="btn btn-compare btn-tooltip mb-10"
-                  href="shop-compare.html"
-                  aria-label="Compare"
-                ></a>
-                <a
-                  className="btn btn-quickview btn-tooltip"
-                  aria-label="Quick view"
-                  href="#ModalQuickview"
-                  data-bs-toggle="modal"
-                ></a>
-              </div>
-              <div className="image-box">
-                <span className="label bg-brand-2">-17%</span>
-                <a href="shop-single-product.html">
-                  <Image
-                    src="/imgs/page/homepage1/imgsp5.png"
-                    alt="Ecom"
-                    width={800}
-                    height={689}
-                  />
-                </a>
-              </div>
-              <div className="info-right">
-                <span className="font-xs color-gray-500">Apple</span>
-                <br />
-                <a
-                  className="color-brand-3 font-sm-bold"
-                  href="shop-single-product.html"
-                >
-                  Hisense 40&quot; Class 2K FHD LED LCD Roku Smart TV H4030F
-                </a>
-                <div className="rating">
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <span className="font-xs color-gray-500">(65)</span>
-                </div>
-                <div className="price-info">
-                  <strong className="font-lg-bold color-brand-3 price-main">
-                    $2856.3
-                  </strong>
-                  <span className="color-gray-500 price-line">$3225.6</span>
-                </div>
-                <div className="mt-20">
-                  <a className="btn btn-cart" href="shop-cart.html">
-                    Add To Cart
-                  </a>
-                </div>
-                <ul className="list-features">
-                  <li> 27-inch (diagonal) Retina 5K display</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="card-grid-style-3">
-            <div className="card-grid-inner">
-              <div className="tools">
-                <a
-                  className="btn btn-trend btn-tooltip mb-10"
-                  href="#"
-                  aria-label="Trend"
-                ></a>
-                <a
-                  className="btn btn-wishlist btn-tooltip mb-10"
-                  href="shop-wishlist.html"
-                  aria-label="Add To Wishlist"
-                ></a>
-                <a
-                  className="btn btn-compare btn-tooltip mb-10"
-                  href="shop-compare.html"
-                  aria-label="Compare"
-                ></a>
-                <a
-                  className="btn btn-quickview btn-tooltip"
-                  aria-label="Quick view"
-                  href="#ModalQuickview"
-                  data-bs-toggle="modal"
-                ></a>
-              </div>
-              <div className="image-box">
-                <span className="label bg-brand-2">-17%</span>
-                <a href="shop-single-product.html">
-                  <Image
-                    src="/imgs/page/homepage1/imgsp6.png"
-                    alt="Ecom"
-                    width={800}
-                    height={689}
-                  />
-                </a>
-              </div>
-              <div className="info-right">
-                <span className="font-xs color-gray-500">Apple</span>
-                <br />
-                <a
-                  className="color-brand-3 font-sm-bold"
-                  href="shop-single-product.html"
-                >
-                  2022 Apple 10.9-inch iPad Air Wi-Fi 64GB - Space Gray
-                </a>
-                <div className="rating">
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <span className="font-xs color-gray-500">(65)</span>
-                </div>
-                <div className="price-info">
-                  <strong className="font-lg-bold color-brand-3 price-main">
-                    $2856.3
-                  </strong>
-                  <span className="color-gray-500 price-line">$3225.6</span>
-                </div>
-                <div className="mt-20">
-                  <a className="btn btn-cart" href="shop-cart.html">
-                    Add To Cart
-                  </a>
-                </div>
-                <ul className="list-features">
-                  <li> 27-inch (diagonal) Retina 5K display</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="card-grid-style-3">
-            <div className="card-grid-inner">
-              <div className="tools">
-                <a
-                  className="btn btn-trend btn-tooltip mb-10"
-                  href="#"
-                  aria-label="Trend"
-                ></a>
-                <a
-                  className="btn btn-wishlist btn-tooltip mb-10"
-                  href="shop-wishlist.html"
-                  aria-label="Add To Wishlist"
-                ></a>
-                <a
-                  className="btn btn-compare btn-tooltip mb-10"
-                  href="shop-compare.html"
-                  aria-label="Compare"
-                ></a>
-                <a
-                  className="btn btn-quickview btn-tooltip"
-                  aria-label="Quick view"
-                  href="#ModalQuickview"
-                  data-bs-toggle="modal"
-                ></a>
-              </div>
-              <div className="image-box">
-                <span className="label bg-brand-2">-17%</span>
-                <a href="shop-single-product.html">
-                  <Image
-                    src="/imgs/page/homepage1/imgsp7.png"
-                    alt="Ecom"
-                    width={800}
-                    height={689}
-                  />
-                </a>
-              </div>
-              <div className="info-right">
-                <span className="font-xs color-gray-500">Apple</span>
-                <br />
-                <a
-                  className="color-brand-3 font-sm-bold"
-                  href="shop-single-product.html"
-                >
-                  LeapFrog LeapPad Academy Kids Tablet with LeapFrog
-                </a>
-                <div className="rating">
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <Image
-                    src="/imgs/template/icons/star.svg"
-                    alt="Ecom"
-                    width={12}
-                    className="inline"
-                    height={12}
-                  />
-                  <span className="font-xs color-gray-500">(65)</span>
-                </div>
-                <div className="price-info">
-                  <strong className="font-lg-bold color-brand-3 price-main">
-                    $2856.3
-                  </strong>
-                  <span className="color-gray-500 price-line">$3225.6</span>
-                </div>
-                <div className="mt-20">
-                  <a className="btn btn-cart" href="shop-cart.html">
-                    Add To Cart
-                  </a>
-                </div>
-                <ul className="list-features">
-                  <li> 27-inch (diagonal) Retina 5K display</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

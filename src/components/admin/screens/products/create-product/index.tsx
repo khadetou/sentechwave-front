@@ -3,8 +3,15 @@ import { useAppDispatch, useAppSelector } from "hooks/index";
 import Image from "next/image";
 import { useState, ChangeEvent, useEffect } from "react";
 import { toast } from "react-toastify";
+import Slider, { Settings } from "react-slick";
 
 import { createProducts, reset } from "redux/products/productSlice";
+import CreateTop from "../top/create-top";
+import Link from "next/link";
+import dynamic from "next/dynamic";
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false, // This line ensures that the component is rendered only on the client-side
+});
 
 const CreateProductPage = () => {
   const { isError, isLoading, isSuccess, message, categories } = useAppSelector(
@@ -22,6 +29,7 @@ const CreateProductPage = () => {
     name: "",
     _id: "",
   });
+
   const [itemsCategory, setItemsCategory] = useState("");
   const [cat, setCat] = useState(categories);
   const [subcat, setSubcat] = useState<any>([]);
@@ -33,13 +41,17 @@ const CreateProductPage = () => {
     brand: "",
     category: "",
     description: "",
+    sku: "",
     rating: 0,
     price: 0,
     oldPrice: 0,
     countInStock: 0,
-    sizes: "",
   });
 
+  const [sizes, setSizes] = useState<string[]>([]);
+  const [styles, setStyles] = useState<string[]>([]);
+  const [colors, setColors] = useState<string[]>([]);
+  const [specification, setSpecification] = useState("");
   const [imagesPreview, setImagesPreview] = useState<any>([]);
   const [images, setImages] = useState<any>([]);
 
@@ -73,13 +85,13 @@ const CreateProductPage = () => {
   const {
     brand,
     category,
+    sku,
     countInStock,
     description,
     name,
     price,
     oldPrice,
     rating,
-    sizes,
   } = values;
 
   useEffect(() => {
@@ -125,7 +137,7 @@ const CreateProductPage = () => {
       subcategory: sousCategory._id,
       subsubcategory: ssousCategory._id,
       images,
-      sizes,
+      specification,
     };
 
     if (images.length === 0) {
@@ -135,31 +147,25 @@ const CreateProductPage = () => {
     dispatch(createProducts(productData));
   };
 
+  const removeImage = (idx: number) => {
+    const newImg = [...images];
+    newImg.splice(idx, 1);
+    setImages(newImg);
+    setImagesPreview(newImg);
+  };
+
+  const settings: Settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+  };
+
   return (
     <div>
-      <h2 className="capitalize text-gray-1100 font-bold text-[8px] leading-[35px] dark:text-gray-dark-1100 mb-[13px]">
-        product details
-      </h2>
-      <div className="flex items-center text-xs text-gray-500 gap-x-[11px] mb-[17px]">
-        <div className="flex items-center gap-x-1">
-          <Image
-            width={12}
-            height={13}
-            src="/imgs/icons/icon-home-2.svg"
-            alt="home icon"
-          />
-          <a className="capitalize" href="index-2.html">
-            home
-          </a>
-        </div>
-        <Image
-          width={12}
-          height={13}
-          src="/imgs/icons/icon-arrow-right.svg"
-          alt="arrow right icon"
-        />
-        <span className="capitalize text-color-brands">product details</span>
-      </div>
+      <CreateTop />
       <div className="flex gap-x-12 border rounded-2xl justify-between flex-col gap-y-12 bg-white border-neutral pt-[50px] pb-[132px] px-[29px] dark:border-dark-neutral-border lg:flex-row lg:gap-y-0 dark:bg-[#1F218]">
         <div className="lg:max-w-[610px]">
           <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
@@ -167,234 +173,156 @@ const CreateProductPage = () => {
           </p>
           <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
             <input
-              className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit"
+              className="input w-full bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit"
               type="text"
               placeholder="Type name here"
+              name="name"
+              onChange={onChange}
+              value={name}
             />
           </div>
           <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
             Description
           </p>
           <div className="rounded-lg mb-12 border border-neutral dark:border-dark-neutral-border p-[13px]">
-            <div className="flex items-center gap-y-4 flex-col gap-x-[27px] mb-[31px] xl:flex-row xl:gap-y-0">
-              <div className="flex items-center gap-x-[20px]">
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-bold.svg"
-                  alt="bold icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-italicized.svg"
-                  alt="italicized icon"
-                  width={4}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-underlined.svg"
-                  alt="underlined icon"
-                  width={9}
-                  height={11}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-strikethrough.svg"
-                  alt="strikethrough icon"
-                  width={11}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-textcolor.svg"
-                  alt="textcolor icon"
-                  width={9}
-                  height={12}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-backgroundcolor.svg"
-                  alt="backgroundcolor icon"
-                  width={9}
-                  height={11}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-smile.svg"
-                  alt="smile icon"
-                  width={11}
-                  height={11}
-                />
-              </div>
-              <div className="flex items-center gap-x-[20px]">
-                <div className="flex items-center cursor-pointer gap-x-[1.5px]">
-                  <Image
-                    src="/imgs/icons/icon-paragraphformat.svg"
-                    alt="paragraphformat icon"
-                    width={8}
-                    height={9}
-                  />
-                  <Image
-                    src="/imgs/icons/icon-arrow-down-triangle.svg"
-                    alt="arrow down triangle icon"
-                    width={5}
-                    height={4}
-                  />
-                </div>
-                <div className="flex items-center cursor-pointer gap-x-[1.5px]">
-                  <Image
-                    src="/imgs/icons/icon-align-left.svg"
-                    alt="align left icon"
-                    width={11}
-                    height={7}
-                  />
-                  <Image
-                    src="/imgs/icons/icon-arrow-down-triangle.svg"
-                    alt="arrow down triangle icon"
-                    width={5}
-                    height={4}
-                  />
-                </div>
-                <div className="flex items-center cursor-pointer gap-x-[1.5px]">
-                  <Image
-                    src="/imgs/icons/icon-ordered-list.svg"
-                    alt="ordered list icon"
-                    width={9}
-                    height={11}
-                  />
-                  <Image
-                    src="/imgs/icons/icon-arrow-down-triangle.svg"
-                    alt="arrow down triangle icon"
-                    width={5}
-                    height={9}
-                  />
-                </div>
-                <div className="flex items-center cursor-pointer gap-x-[1.5px]">
-                  <Image
-                    src="/imgs/icons/icon-unordered-list.svg"
-                    alt="unordered list icon"
-                    width={11}
-                    height={9}
-                  />
-                  <Image
-                    src="/imgs/icons/icon-arrow-down-triangle.svg"
-                    alt="arrow down triangle icon"
-                    width={5}
-                    height={4}
-                  />
-                </div>
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-indent.svg"
-                  alt="indent icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer opacity-40"
-                  src="/imgs/icons/icon-indent.svg"
-                  alt="outdent icon"
-                  width={7}
-                  height={9}
-                />
-              </div>
-              <div className="flex items-center gap-x-[20px]">
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-insert-image.svg"
-                  alt="insert image icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-insert-link.svg"
-                  alt="insert link icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-insert-file.svg"
-                  alt="insert-file icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer"
-                  src="/imgs/icons/icon-insert-video.svg"
-                  alt="insert video icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer opacity-40"
-                  src="/imgs/icons/icon-undo.svg"
-                  alt="undo icon"
-                  width={7}
-                  height={9}
-                />
-                <Image
-                  className="cursor-pointer opacity-40"
-                  src="/imgs/icons/icon-redo.svg"
-                  alt="redo icon"
-                  width={7}
-                  height={9}
-                />
-              </div>
-            </div>
             <textarea
               className="textarea w-full p-0 text-gray-400 resize-none rounded-none bg-transparent min-h-[140px] focus:outline-none"
               placeholder="Type description here"
+              onChange={onChange}
+              name="description"
+              value={description}
             ></textarea>
           </div>
           <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
-            category
+            Spécifications
           </p>
-          <select className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-12">
+          <div className="rounded-lg mb-12 border border-neutral dark:border-dark-neutral-border p-[13px]">
+            <ReactQuill
+              value={specification}
+              onChange={(e) => setSpecification(e)}
+              className="textarea w-full p-0 text-gray-400 resize-none rounded-none bg-transparent min-h-[140px] focus:outline-none"
+            />
+          </div>
+          <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+            Marque
+          </p>
+          <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
+            <input
+              className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
+              type="text"
+              placeholder="Type brand here"
+              name="brand"
+              onChange={onChange}
+              value={brand}
+            />
+          </div>
+          <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+            Catégory
+          </p>
+          <select
+            onChange={(e) => {
+              setCategory({ ...categori, ["_id"]: e.target.value });
+              const cate = cat.find(
+                (categ: any) => categ._id === e.target.value
+              );
+              setSubcat(cate.subcategories);
+            }}
+            className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-12"
+          >
             <option disabled selected>
               Type Category here
             </option>
-            <option>Homer</option>
-            <option>Marge</option>
-            <option>Bart</option>
+            {cat.map(({ name, _id }: any) => (
+              <option key={_id} value={_id}>
+                {name}
+              </option>
+            ))}
           </select>
-          <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
-            brand
-          </p>
-          <select className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-12">
-            <option disabled selected>
-              Type Brand name here
-            </option>
-            <option>Homer</option>
-            <option>Marge</option>
-            <option>Bart</option>
-          </select>
+          {subcat.length > 0 && (
+            <>
+              <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+                Sous Catégory
+              </p>
+              <select
+                onChange={(e) => {
+                  setSousCategory({
+                    ...sousCategory,
+                    ["_id"]: e.target.value,
+                  });
+                  const subcate = subcat.find(
+                    (subc: any) => subc._id === e.target.value
+                  );
+                  setsubsubcat(subcate.subsubcategories);
+                }}
+                className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-12"
+              >
+                <option disabled selected>
+                  Type Sous Category here
+                </option>
+                {subcat.map(({ name, _id }: any) => (
+                  <option key={_id} value={_id}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </>
+          )}
+
           <div className="flex justify-between flex-col lg:flex-row">
             <div>
               <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
                 SKU
               </p>
-              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
+              <div className="input-group border rounded-lg mr-1 border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
                 <input
-                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit"
+                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
                   type="text"
                   placeholder="FOX-2983"
+                  name="sku"
+                  value={sku}
+                  onChange={onChange}
                 />
               </div>
               <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
-                Regular Price
+                Prix normal
               </p>
               <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
                 <input
-                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit"
+                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
                   type="text"
                   placeholder="$500"
+                  value={oldPrice === 0 ? "" : oldPrice}
+                  name="oldPrice"
+                  onChange={onChange}
                 />
               </div>
-              <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+              <p className="text-gray-1100 text-base  leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+                Couleurs
+              </p>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
+                <input
+                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
+                  type="text"
+                  placeholder="Blue, Gris"
+                  name="colors"
+                  onChange={(e) => setColors(e.target.value.split(","))}
+                  value={colors}
+                />
+              </div>
+              <p className="text-gray-1100 text-base  leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+                Styles
+              </p>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
+                <input
+                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
+                  type="text"
+                  placeholder="Blue, Gris"
+                  name="styles"
+                  onChange={(e) => setStyles(e.target.value.split(","))}
+                  value={styles}
+                />
+              </div>
+              {/* <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
                 Tax status
               </p>
               <select className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-12">
@@ -404,31 +332,51 @@ const CreateProductPage = () => {
                 <option>Homer</option>
                 <option>Marge</option>
                 <option>Bart</option>
-              </select>
+              </select> */}
             </div>
-            <div>
+            <div className="!ml-8">
               <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
                 Stock quantity
               </p>
               <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
                 <input
-                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit"
+                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
                   type="text"
                   placeholder="1258"
+                  name="countInStock"
+                  value={countInStock === 0 ? "" : countInStock}
+                  onChange={onChange}
                 />
               </div>
-              <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
-                Sale price
+              <p className="text-gray-1100 text-base  leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+                Prix de vente
+              </p>
+              <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
+                <input
+                  className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit w-full"
+                  type="text"
+                  placeholder="$450"
+                  name="price"
+                  onChange={onChange}
+                  value={price === 0 ? "" : price}
+                />
+              </div>
+              <p className="text-gray-1100 text-base  leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+                Tailles
               </p>
               <div className="input-group border rounded-lg border-[#E8EDF2] dark:border-[#313442] sm:min-w-[252px] mb-12">
                 <input
                   className="input bg-transparent text-sm leading-4 text-gray-400 h-fit min-h-fit !py-4 focus:outline-none pl-[13px] dark:text-gray-dark-400 placeholder:text-inherit"
                   type="text"
-                  placeholder="$450"
+                  placeholder="250 GB, 500 GB"
+                  name="taille"
+                  onChange={(e) => setSizes(e.target.value.split(","))}
+                  value={sizes}
                 />
               </div>
-              <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
-                Tax className
+
+              {/* <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+                Tax class
               </p>
               <select className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-12">
                 <option disabled selected>
@@ -437,10 +385,10 @@ const CreateProductPage = () => {
                 <option>Homer</option>
                 <option>Marge</option>
                 <option>Bart</option>
-              </select>
+              </select> */}
             </div>
           </div>
-          <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
+          {/* <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
             tag
           </p>
           <div className="flex items-center border flex-wrap rounded-lg border-neutral gap-x-[10px] dark:border-dark-neutral-border pt-[15px] pl-[15px] pr-[23px] pb-[66px]">
@@ -554,20 +502,32 @@ const CreateProductPage = () => {
                 height={8}
               />
             </div>
-          </div>
+          </div> */}
         </div>
-        <div>
-          <Image
-            className="block border rounded-lg mb-12 mx-auto border-neutral dark:border-dark-neutral-border p-[23.8px]"
-            src="/imgs/product-12.png"
-            alt="product"
-            width={466}
-            height={48}
-          />
+        <div className="min-w-[466px]">
+          <Slider {...settings} className="w-[466px]  relative">
+            {imagesPreview.length > 0 &&
+              imagesPreview.map((img: string, idx: number) => (
+                <>
+                  <Image
+                    className="block border rounded-lg max-w-[466px] max-h-[466px] mb-12 mx-auto border-neutral dark:border-dark-neutral-border p-[23.8px]"
+                    src={img}
+                    alt="product"
+                    width={466}
+                    height={48}
+                    key={idx}
+                  />
+                </>
+              ))}
+          </Slider>
+
           <p className="text-gray-1100 text-base leading-4 font-medium capitalize mb-[10px] dark:text-gray-dark-1100">
             product gallery
           </p>
-          <div className="border-dashed border-2 text-center mb-12 border-neutral py-[26px] dark:border-dark-neutral-border">
+          <label
+            htmlFor="img"
+            className="border-dashed border-2 block cursor-pointer text-center mb-12 border-neutral py-[26px] dark:border-dark-neutral-border"
+          >
             <Image
               className="mx-auto inline-block mb-[15px]"
               src="/imgs/icons/icon-image.svg"
@@ -581,158 +541,64 @@ const CreateProductPage = () => {
             <p className="leading-6 text-gray-400 text-[13px]">
               JPG,PNG and GIF files are allowed
             </p>
-          </div>
+            <input
+              className="form-control hidden !bg-[#f4f5f9]   !text-[13px]  !h-[34px]  !rounded"
+              id="img"
+              type="file"
+              multiple
+              onChange={onChangeImage}
+            />
+          </label>
           <div className="flex flex-col mb-12 gap-y-[10px]">
-            <div className="flex items-center justify-between py-3 border pl-3 pr-3 transition-all duration-300 border-[#E8EDF2] dark:border-[#313442] rounded-[5px] gap-x-[10px] hover:shadow-xl sm:pr-8 lg:pr-3 xl:pr-8">
-              <Image
-                className="hidden sm:block lg:hidden xl:block"
-                src="/imgs/product-1.png"
-                alt="product"
-                width={82}
-                height={82}
-              />
-              <div className="flex flex-col flex-1 gap-y-[10px]">
-                <div className="flex items-center justify-between text-[13px]">
-                  {" "}
-                  <span className="text-gray-1100 text-sm leading-4 dark:text-gray-dark-1100">
-                    Product_thumbnail_1.png
-                  </span>
-                  <span className="text-xs text-gray-1100 dark:text-gray-dark-1100">
-                    1%
-                  </span>
+            {imagesPreview.length > 0 &&
+              imagesPreview.map((img: any, idx: any) => (
+                <div
+                  key={idx}
+                  className="flex items-center justify-between py-3 border pl-3 pr-3 transition-all duration-300 border-[#E8EDF2] dark:border-[#313442] rounded-[5px] gap-x-[10px] hover:shadow-xl sm:pr-8 lg:pr-3 xl:pr-8"
+                >
+                  <Image
+                    className="hidden sm:block lg:hidden xl:block"
+                    src={img}
+                    alt="product"
+                    width={82}
+                    height={82}
+                  />
+                  <div className="flex flex-col flex-1 gap-y-[10px]">
+                    <div className="flex items-center justify-between text-[13px]">
+                      <span className="text-gray-1100 text-sm leading-4 dark:text-gray-dark-1100">
+                        Product_thumbnail_1.png
+                      </span>
+                    </div>
+                    {/* <progress
+                      className="progress progress-accent"
+                      value="1"
+                      max="100"
+                    ></progress> */}
+                  </div>
+                  <Image
+                    src="/imgs/icons/icon-close-circle.svg"
+                    alt="close circle icon"
+                    className="cursor-pointer"
+                    width={20}
+                    height={20}
+                    onClick={() => removeImage(idx)}
+                  />
                 </div>
-                <progress
-                  className="progress progress-accent"
-                  value="1"
-                  max="100"
-                ></progress>
-              </div>
-              <Image
-                src="/imgs/icons/icon-close-circle.svg"
-                alt="close circle icon"
-                width={20}
-                height={20}
-              />
-            </div>
-            <div className="flex items-center justify-between py-3 border pl-3 pr-3 transition-all duration-300 border-[#E8EDF2] dark:border-[#313442] rounded-[5px] gap-x-[10px] hover:shadow-xl sm:pr-8 lg:pr-3 xl:pr-8">
-              <Image
-                className="hidden sm:block lg:hidden xl:block"
-                src="/imgs/product-2.png"
-                alt="product"
-                width={82}
-                height={82}
-              />
-              <div className="flex flex-col flex-1 gap-y-[10px]">
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-gray-1100 text-sm leading-4 dark:text-gray-dark-1100">
-                    Product_thumbnail_2.png
-                  </span>
-                </div>
-                <progress
-                  className="progress progress-accent"
-                  value="100"
-                  max="100"
-                ></progress>
-              </div>
-              <Image
-                src="/imgs/icons/icon-check-circle.svg"
-                alt="check circle icon"
-                width={20}
-                height={20}
-              />
-            </div>
-            <div className="flex items-center justify-between py-3 border pl-3 pr-3 transition-all duration-300 border-[#E8EDF2] dark:border-[#313442] rounded-[5px] gap-x-[10px] hover:shadow-xl sm:pr-8 lg:pr-3 xl:pr-8">
-              <Image
-                className="hidden sm:block lg:hidden xl:block"
-                src="/imgs/product-3.png"
-                alt="product"
-                width={82}
-                height={82}
-              />
-              <div className="flex flex-col flex-1 gap-y-[10px]">
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-gray-1100 text-sm leading-4 dark:text-gray-dark-1100">
-                    Product_thumbnail_3.png
-                  </span>
-                </div>
-                <progress
-                  className="progress progress-accent"
-                  value="100"
-                  max="100"
-                ></progress>
-              </div>
-              <Image
-                src="/imgs/icons/icon-check-circle.svg"
-                alt="check circle icon"
-                width={20}
-                height={20}
-              />
-            </div>
-            <div className="flex items-center justify-between py-3 border pl-3 pr-3 transition-all duration-300 border-[#E8EDF2] dark:border-[#313442] rounded-[5px] gap-x-[10px] hover:shadow-xl sm:pr-8 lg:pr-3 xl:pr-8">
-              <Image
-                className="hidden sm:block lg:hidden xl:block"
-                src="/imgs/product-4.png"
-                alt="product"
-                width={82}
-                height={82}
-              />
-              <div className="flex flex-col flex-1 gap-y-[10px]">
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-gray-1100 text-sm leading-4 dark:text-gray-dark-1100">
-                    Product_thumbnail_4.png
-                  </span>
-                </div>
-                <progress
-                  className="progress progress-accent"
-                  value="100"
-                  max="100"
-                ></progress>
-              </div>
-              <Image
-                src="/imgs/icons/icon-check-circle.svg"
-                alt="check circle icon"
-                width={20}
-                height={20}
-              />
-            </div>
-            <div className="flex items-center justify-between py-3 border pl-3 pr-3 transition-all duration-300 border-[#E8EDF2] dark:border-[#313442] rounded-[5px] gap-x-[10px] hover:shadow-xl sm:pr-8 lg:pr-3 xl:pr-8">
-              <Image
-                className="hidden sm:block lg:hidden xl:block"
-                src="/imgs/product-5.png"
-                alt="product"
-                width={82}
-                height={82}
-              />
-              <div className="flex flex-col flex-1 gap-y-[10px]">
-                <div className="flex items-center justify-between text-[13px]">
-                  <span className="text-gray-1100 text-sm leading-4 dark:text-gray-dark-1100">
-                    Product_thumbnail_5.png
-                  </span>
-                </div>
-                <progress
-                  className="progress progress-accent"
-                  value="100"
-                  max="100"
-                ></progress>
-              </div>
-              <Image
-                src="/imgs/icons/icon-check-circle.svg"
-                alt="check circle icon"
-                width={20}
-                height={20}
-              />
-            </div>
+              ))}
           </div>
           <div className="flex items-center gap-x-4 flex-wrap gap-y-4">
-            <button className="btn normal-case h-fit min-h-fit text-white transition-all duration-300 border-4 bg-[#B2A7FF] hover:bg-[#B2A7FF] hover:border-[#B2A7FF] border-white !px-6 py-[14px]">
-              Update
+            <button
+              className="btn normal-case h-fit min-h-fit transition-all duration-300 px-6 border-0 text-white bg-[#343dbc] hover:!bg-[#354884] hover:text-white py-[14px]"
+              onClick={onSubmit}
+            >
+              {isLoading ? <ButtonLoading /> : "Créer "}
             </button>
-            <button className="btn normal-case h-fit min-h-fit transition-all duration-300 px-6 border-0 text-white bg-[#E23738] hover:!bg-[#ef6364] hover:text-white py-[14px]">
-              Delete
-            </button>
-            <button className="btn normal-case h-fit min-h-fit transition-all duration-300 px-6 border-0 bg-[#E8EDF2] text-[#B8B1E4] hover:!bg-[#bdbec0] hover:text-white dark:bg-[#313442] dark:hover:!bg-[#424242] py-[14px]">
-              Cancel
-            </button>
+            <Link
+              href="/"
+              className="btn normal-case h-fit min-h-fit transition-all duration-300 px-6 border-0 bg-[#E8EDF2] text-[#B8B1E4] hover:!bg-[#bdbec0] hover:text-white dark:bg-[#313442] dark:hover:!bg-[#424242] py-[14px]"
+            >
+              Retour
+            </Link>
           </div>
         </div>
       </div>

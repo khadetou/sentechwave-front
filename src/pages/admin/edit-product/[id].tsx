@@ -1,4 +1,5 @@
 import Layout from "components/admin/Layout";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import EditProductPage from "components/admin/screens/products/edit-product";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
@@ -20,7 +21,10 @@ const EditProduct = () => {
   return (
     <Layout>
       <SEO />
-      <EditProductPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <EditProductPage />
+        <DashFooter />
+      </main>
       <ToastContainer />
     </Layout>
   );

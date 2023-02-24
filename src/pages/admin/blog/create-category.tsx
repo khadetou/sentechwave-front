@@ -1,5 +1,6 @@
 import Layout from "components/admin/Layout";
 import CreateCategoryPage from "components/admin/screens/blog/create-category";
+import DashFooter from "components/admin/screens/dashboard/dash-footter";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
@@ -15,7 +16,10 @@ const CreateCategory = () => {
   return (
     <Layout>
       <SEO />
-      <CreateCategoryPage />
+      <main className="overflow-x-scroll scrollbar-hide flex flex-col justify-between pt-[42px] px-[23px] pb-[28px]">
+        <CreateCategoryPage />
+        <DashFooter />
+      </main>
       <ToastContainer />
     </Layout>
   );
