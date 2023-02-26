@@ -5,6 +5,7 @@ import Advantages from "./advantages";
 import Newsletter from "./newsletter";
 import PageContent from "./page-content";
 import PageHeader from "./page-header";
+import { ToastContainer } from "react-toastify";
 
 const WishlistPage = () => {
   return (
@@ -15,6 +16,7 @@ const WishlistPage = () => {
       <Newsletter />
       <Modal />
       <FilterModal />
+      <ToastContainer />
     </>
   );
 };

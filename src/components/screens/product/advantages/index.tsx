@@ -1,4 +1,5 @@
 import Image from "next/image";
+
 const Advantages = () => {
   return (
     <section className="section-box mt-90 mb-50">

@@ -7,6 +7,7 @@ import { useCart } from "react-use-cart";
 import { getProductById } from "redux/products/productSlice";
 import ReactHtmlParser from "react-html-parser";
 import LeftSidebar from "../left";
+import { useRecviewed } from "context/recviewedContext";
 
 const Main = () => {
   const { products } = useAppSelector((store) => store.product);
@@ -45,6 +46,32 @@ const Main = () => {
   const handleQuickviewClick = (event: any) => {
     const productId = event.target.dataset.productId;
     dispatch(getProductById(productId));
+  };
+  const {
+    addItem: addRecviewed,
+    inRecviewed,
+    totalItems,
+    removeItem,
+    items,
+  } = useRecviewed();
+
+  const addReviewedFunc = (product: any) => {
+    if (product) {
+      if (!inRecviewed(product._id)) {
+        if (totalItems > 5) {
+          removeItem(items[0].id);
+          addRecviewed({
+            ...product,
+            id: product._id,
+          });
+        } else {
+          addRecviewed({
+            ...product,
+            id: product._id,
+          });
+        }
+      }
+    }
   };
 
   return (
@@ -199,7 +226,10 @@ const Main = () => {
                       </div>
                       <div className="image-box">
                         <span className="label bg-brand-2">-17%</span>
-                        <Link href={`/products/${product._id}`}>
+                        <Link
+                          onClick={() => addReviewedFunc(product)}
+                          href={`/products/${product._id}`}
+                        >
                           <Image
                             src={product.images[1].url}
                             alt="Ecom"
@@ -210,6 +240,7 @@ const Main = () => {
                       </div>
                       <div className="info-right">
                         <Link
+                          onClick={() => addReviewedFunc(product)}
                           className="font-xs color-gray-500"
                           href={`/products/${product._id}`}
                         >
@@ -217,6 +248,7 @@ const Main = () => {
                         </Link>
                         <br />
                         <Link
+                          onClick={() => addReviewedFunc(product)}
                           className="color-brand-3 font-sm-bold truncate max-w-[199.4px] block"
                           href={`/products/${product._id}`}
                         >

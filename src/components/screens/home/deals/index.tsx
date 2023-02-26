@@ -12,6 +12,7 @@ import { useState, useEffect, useMemo } from "react";
 import Slider, { Settings } from "react-slick";
 import { useDispatch } from "react-redux";
 import { getProductById } from "redux/products/productSlice";
+import { useRecviewed } from "context/recviewedContext";
 
 moment.locale("fr");
 const Deals = () => {
@@ -84,6 +85,32 @@ const Deals = () => {
     dispatch(getProductById(productId));
   };
   const { addItem: addWishlist } = useWishlist();
+  const {
+    addItem: addRecviewed,
+    inRecviewed,
+    totalItems,
+    removeItem,
+    items,
+  } = useRecviewed();
+
+  const addReviewedFunc = (product: any) => {
+    if (product) {
+      if (!inRecviewed(product._id)) {
+        if (totalItems > 5) {
+          removeItem(items[0].id);
+          addRecviewed({
+            ...product,
+            id: product._id,
+          });
+        } else {
+          addRecviewed({
+            ...product,
+            id: product._id,
+          });
+        }
+      }
+    }
+  };
 
   return (
     <section className="section-box pt-50">
@@ -542,6 +569,7 @@ const Deals = () => {
                   </a>
                   <br />
                   <Link
+                    onClick={() => addReviewedFunc(product)}
                     className="color-brand-3 truncate max-w-[219px] block font-sm-bold"
                     href={`/products/${product._id}`}
                   >

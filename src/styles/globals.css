@@ -9004,7 +9004,7 @@ a:hover span {
   text-align: center;
 }
 .item-wishlist .wishlist-action .btn-cart {
-  max-width: 126px;
+  max-width: 149px;
   padding: 6px 15px;
 }
 .item-wishlist .wishlist-remove {
@@ -11739,6 +11739,28 @@ html:not(.dark) .minimize .moon-icon {
 .ql-container.ql-snow {
   @apply !border-none;
 }
+
+/* STARS */
+.stars{
+  font-size: inherit !important;
+}
+
+.stars__star {
+  &--zero.go2062499365 {
+    @apply !mr-[1px] !text-gray-300;
+  } 
+  &--half.go2062499365{
+    @apply !mr-[1px] ;
+  }
+  &--full.go2062499365{
+    @apply !mr-[1px];
+  }
+  &--full.go1037073932{
+    @apply !text-[#ffbb1d];
+  }
+}
+
+  
 
 /* Tailwindcss 💞💞💞 */
 @tailwind base;

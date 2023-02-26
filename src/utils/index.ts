@@ -1,3 +1,5 @@
+
+
 export const API_URL =
   process.env.NEXT_PUBLIC_API_URL_RAIL_WAY || "http://localhost:5000";
 // export const API_URL =
@@ -18,3 +20,13 @@ export const filterText = (text: string) => {
   const text2 = text1.replaceAll(")", "\\)");
   return text2;
 };
+
+
+
+
+
+
+
+
+
+

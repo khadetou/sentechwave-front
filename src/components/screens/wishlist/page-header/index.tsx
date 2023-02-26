@@ -1,25 +1,24 @@
+import Link from "next/link";
 import React from "react";
 
 const PageHeader = () => {
   return (
     <div className="section-box">
       <div className="breadcrumbs-div">
-        <div className="container">
+        <div className="containers">
           <ul className="breadcrumb">
             <li>
-              <a className="font-xs color-gray-1000" href="index.html">
-                Home
-              </a>
+              <Link className="font-xs color-gray-1000" href="/">
+                Accueil
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
-                Shop
-              </a>
+              <Link className="font-xs color-gray-500" href="/products">
+                Produits
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-wishlist.html">
-                Wishlist
-              </a>
+              <a className="font-xs color-gray-500">Wishlist</a>
             </li>
           </ul>
         </div>

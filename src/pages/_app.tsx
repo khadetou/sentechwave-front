@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import { wrapper } from "../redux";
 import { CartProvider } from "react-use-cart";
 import { WishlistProvider } from "context/wishlistContext";
+import { RecviewedProvider } from "context/recviewedContext";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import type { AppProps } from "next/app";
 
@@ -35,11 +36,13 @@ export default function App({ Component, ...rest }: AppProps) {
       clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
     >
       <Provider store={store}>
-        <WishlistProvider>
-          <CartProvider>
-            <Component {...pageProps} />
-          </CartProvider>
-        </WishlistProvider>
+        <RecviewedProvider>
+          <WishlistProvider>
+            <CartProvider>
+              <Component {...pageProps} />
+            </CartProvider>
+          </WishlistProvider>
+        </RecviewedProvider>
       </Provider>
     </GoogleOAuthProvider>
   );

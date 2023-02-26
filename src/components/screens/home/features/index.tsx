@@ -1,3 +1,4 @@
+import { useRecviewed } from "context/recviewedContext";
 import { useWishlist } from "context/wishlistContext";
 import { useAppDispatch, useAppSelector } from "hooks/index";
 import Image from "next/image";
@@ -45,6 +46,32 @@ const Features = () => {
   };
 
   const { topProducts, products } = useAppSelector((store) => store.product);
+  const {
+    addItem: addRecviewed,
+    inRecviewed,
+    totalItems,
+    removeItem,
+    items,
+  } = useRecviewed();
+
+  const addReviewedFunc = (product: any) => {
+    if (product) {
+      if (!inRecviewed(product._id)) {
+        if (totalItems > 5) {
+          removeItem(items[0].id);
+          addRecviewed({
+            ...product,
+            id: product._id,
+          });
+        } else {
+          addRecviewed({
+            ...product,
+            id: product._id,
+          });
+        }
+      }
+    }
+  };
   return (
     <section className="section-box bg-gray-50 pt-50 pb-50 mt-50">
       <div className="containers">
@@ -172,6 +199,7 @@ const Features = () => {
                       </a>
                       <br />
                       <Link
+                        onClick={() => addReviewedFunc(product)}
                         className="color-brand-3 truncate max-w-[219px] block font-sm-bold"
                         href={`/products/${product._id}`}
                       >
@@ -321,6 +349,7 @@ const Features = () => {
                       </a>
                       <br />
                       <Link
+                        onClick={() => addReviewedFunc(product)}
                         className="color-brand-3 truncate max-w-[219px] block font-sm-bold"
                         href={`/products/${product._id}`}
                       >
@@ -470,6 +499,7 @@ const Features = () => {
                       </a>
                       <br />
                       <Link
+                        onClick={() => addReviewedFunc(product)}
                         className="color-brand-3 truncate max-w-[219px] block font-sm-bold"
                         href={`/products/${product._id}`}
                       >
@@ -619,6 +649,7 @@ const Features = () => {
                       </a>
                       <br />
                       <Link
+                        onClick={() => addReviewedFunc(product)}
                         className="color-brand-3 truncate max-w-[219px] block font-sm-bold"
                         href={`/products/${product._id}`}
                       >

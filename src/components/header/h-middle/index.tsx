@@ -445,8 +445,8 @@ const HMiddle: FC<HMiddleProps> = ({
           <div className="header-shop">
             {isAuthenticated ? (
               <div className="d-inline-block relative box-dropdown-cart">
-                <span className="font-lg icon-list icon-account !pr-2">
-                  <span>Account</span>
+                <span className="font-lg icon-list icon-account !pr-0">
+                  <span className="invisible">.</span>
                 </span>
                 <span
                   ref={refUserDropDown2}
@@ -503,13 +503,13 @@ const HMiddle: FC<HMiddleProps> = ({
               <div className="d-inline-block box-dropdown-cart">
                 <Link href="/login">
                   <span className="font-lg icon-list icon-account">
-                    <span>Account</span>
+                    <span className="invisible">.</span>
                   </span>
                 </Link>
               </div>
             )}
             <Link className="font-lg icon-list icon-wishlist" href="/wishlist">
-              <span>Wishlist</span>
+              <span className="invisible">.</span>
               <span className="number-item font-xs">{totalsWishlist}</span>
             </Link>
             <div className="d-inline-block box-dropdown-cart">
@@ -520,7 +520,7 @@ const HMiddle: FC<HMiddleProps> = ({
                 }}
                 ref={ref2}
               >
-                <span>Cart</span>
+                <span className="invisible">.</span>
                 <span className="number-item font-xs">{totals}</span>
               </span>
               <div
@@ -578,7 +578,7 @@ const HMiddle: FC<HMiddleProps> = ({
                   <div className="row mt-15">
                     <div className="col-6 text-start">
                       <Link className="btn btn-cart w-auto" href="/cart">
-                        View cart
+                        Voir panier
                       </Link>
                     </div>
                     <div className="col-6">

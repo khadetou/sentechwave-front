@@ -84,6 +84,7 @@ const FeaturedCat = () => {
       image: images[idx],
     };
   });
+
   return (
     <section className="section-box">
       <div className="containers">

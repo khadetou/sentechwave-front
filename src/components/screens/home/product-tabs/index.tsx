@@ -1,12 +1,12 @@
 import { useWishlist } from "context/wishlistContext";
 import { useAppDispatch, useAppSelector } from "hooks/index";
 import Image from "next/image";
-import Link from "next/link";
+
 import { useEffect, useRef } from "react";
 import Slider, { Settings } from "react-slick";
-import { toast } from "react-toastify";
+
 import { useCart } from "react-use-cart";
-import { getProductById } from "redux/products/productSlice";
+
 import NextArrow from "./nav-buttons/next-arrow";
 import PrevArrow from "./nav-buttons/prev-arrow";
 
@@ -60,6 +60,7 @@ const ProductTabs = () => {
     refdes.current?.appendChild(prev);
     refdes.current?.appendChild(next);
   }, [refdes]);
+
   return (
     <section className="section-box mt-50">
       <div className="containers">
