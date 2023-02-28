@@ -7,22 +7,16 @@ import React, {
   useState,
 } from "react";
 
-import HTop from "./h-top";
 import HMiddle from "./h-middle";
-import HBottom from "./h-sidebar";
 
 interface MainHeaderProps {
-  setIsLocationOpen: Dispatch<SetStateAction<boolean>>;
-  isLocationOpen: boolean;
   isOpenCat: boolean;
   open: boolean;
-  setIsOpenCat: Dispatch<SetStateAction<boolean>>;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpenCat: (val: boolean) => void;
+  setOpen: (val: boolean) => void;
 }
 
 const MainHeader: FC<MainHeaderProps> = ({
-  setIsLocationOpen,
-  isLocationOpen,
   isOpenCat,
   setIsOpenCat,
   setOpen,
@@ -53,8 +47,6 @@ const MainHeader: FC<MainHeaderProps> = ({
   return (
     <header ref={ref} className={`header sticky-bar ${fixed ? "stick" : ""}`}>
       <HMiddle
-        setIsLocationOpen={setIsLocationOpen}
-        isLocationOpen={isLocationOpen}
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}

@@ -21,7 +21,7 @@ const OrderPage = () => {
       <OrderTop />
       <div className="border rounded-2xl !pt-5 !pl-5 !pr-6 bg-white border-neutral !pb-[20px]   mb-[39px]">
         <h3 className="font-normal text-gray-1100 text-base leading-4 mb-[23px] ">
-          Orders ID: #68543
+          Orders ID: {order && order._id}
         </h3>
         <div className="flex justify-between flex-col gap-y-4 mb-[10px] lg:mb-[2px] lg:flex-row">
           <div className="flex items-center gap-x-2">
@@ -33,7 +33,7 @@ const OrderPage = () => {
               height={16}
             />
             <time className="font-normal text-gray-1100 text-base leading-4 ">
-              Mon, Jan 28, 2022, 8:40AM
+              {order && moment(order.createAt).format("lll")}
             </time>
           </div>
           <div className="flex gap-4 flex-col sm:flex-row">
@@ -42,13 +42,13 @@ const OrderPage = () => {
                 <option disabled selected>
                   Change Status
                 </option>
-                <option>Homer</option>
-                <option>Marge</option>
-                <option>Bart</option>
+                <option>En cours</option>
+                <option>Livrée</option>
+                <option>Annulé</option>
               </select>
             </div>
             <button className="btn border-0 !py-0 capitalize font-normal rounded-[5px] text-[#7E7E8F] bg-[#E8EDF2]  hover:bg-[#E8EDF2] ">
-              Save
+              Enregistrer
             </button>
             <button className="btn border-0 !py-0 rounded-[5px] bg-[#E8EDF2]  hover:bg-[#E8EDF2] ">
               {" "}
@@ -61,7 +61,9 @@ const OrderPage = () => {
             </button>
           </div>
         </div>
-        <p className="text-sm leading-4 text-[#50D1B2] my-[10px]">Pending</p>
+        <p className="text-sm leading-4 text-[#50D1B2] my-[10px]">
+          En cours ...
+        </p>
         <div className="w-full mb-5 bg-[#E8EDF2]  h-[1px]"></div>
         <div className="flex justify-between mb-12 flex-col gap-y-10 lg:flex-row">
           <div className="flex items-start gap-x-[10px]">
@@ -76,27 +78,30 @@ const OrderPage = () => {
             </div>
             <div className="flex flex-col gap-y-2">
               <p className="text-sm leading-4 text-gray-1100 font-semibold ">
-                Customer
+                Client
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                Full name: Jane Cooper
+                Prénom et Nom: {order && order.user.firstname}{" "}
+                {order && order.user.lastname}
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
                 E-mail:{" "}
                 <a
-                  href="https://wp.alithemes.com/cdn-cgi/l/email-protection"
                   className="__cf_email__"
                   data-cfemail="03776a6e2d69666d6d6a6d647043667b626e736f662d606c6e"
                 >
-                  [email&#160;protected]
+                  {order && order.user.email}
                 </a>
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                Phone: +099 856 245
+                Téléphone: {order && order.user.phone}
               </p>
-              <button className="capitalize text-xs text-color-brands py-2 rounded-lg px-[13.5px] bg-[#E8EDF2]  max-w-[114px]">
-                View Profile
-              </button>
+              <Link
+                href={`/admin/users/${order && order.user._id}`}
+                className="capitalize text-xs text-color-brands py-2 rounded-lg px-[13.5px] bg-[#E8EDF2]  max-w-[114px]"
+              >
+                Voir le profil
+              </Link>
             </div>
           </div>
           <div className="flex items-start gap-x-[10px]">
@@ -111,19 +116,19 @@ const OrderPage = () => {
             </div>
             <div className="flex flex-col gap-y-2">
               <p className="text-sm leading-4 text-gray-1100 font-semibold ">
-                Order Info
+                Informations de commande
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                Shipping: Next express
+                Livraison: En cours
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                Pay method: Paypal
+                Méthode de paiement: paiement à la livraison
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                Status: Pending
+                Statut: Pending
               </p>
               <button className="capitalize text-xs text-color-brands py-2 rounded-lg px-[13.5px] bg-[#E8EDF2]  max-w-[114px]">
-                Download info
+                Télécharger les informations
               </button>
             </div>
           </div>
@@ -139,25 +144,29 @@ const OrderPage = () => {
             </div>
             <div className="flex flex-col gap-y-2">
               <p className="text-sm leading-4 text-gray-1100 font-semibold ">
-                Deliver to
+                Livrer à
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                Address: Santa Ana, Illinois 85486
+                Address: {order && order.shippingAddress.address}
               </p>
               <p className="text-sm leading-4 text-gray-500 ">
-                2972 Westheimer Rd.
+                Region: {order && order.shippingAddress.region}
               </p>
-              <p className="text-sm leading-4 text-gray-500 ">Block 9A</p>
-              <button className="capitalize text-xs text-color-brands py-2 rounded-lg px-[13.5px] bg-[#E8EDF2]  max-w-[114px]">
-                View Profile
-              </button>
+              <p className="text-sm leading-4 text-gray-500 ">Pays: Sénégal</p>
+
+              <Link
+                href={`/admin/users/${order && order.user._id}`}
+                className="capitalize text-xs text-color-brands py-2 rounded-lg px-[13.5px] bg-[#E8EDF2]  max-w-[114px]"
+              >
+                Voir le profil
+              </Link>
             </div>
           </div>
         </div>
         <div className="flex items-start mb-9 flex-col gap-[30px] sm:flex-row">
           <div className="p-5 border flex flex-col gap-y-2 flex-1 border-neutral   rounded-[7px] max-w-[421px]">
             <p className="text-sm leading-4 text-gray-1100 font-semibold ">
-              Payment info
+              Information de paiement
             </p>
             <div className="flex items-center gap-x-[6px]">
               <Image
@@ -175,7 +184,7 @@ const OrderPage = () => {
               Business name: Fox Market LLC
             </p>
             <p className="text-sm leading-4 text-gray-500 ">
-              Phone: +09985 6578 52
+              Téléphone: {order && order.shippingAddress.phone}
             </p>
           </div>
           <div className="flex-1 w-full">
@@ -190,7 +199,7 @@ const OrderPage = () => {
         </div>
         <div className="w-full mb-10 bg-[#E8EDF2]  h-[1px]"></div>
         <p className="text-xl pl-5 text-gray-1100 font-semibold  leading-[18px] mb-[28px] xl:pl-7">
-          Products
+          Produits
         </p>
         <div className="overflow-x-scroll scrollbar-hide xl:overflow-x-hidden">
           <table className="w-full mb-6 min-w-[900px]">
@@ -203,145 +212,102 @@ const OrderPage = () => {
                   />
                 </th>
                 <th className="font-medium text-base text-gray-1000 text-left pb-[15px] w-[342px]">
-                  Product Name
+                  Nom du produit
                 </th>
                 <th className="font-medium text-base text-gray-1000 text-left pb-[15px] w-[197px]">
-                  Price
+                  Prix
                 </th>
                 <th className="font-medium text-base text-gray-1000 text-left pb-[15px]">
-                  Quantity
+                  Quantité
                 </th>
                 <th className="font-medium text-base text-gray-1000 text-right pr-6 pb-[15px]">
                   Total
                 </th>
               </tr>
-              <tr className="border-b border-[#E8EDF2]  pb-[15px]">
-                <td className="text-center">
-                  <input
-                    className="checkbox checkbox-primary rounded border-2 w-[18px] h-[18px] mb-[-6px]"
-                    type="checkbox"
-                  />
-                </td>
-                <td className="flex items-center gap-x-[30px] py-[15px]">
-                  <Image
-                    className="w-12"
-                    src="/imgs/product-1.png"
-                    alt="product"
-                    width={46}
-                    height={46}
-                  />
-                  <span className="text-base text-gray-500">
-                    Bose noirse cancelling
-                  </span>
-                </td>
-                <td className="text-base text-gray-500">$948.55</td>
-                <td className="text-base text-gray-500 pl-[30px]">2</td>
-                <td className="text-base text-gray-500 text-right pr-3">
-                  $630.44
-                </td>
-              </tr>
-              <tr className="border-b border-[#E8EDF2]  pb-[15px]">
-                <td className="text-center">
-                  <input
-                    className="checkbox checkbox-primary rounded border-2 w-[18px] h-[18px] mb-[-6px]"
-                    type="checkbox"
-                  />
-                </td>
-                <td className="flex items-center gap-x-[30px] py-[15px]">
-                  <Image
-                    className="w-12"
-                    src="/imgs/product-2.png"
-                    alt="product"
-                    width={46}
-                    height={46}
-                  />
-                  <span className="text-base text-gray-500">
-                    Bose noirse cancelling
-                  </span>
-                </td>
-                <td className="text-base text-gray-500">$948.55</td>
-                <td className="text-base text-gray-500 pl-[30px]">2</td>
-                <td className="text-base text-gray-500 text-right pr-3">
-                  $630.44
-                </td>
-              </tr>
-              <tr className="border-b border-[#E8EDF2]  pb-[15px]">
-                <td className="text-center">
-                  <input
-                    className="checkbox checkbox-primary rounded border-2 w-[18px] h-[18px] mb-[-6px]"
-                    type="checkbox"
-                  />
-                </td>
-                <td className="flex items-center gap-x-[30px] py-[15px]">
-                  <Image
-                    className="w-12"
-                    src="/imgs/product-3.png"
-                    alt="product"
-                    width={46}
-                    height={46}
-                  />
-                  <span className="text-base text-gray-500">
-                    Bose noirse cancelling
-                  </span>
-                </td>
-                <td className="text-base text-gray-500">$948.55</td>
-                <td className="text-base text-gray-500 pl-[30px]">2</td>
-                <td className="text-base text-gray-500 text-right pr-3">
-                  $630.44
-                </td>
-              </tr>
-              <tr className="border-b border-[#E8EDF2]  pb-[15px]">
-                <td className="text-center">
-                  <input
-                    className="checkbox checkbox-primary rounded border-2 w-[18px] h-[18px] mb-[-6px]"
-                    type="checkbox"
-                  />
-                </td>
-                <td className="flex items-center gap-x-[30px] py-[15px]">
-                  <Image
-                    className="w-12"
-                    src="/imgs/product-4.png"
-                    alt="product"
-                    width={46}
-                    height={46}
-                  />
-                  <span className="text-base text-gray-500">
-                    Bose noirse cancelling
-                  </span>
-                </td>
-                <td className="text-base text-gray-500">$948.55</td>
-                <td className="text-base text-gray-500 pl-[30px]">2</td>
-                <td className="text-base text-gray-500 text-right pr-3">
-                  $630.44
-                </td>
-              </tr>
+              {order &&
+                order.orderItems.map((item: any) => (
+                  <tr
+                    key={item._id}
+                    className="border-b border-[#E8EDF2]  pb-[15px]"
+                  >
+                    <td className="text-center">
+                      <input
+                        className="checkbox checkbox-primary rounded border-2 w-[18px] h-[18px] mb-[-6px]"
+                        type="checkbox"
+                      />
+                    </td>
+                    <td className="flex items-center gap-x-[30px] pr-[30px] max-w-[370px] py-[15px]">
+                      <Image
+                        className="w-12"
+                        src={item.images[0].url}
+                        alt="product"
+                        width={80}
+                        height={80}
+                      />
+                      <span className="text-base truncate text-gray-500">
+                        {item.name}
+                      </span>
+                    </td>
+                    <td className="text-base !align-middle text-gray-500">
+                      {Number(item.price).toLocaleString("fr-FR", {
+                        style: "currency",
+                        currency: "XOF",
+                      })}
+                    </td>
+                    <td className="text-base !align-middle text-gray-500 pl-[30px]">
+                      {item.qty}
+                    </td>
+                    <td className="text-base !align-middle text-gray-500 text-right pr-3">
+                      {Number(item.qty * item.price).toLocaleString("fr-FR", {
+                        style: "currency",
+                        currency: "XOF",
+                      })}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
         <div className="flex items-center gap-x-36 justify-start lg:gap-x-48 sm:justify-end">
           <div className="flex flex-col gap-y-[15px]">
-            <p className="text-sm leading-4 text-gray-500 ">Subtotal:</p>
-            <p className="text-sm leading-4 text-gray-500 ">Tax(20%):</p>
-            <p className="text-sm leading-4 text-gray-500 ">Discount:</p>
+            <p className="text-sm leading-4 text-gray-500 ">Sous-total:</p>
+            <p className="text-sm leading-4 text-gray-500 ">Livraison:</p>
+            <p className="text-sm leading-4 text-gray-500 ">Remise:</p>
             <p className="text-gray-500 font-semibold text-[20px] leading-[18px]">
               Total:
             </p>
-            <p className="text-sm leading-4 text-gray-500 ">Status:</p>
+            <p className="text-sm leading-4 text-gray-500 ">Statut:</p>
           </div>
           <div className="flex flex-col text-right gap-y-[15px]">
-            <p className="text-sm leading-4 text-gray-500 ">$630.44</p>
-            <p className="text-sm leading-4 text-gray-500 ">$782.01</p>
-            <p className="text-sm leading-4 text-gray-500 ">$293.01</p>
+            <p className="text-sm leading-4 text-gray-500 ">
+              {order &&
+                Number(order.itemsPrice).toLocaleString("fr-FR", {
+                  style: "currency",
+                  currency: "XOF",
+                })}
+            </p>
+            <p className="text-sm leading-4 text-gray-500 ">
+              {order &&
+                Number(order.shippingPrice).toLocaleString("fr-FR", {
+                  style: "currency",
+                  currency: "XOF",
+                })}
+            </p>
+            <p className="text-sm leading-4 text-gray-500 ">0 FCFA</p>
             <p className="text-gray-500 font-semibold text-[20px] leading-[18px] ">
-              310,000
+              {order &&
+                Number(order.totalPrice).toLocaleString("fr-FR", {
+                  style: "currency",
+                  currency: "XOF",
+                })}
             </p>
             <button className="btn text-sm leading-4 border-0 h-fit min-h-fit py-2 font-normal capitalize px-[19.5px] text-[#50D1B2] bg-[#E8EDF2]  hover:bg-[#E8EDF2] ">
-              Pending
+              En cours...
             </button>
           </div>
         </div>
       </div>
-      <a className="flex items-center gap-x-2" href="#">
+      <Link className="flex items-center gap-x-2" href="/admin/orders">
         <Image
           src="/imgs/icons/icon-arrow-left-long.svg"
           alt="arrow left icon"
@@ -349,9 +315,9 @@ const OrderPage = () => {
           height={24}
         />
         <span className="text-xs text-gray-500 hover:text-gray-dark-500">
-          Back to Orders List
+          Retour à la liste des commandes
         </span>
-      </a>
+      </Link>
     </div>
   );
 };

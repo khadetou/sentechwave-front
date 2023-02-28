@@ -22,7 +22,7 @@ const HTop = () => {
         <div className="menu-topbar-left d-none d-xl-block">
           <ul className="nav-small">
             <li>
-              <Link className="font-xs" href="/about-us">
+              <Link className="font-xs" href="/about">
                 A Propos
               </Link>
             </li>

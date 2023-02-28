@@ -12,9 +12,9 @@ const NotFoundPage = () => {
                 <Image
                   width={310}
                   height={194}
-                  src="/imgs/page/page-404.png"
+                  src="/imgs/page/404.svg"
                   alt=""
-                  className="hover-up tw-mx-auto"
+                  className="inline"
                 />
               </p>
               <h1 className="display-2 mb-30 ">Oups! Page introuvable</h1>
@@ -23,14 +23,14 @@ const NotFoundPage = () => {
                 page a peut-être été supprimée.
                 <br />
                 Visitez la{" "}
-                <a href="index.html">
+                <Link href="/">
                   {" "}
                   <span> page d’accueil </span>
-                </a>{" "}
+                </Link>{" "}
                 ou{" "}
-                <a href="page-contact.html">
+                <Link href="/contact-us">
                   <span> contactez-nous </span>
-                </a>{" "}
+                </Link>{" "}
                 à propos du problème.
               </p>
               <div className="search-form">
@@ -46,7 +46,7 @@ const NotFoundPage = () => {
                 </form>
               </div>
               <Link
-                className="btn btn-default submit-auto-width font-xs hover-up mt-30"
+                className="btn btn-default bg-slate-900 text-white font-bold text-base mt-30"
                 href="/"
               >
                 <i className="fi-rs-home mr-5"></i> Retour à la page principale

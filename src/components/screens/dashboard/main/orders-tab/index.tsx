@@ -36,197 +36,71 @@ const OrdersTab = () => {
 
   return (
     <div
-      className="tab-pane fade"
+      className="tab-pane fade active show fade"
       id="tab-orders"
       role="tabpanel"
       aria-labelledby="tab-orders"
     >
-      <div className="box-orders">
-        <div className="head-orders">
-          <div className="head-left">
-            <h5 className="mr-20">Order ID: #EWFDSAF1321655</h5>
-            <span className="font-md color-brand-3 mr-20">
-              Date: 18 September 2022
-            </span>
-            <span className="label-delivery">Delivery in progress</span>
-          </div>
-          <div className="head-right">
-            <a className="btn btn-buy font-sm-bold w-auto">View Order</a>
-          </div>
-        </div>
-        <div className="body-orders">
-          <div className="list-orders">
-            <div className="item-orders">
-              <div className="image-orders">
-                <Image
-                  src="/imgs/page/account/img-1.png"
-                  alt="Ecom"
-                  width={130}
-                  height={103}
-                />
-              </div>
-              <div className="info-orders">
-                <h5>
-                  Samsung 36&rdquo; French door 28 cu. ft. Smart Energy Star
-                  Refrigerator
-                </h5>
-              </div>
-              <div className="quantity-orders">
-                <h5>Quantity: 01</h5>
-              </div>
-              <div className="price-orders">
-                <h3>$2.51</h3>
-              </div>
+      {orders.map((order: any) => (
+        <div key={order._id} className="box-orders">
+          <div className="head-orders">
+            <div className="head-left">
+              <h5 className="mr-20 text-[20px] font-bold">
+                ID de Commande: {order._id}
+              </h5>
+              <span className="font-md color-brand-3 mr-20">
+                Date: {moment(order.createdAt).format("lll")}
+              </span>
+              {order.isShipped ? (
+                <span className="label-delivery label-delivered">
+                  Delivered
+                </span>
+              ) : (
+                <span className="label-delivery">Delivery in progress</span>
+              )}
             </div>
-            <div className="item-orders">
-              <div className="image-orders">
-                <Image
-                  src="/imgs/page/account/img-1.png"
-                  alt="Ecom"
-                  width={130}
-                  height={103}
-                />
-              </div>
-              <div className="info-orders">
-                <h5>
-                  Samsung 36&rdquo; French door 28 cu. ft. Smart Energy Star
-                  Refrigerator
-                </h5>
-              </div>
-              <div className="quantity-orders">
-                <h5>Quantity: 01</h5>
-              </div>
-              <div className="price-orders">
-                <h3>$2.51</h3>
-              </div>
+            <div className="head-right">
+              <Link
+                className="btn btn-buy font-sm-bold w-auto"
+                href={`/dashboard/order/${order._id}`}
+              >
+                Voir la commande
+              </Link>
+            </div>
+          </div>
+          <div className="body-orders">
+            <div className="list-orders">
+              {order.orderItems.map((item: any) => (
+                <div key={item._id} className="item-orders">
+                  <div className="image-orders">
+                    <Image
+                      src={item.images[1].url}
+                      alt="Ecom"
+                      width={130}
+                      height={103}
+                    />
+                  </div>
+                  <div className="info-orders">
+                    <h5 className="font-bold text-[20px]">{item.name}</h5>
+                  </div>
+                  <div className="quantity-orders font-bold text-[20px] !w-[13%] ">
+                    <h5>Quantité: {item.qty}</h5>
+                  </div>
+                  <div className="price-orders !w-[29%] !max-w-[inherit]">
+                    <h3 className="font-bold text-[32px]">
+                      {Number(item.price).toLocaleString("fr-Fr", {
+                        style: "currency",
+                        currency: "XOF",
+                      })}
+                    </h3>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </div>
-      <div className="box-orders">
-        <div className="head-orders">
-          <div className="head-left">
-            <h5 className="mr-20">Order ID: #EWFDSAF1321655</h5>
-            <span className="font-md color-brand-3 mr-20">
-              Date: 18 September 2022
-            </span>
-            <span className="label-delivery label-delivered">Delivered</span>
-          </div>
-          <div className="head-right">
-            <a className="btn btn-buy font-sm-bold w-auto">View Order</a>
-          </div>
-        </div>
-        <div className="body-orders">
-          <div className="list-orders">
-            <div className="item-orders">
-              <div className="image-orders">
-                <Image
-                  src="/imgs/page/account/img-1.png"
-                  alt="Ecom"
-                  width={130}
-                  height={103}
-                />
-              </div>
-              <div className="info-orders">
-                <h5>
-                  Samsung 36&rdquo; French door 28 cu. ft. Smart Energy Star
-                  Refrigerator
-                </h5>
-              </div>
-              <div className="quantity-orders">
-                <h5>Quantity: 01</h5>
-              </div>
-              <div className="price-orders">
-                <h3>$2.51</h3>
-              </div>
-            </div>
-            <div className="item-orders">
-              <div className="image-orders">
-                <Image
-                  src="/imgs/page/account/img-1.png"
-                  alt="Ecom"
-                  width={130}
-                  height={103}
-                />
-              </div>
-              <div className="info-orders">
-                <h5>
-                  Samsung 36&rdquo; French door 28 cu. ft. Smart Energy Star
-                  Refrigerator
-                </h5>
-              </div>
-              <div className="quantity-orders">
-                <h5>Quantity: 01</h5>
-              </div>
-              <div className="price-orders">
-                <h3>$2.51</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="box-orders">
-        <div className="head-orders">
-          <div className="head-left">
-            <h5 className="mr-20">Order ID: #EWFDSAF1321655</h5>
-            <span className="font-md color-brand-3 mr-20">
-              Date: 18 September 2022
-            </span>
-            <span className="label-delivery label-cancel">Cancel</span>
-          </div>
-          <div className="head-right">
-            <a className="btn btn-buy font-sm-bold w-auto">View Order</a>
-          </div>
-        </div>
-        <div className="body-orders">
-          <div className="list-orders">
-            <div className="item-orders">
-              <div className="image-orders">
-                <Image
-                  src="/imgs/page/product/ss.html"
-                  width={130}
-                  height={103}
-                  alt="Ecom"
-                />
-              </div>
-              <div className="info-orders">
-                <h5>
-                  Samsung 36&rdquo; French door 28 cu. ft. Smart Energy Star
-                  Refrigerator
-                </h5>
-              </div>
-              <div className="quantity-orders">
-                <h5>Quantity: 01</h5>
-              </div>
-              <div className="price-orders">
-                <h3>$2.51</h3>
-              </div>
-            </div>
-            <div className="item-orders">
-              <div className="image-orders">
-                <Image
-                  src="/imgs/page/product/ss2.html"
-                  width={130}
-                  height={103}
-                  alt="Ecom"
-                />
-              </div>
-              <div className="info-orders">
-                <h5>
-                  Samsung 36&rdquo; French door 28 cu. ft. Smart Energy Star
-                  Refrigerator
-                </h5>
-              </div>
-              <div className="quantity-orders">
-                <h5>Quantity: 01</h5>
-              </div>
-              <div className="price-orders">
-                <h3>$2.51</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      ))}
+
       <nav>
         <ul className="pagination">
           <li className="page-item">
@@ -272,3 +146,10 @@ const OrdersTab = () => {
 };
 
 export default OrdersTab;
+
+/**
+ * in progress:  <span className="label-delivery">Delivery in progress</span>
+ * delivered: <span className="label-delivery label-delivered">Delivered</span>
+ * cancel:<span className="label-delivery label-cancel">Cancel</span>
+ *
+ */

@@ -1,6 +1,6 @@
 import { useAppSelector } from "hooks/index";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Item, useRecviewed } from "context/recviewedContext";
 import Link from "next/link";
 
@@ -12,10 +12,9 @@ const RecViewed = () => {
   useEffect(() => {
     setItms(items);
   }, [items]);
-  console.log(items);
+
   return (
     <div>
-      {" "}
       <h4 className="color-brand-3 text-2xl font-bold">
         Articles récemment consultés
       </h4>
@@ -23,10 +22,9 @@ const RecViewed = () => {
         {itms.map((item) => {
           if (product && product._id !== item.id) {
             return (
-              <Link
+              <div
                 onDoubleClick={() => removeItem(item.id)}
                 key={item.id}
-                href={`/products/${item.id}`}
                 className="col-lg-3 col-md-6 col-sm-12 hover:shadow-md cursor-pointer"
               >
                 <div className="card-grid-style-2 card-grid-none-border hover-up">
@@ -77,14 +75,13 @@ const RecViewed = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           } else if (!product) {
             return (
-              <Link
+              <div
                 onDoubleClick={() => removeItem(item.id)}
                 key={item.id}
-                href={`/products/${item.id}`}
                 className="col-lg-3 col-md-6 col-sm-12 hover:shadow-md cursor-pointer"
               >
                 <div className="card-grid-style-2 card-grid-none-border hover-up">
@@ -135,7 +132,7 @@ const RecViewed = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </div>
             );
           }
         })}

@@ -25,13 +25,11 @@ const NotFound = () => {
     >
       <SEO />
       <Header
-        isLocationOpen={isLocationOpen}
-        setIsLocationOpen={setIsLocationOpen}
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}
+        open={open}
       />
-      <Mobile open={open} setOpen={setOpen} />
       <NotFoundPage />
     </Layout>
   );

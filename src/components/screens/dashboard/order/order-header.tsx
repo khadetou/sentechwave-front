@@ -1,24 +1,22 @@
 import Link from "next/link";
-import React from "react";
-
-const PageHeader = () => {
+const OrderHeader = () => {
   return (
     <div className="section-box">
       <div className="breadcrumbs-div">
-        <div className="container">
+        <div className="containers">
           <ul className="breadcrumb">
             <li>
               <Link className="font-xs color-gray-1000" href="/">
-                Accueil
+                Acceuil
               </Link>
             </li>
             <li>
-              <Link className="font-xs color-gray-500" href="/products">
-                Produits
+              <Link className="font-xs color-gray-500" href="/dashboard">
+                Tableau de bord
               </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500">About Us</a>
+              <a className="font-xs color-gray-500">Commande</a>
             </li>
           </ul>
         </div>
@@ -27,4 +25,4 @@ const PageHeader = () => {
   );
 };
 
-export default PageHeader;
+export default OrderHeader;

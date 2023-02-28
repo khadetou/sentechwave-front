@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const PageHeader = () => {
@@ -7,24 +8,25 @@ const PageHeader = () => {
         <div className="containers">
           <ul className="breadcrumb">
             <li>
-              <a className="font-xs color-gray-1000" href="index.html">
-                Home
-              </a>
+              <Link className="font-xs color-gray-1000" href="/">
+                Acueil
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
+              <Link
+                className="font-xs color-gray-500"
+                href="/products?category=electroniques"
+              >
                 Electronics
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
+              <Link
+                className="font-xs color-gray-500"
+                href="/products?category=telephone"
+              >
                 Cell phone
-              </a>
-            </li>
-            <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
-                Accessories
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

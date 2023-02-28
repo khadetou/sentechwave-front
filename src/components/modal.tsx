@@ -148,11 +148,11 @@ const Modal: FC<ModalProps> = ({ id }) => {
 
   return (
     <div
-      className="modal fade"
+      className="modal fade hidden"
       id="ModalQuickview"
       tabIndex={-1}
       aria-hidden="true"
-      style={{ display: "none;" }}
+      // style={{ display: "none" }}
     >
       <div className="modal-dialog modal-xl">
         <div className="modal-content apply-job-form">
@@ -186,6 +186,7 @@ const Modal: FC<ModalProps> = ({ id }) => {
                             product.images.map((img: any, idx: any) => (
                               <figure key={idx} className="border-radius-10">
                                 <Image
+                                  className="w-full h-auto"
                                   src={img.url}
                                   alt="product image"
                                   width={img.width}
@@ -211,6 +212,7 @@ const Modal: FC<ModalProps> = ({ id }) => {
                             >
                               <div className={`item-thumb `}>
                                 <Image
+                                  className="w-full h-auto"
                                   src={img.url}
                                   alt="product image"
                                   width={img.width}
@@ -262,44 +264,19 @@ const Modal: FC<ModalProps> = ({ id }) => {
                         Ecom Tech
                       </a>
                       <div className="rating d-inline-block">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
+                        <div className="product-rate d-inline-block">
+                          <div
+                            className="product-rating"
+                            style={{
+                              width: `${
+                                (100 * product && product.rating) / 5
+                              }%`,
+                            }}
+                          ></div>
+                        </div>
                         <span className="font-xs color-gray-500 font-medium">
                           {" "}
-                          (65 reviews)
+                          ({product && product.numbReviews} reviews)
                         </span>
                       </div>
                     </div>
@@ -360,6 +337,7 @@ const Modal: FC<ModalProps> = ({ id }) => {
                                 }}
                               >
                                 <Image
+                                  className="w-full h-auto"
                                   src={img.url}
                                   alt="Ecom"
                                   width={img.width}

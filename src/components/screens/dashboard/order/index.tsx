@@ -56,14 +56,6 @@ const OrderPage = () => {
   const options = [{ value: "", label: "" }];
   const theader = ["Produit", "Total"];
 
-  const orders = [
-    {
-      total: "$255.00",
-    },
-    {
-      total: "$255.00",
-    },
-  ];
   return (
     <section className="w-full ">
       <div className="h-full !p-5 containers md:!p-8">
@@ -74,18 +66,24 @@ const OrderPage = () => {
                 <div className="order-2 flex flex-col sm:flex-row  w-full gap-6 sm:order-1 max-w-full basis-full justify-between">
                   <div>
                     <span className="mb-2 block lg:mb-0 lg:inline-block lg:mr-4">
-                      Order Status :
+                      Statut de la commande :
                     </span>
-                    <span className="px-3 py-1 rounded-full text-xs whitespace-nowrap relative text-light bg-[#F59E0B]">
-                      Order Processing
-                    </span>
+                    {order && order.isDelivered ? (
+                      <span className="px-3 py-1 rounded-full text-xs whitespace-nowrap relative text-light bg-green-500">
+                        Commande livrée
+                      </span>
+                    ) : (
+                      <span className="px-3 py-1 rounded-full text-xs whitespace-nowrap relative text-light bg-[#F59E0B]">
+                        En cours ...
+                      </span>
+                    )}
                   </div>
                   <div>
                     <span className="mb-2 block lg:mb-0 lg:inline-block lg:mr-4 lg:rtl:ml-4">
-                      Payment Status :
+                      Statut de paiement :
                     </span>
                     <span className="px-3 py-1 rounded-full text-xs whitespace-nowrap relative text-light bg-green-500">
-                      Cash On Delivery
+                      Paiement à la livraison
                     </span>
                   </div>
                 </div>
@@ -95,7 +93,7 @@ const OrderPage = () => {
           <div className="flex w-full">
             <button
               data-variant="normal"
-              className="inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mb-5 bg-blue-500 ml-auto rtl:mr-auto"
+              className="inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12 mb-5 bg-[#425a8b] ml-auto rtl:mr-auto"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -107,27 +105,13 @@ const OrderPage = () => {
                   fill="currentColor"
                 ></path>
               </svg>
-              Download Invoice
+              Télécharger la facture
             </button>
           </div>
           <div className="flex flex-col items-center lg:flex-row">
             <h3 className="w-full mb-8 text-2xl font-semibold text-center whitespace-nowrap text-heading lg:mb-0 lg:w-1/3 lg:text-start">
-              Order ID - 334983046149
+              ID de commande - {order && order._id}
             </h3>
-            <form className="flex flex-col md:flex-row items-start w-full ms-auto lg:w-2/4">
-              <div className="z-20 w-full me-5">
-                <Select options={options} />
-              </div>
-              <button
-                data-variant="normal"
-                className="inline-flex items-center justify-center flex-shrink-0 font-semibold leading-none rounded outline-none transition duration-300 ease-in-out focus:outline-none focus:shadow focus:ring-1 focus:ring-accent-700 bg-green-500 text-light border border-transparent hover:bg-accent-hover px-5 py-0 h-12"
-              >
-                <span className="hidden sm:block">Change Status</span>
-                <span className="block sm:hidden">
-                  form.button-label-change
-                </span>
-              </button>
-            </form>
           </div>
 
           <div className="flex items-center justify-center my-5 lg:my-10">
@@ -160,7 +144,7 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-col items-start ml-5 rtl:mr-5 md:items-center md:ml-0 rtl:md:mr-0">
                           <span className="text-base font-semibold capitalize text-body-dark text-left rtl:text-right md:px-2 md:!text-center">
-                            Order Pending
+                            Commande en attente
                           </span>
                         </div>
                       </div>
@@ -188,7 +172,7 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-col items-start ml-5 rtl:mr-5 md:items-center md:ml-0 rtl:md:mr-0">
                           <span className="text-base font-semibold capitalize text-body-dark text-left rtl:text-right md:px-2 md:!text-center">
-                            Order Processing
+                            Commande en cours
                           </span>
                         </div>
                       </div>
@@ -201,7 +185,7 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-col items-start ml-5 rtl:mr-5 md:items-center md:ml-0 rtl:md:mr-0">
                           <span className="text-base font-semibold capitalize text-body-dark text-left rtl:text-right md:px-2 md:!text-center">
-                            Order At Local Facility
+                            Commande au centre local
                           </span>
                         </div>
                       </div>
@@ -214,7 +198,7 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-col items-start ml-5 rtl:mr-5 md:items-center md:ml-0 rtl:md:mr-0">
                           <span className="text-base font-semibold capitalize text-body-dark text-left rtl:text-right md:px-2 md:!text-center">
-                            Order Out For Delivery
+                            Commande en cours de livraison
                           </span>
                         </div>
                       </div>
@@ -227,7 +211,7 @@ const OrderPage = () => {
                         </div>
                         <div className="flex flex-col items-start ml-5 rtl:mr-5 md:items-center md:ml-0 rtl:md:mr-0">
                           <span className="text-base font-semibold capitalize text-body-dark text-left rtl:text-right md:px-2 md:!text-center">
-                            Order Completed
+                            Commande terminée
                           </span>
                         </div>
                       </div>
@@ -261,7 +245,7 @@ const OrderPage = () => {
                     {theader.map((item, idx) => (
                       <th
                         key={idx}
-                        className="p-4 text-start  text-sm font-semibold tracking-wide text-[#2b2b2b]"
+                        className="p-4 text-start  text-xl font-semibold tracking-wide text-[#2b2b2b]"
                       >
                         {item}
                       </th>
@@ -269,95 +253,124 @@ const OrderPage = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {orders.map(({ total }, idx) => (
-                    <tr
-                      key={idx}
-                      className="bg-white border-b border-gray-200 odd:bg-gray-50"
-                    >
-                      <td className="p-4 min-w-[94px] text-center text-sm  text-[#8f8f8f]">
-                        <div className="flex items-center">
-                          <Image
-                            src="/imgs/page/product/img-sub2.png"
-                            alt="img"
-                            width={50}
-                            height={50}
-                            className="inline"
-                          />
-                          <p className="ml-5">Produit electrotech</p>
-                        </div>
-                      </td>
-                      <td className="p-4 min-w-[94px] text-center text-sm  text-[#8f8f8f]">
-                        <div>{total}</div>
-                      </td>
-                    </tr>
-                  ))}
+                  {order &&
+                    order.orderItems.map((item: any) => (
+                      <tr
+                        key={item._id}
+                        className="bg-white border-b border-gray-200 odd:bg-gray-50"
+                      >
+                        <td className="p-4 min-w-[94px] text-center text-sm  text-[#8f8f8f]">
+                          <div className="flex items-center">
+                            <Image
+                              src={item.images[1].url}
+                              alt="img"
+                              width={100}
+                              height={100}
+                              className="inline"
+                            />
+                            <p className="ml-5 font-bold text-lg max-w-[400px]">
+                              {item.name}
+                            </p>
+                          </div>
+                        </td>
+                        <td className="p-4 min-w-[94px] text-center text-sm  text-[#8f8f8f]">
+                          <div className="font-bold text-2xl align-middle text-start">
+                            {Number(item.price).toLocaleString("fr-FR", {
+                              style: "currency",
+                              currency: "XOF",
+                            })}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>
             <div className="flex flex-col w-full px-4 py-4 space-y-2 border-t-4 border-double border-gray-100 ms-auto sm:w-1/2 md:w-1/3">
               <div className="flex items-center justify-between text-sm text-body">
-                <span>Sub total</span>
-                <span>$5.00</span>
+                <span className="text-base text-[#8C9EC5]">Sous-total</span>
+                <span className="text-base text-[#8C9EC5]">
+                  {order &&
+                    Number(order.itemsPrice).toLocaleString("fr-FR", {
+                      style: "currency",
+                      currency: "XOF",
+                    })}
+                </span>
               </div>
               <div className="flex items-center justify-between text-sm text-body">
-                <span>Tax</span>
-                <span>$0.10</span>
+                <span className="text-base text-[#8C9EC5]">Taxe</span>
+                <span className="text-base text-[#8C9EC5]">0 FCFA</span>
               </div>
               <div className="flex items-center justify-between text-sm text-body">
-                <span>Delivery fee</span>
-                <span>$50.00</span>
+                <span className="text-base text-[#8C9EC5]">
+                  Frais de livraison
+                </span>
+                <span className="text-base text-[#8C9EC5]">
+                  {order &&
+                    Number(order.shippingPrice).toLocaleString("fr-FR", {
+                      style: "currency",
+                      currency: "XOF",
+                    })}
+                </span>
               </div>
               <div className="flex items-center justify-between text-sm text-body">
-                <span>Discount</span>
-                <span>$0.00</span>
+                <span className="text-base text-[#8C9EC5]">Réduction</span>
+                <span className="text-base text-[#8C9EC5]">0 FCFA</span>
               </div>
               <div className="flex items-center justify-between text-base font-semibold text-heading">
                 <span>Total</span>
-                <span>$55.10</span>
+                <span>
+                  {order &&
+                    Number(order.totalPrice).toLocaleString("fr-FR", {
+                      style: "currency",
+                      currency: "XOF",
+                    })}
+                </span>
               </div>
             </div>
           </div>
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between">
             <div className="w-full mb-10 sm:mb-0 sm:w-1/2 sm:!pr-8">
-              <h3 className="pb-2 mb-3 font-semibold border-bottom border-b-gray-100 text-heading">
-                Billing Address
+              <h3 className="pb-2 mb-3 font-semibold border-bottom border-b-gray-100 text-xl text-heading">
+                Adresse de facturation
               </h3>
               <div className="flex flex-col items-start space-y-1 text-sm text-body">
                 <span></span>
                 <span>
-                  <span className="single-address truncate">
-                    Voluptatum qui sunt
+                  <span className="single-address  text-[#8C9EC5]">
+                    {order && order.user.firstname}{" "}
                   </span>
-                  <span className="single-address truncate">
-                    Ipsum qui minus sint
+                  <span className="single-address  text-[#8C9EC5]">
+                    {order && order.user.lastname}{" "}
                   </span>
-                  <span className="single-address truncate">
-                    Quod et consequatur
-                  </span>
-
-                  <span className="single-address !truncate">, 51397, </span>
-                  <br />
-                  <span className="single-address !truncate">
-                    Aut fugiat iusto do
+                  <span className="single-address  text-[#8C9EC5]">
+                    {order && order.user.email}{" "}
                   </span>
                 </span>
-                <span>19365141641631</span>
+                <span className="single-address  text-[#4865a4]">
+                  {order && order.user.phone}{" "}
+                </span>
               </div>
             </div>
             <div className="w-full sm:w-1/2 sm:!pl-8">
-              <h3 className="pb-2 mb-3 font-semibold border-bottom border-b-gray-100 text-heading !text-start sm:!text-end">
-                Shipping Address
+              <h3 className="pb-2 mb-3 font-semibold border-bottom text-xl border-b-gray-100 text-heading !text-start sm:!text-end">
+                Adresse de livraison
               </h3>
               <div className="flex flex-col items-start space-y-1 text-sm text-body text-start sm:items-end sm:text-end">
                 <span></span>
                 <span>
-                  <span className="single-address truncate">mermoz</span>
-                  <span className="single-address truncate">Dakar</span>
-                  <span className="single-address truncate">Dakar</span>
-                  <span className="single-address truncate">38169</span>
-                  <span className="single-address truncate">Sénégal</span>
+                  <span className="single-address ">
+                    {order && order.shippingAddress.address}{" "}
+                  </span>
+                  <span className="single-address ">
+                    {order && order.shippingAddress.region}{" "}
+                  </span>
+                  <span className="single-address ">
+                    {order && order.shippingAddress.phone}{" "}
+                  </span>
+                  <span className="single-address ">Sénégal</span>
                 </span>
-                <span>19365141641631</span>
+                <span>{order && order.shippingAddress._id} </span>
               </div>
             </div>
           </div>

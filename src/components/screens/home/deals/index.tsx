@@ -576,42 +576,17 @@ const Deals = () => {
                     {product.name}
                   </Link>
                   <div className="rating">
-                    <Image
-                      src="/imgs/template/icons/star.svg"
-                      alt="Ecom"
-                      width={12}
-                      height={12}
-                      className="inline"
-                    />
-                    <Image
-                      src="/imgs/template/icons/star.svg"
-                      alt="Ecom"
-                      width={12}
-                      height={12}
-                      className="inline"
-                    />
-                    <Image
-                      src="/imgs/template/icons/star.svg"
-                      alt="Ecom"
-                      width={12}
-                      height={12}
-                      className="inline"
-                    />
-                    <Image
-                      src="/imgs/template/icons/star.svg"
-                      alt="Ecom"
-                      width={12}
-                      height={12}
-                      className="inline"
-                    />
-                    <Image
-                      src="/imgs/template/icons/star.svg"
-                      alt="Ecom"
-                      width={12}
-                      height={12}
-                      className="inline"
-                    />
-                    <span className="font-xs color-gray-500">(65)</span>
+                    <div className="product-rate d-inline-block">
+                      <div
+                        className="product-rating"
+                        style={{
+                          width: `${(100 * product.rating) / 5}%`,
+                        }}
+                      ></div>
+                    </div>
+                    <span className="font-xs color-gray-500">
+                      ({product.numbReviews})
+                    </span>
                   </div>
                   <div className="price-info">
                     <strong className="font-lg-bold color-brand-3 price-main">

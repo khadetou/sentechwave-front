@@ -1,5 +1,4 @@
-import React from "react";
-
+import Link from "next/link";
 const PageHeader = () => {
   return (
     <div className="section-box">
@@ -7,19 +6,17 @@ const PageHeader = () => {
         <div className="containers">
           <ul className="breadcrumb">
             <li>
-              <a className="font-xs color-gray-1000" href="index.html">
-                Home
-              </a>
+              <Link className="font-xs color-gray-1000" href="/">
+                Acceuil
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
-                Shop
-              </a>
+              <Link className="font-xs color-gray-500" href="/cart">
+                Panier
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-cart.html">
-                Checkout
-              </a>
+              <a className="font-xs color-gray-500">Checkout</a>
             </li>
           </ul>
         </div>

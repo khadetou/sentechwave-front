@@ -30,14 +30,14 @@ const About = () => {
     >
       <SEO />
       <Header
-        isLocationOpen={isLocationOpen}
-        setIsLocationOpen={setIsLocationOpen}
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}
         open={open}
       />
-      <AboutPage />
+      <main className="main">
+        <AboutPage />
+      </main>
     </Layout>
   );
 };

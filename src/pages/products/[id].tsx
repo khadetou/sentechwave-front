@@ -39,14 +39,11 @@ const Product = () => {
     >
       <SEO />
       <Header
-        isLocationOpen={isLocationOpen}
-        setIsLocationOpen={setIsLocationOpen}
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}
         open={open}
       />
-
       <main className="main">
         <PageHeader />
         <ProductBody />

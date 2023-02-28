@@ -186,7 +186,7 @@ const Aside: FC<AsideProps> = ({ open, setOpen }) => {
                   </Link>
                 </li>
                 <li className="pb-2 transition-opacity duration-150 hover:opacity-75">
-                  <Link className="text-normal" href="/orders">
+                  <Link className="text-normal" href="/admin/orders">
                     Commandes
                   </Link>
                 </li>

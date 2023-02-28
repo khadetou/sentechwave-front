@@ -16,25 +16,25 @@ export const createOrder = async (token: string, orderData: any) => {
   };
 
   const { data } = await axios.post(`${API_URL}/order`, orderData, config);
-  if (data._id) {
-    const datas = {
-      messaging_product: "whatsapp",
-      to: "221775867968",
-      text: {
-        preview_url: true,
-        body: `*${orderData.shippingAddress.firstname} ${orderData.shippingAddress.firstname} vient de passer une commande Numéro: ${data._id}*
-        Numéro de téléphone: _${orderData.shippingAddress.phone}_
-        Lien de la commande: http://localhost:3000/dashboard/order/${data._id}
-        `,
-      },
-    };
+  // if (data._id) {
+  //   const datas = {
+  //     messaging_product: "whatsapp",
+  //     to: "221775867968",
+  //     text: {
+  //       preview_url: true,
+  //       body: `*${orderData.shippingAddress.firstname} ${orderData.shippingAddress.firstname} vient de passer une commande Numéro: ${data._id}*
+  //       Numéro de téléphone: _${orderData.shippingAddress.phone}_
+  //       Lien de la commande: http://localhost:3000/dashboard/order/${data._id}
+  //       `,
+  //     },
+  //   };
 
-    await axios.post(
-      "https://graph.facebook.com/v15.0/106694318979992/messages",
-      datas,
-      config1
-    );
-  }
+  //   await axios.post(
+  //     "https://graph.facebook.com/v15.0/106694318979992/messages",
+  //     datas,
+  //     config1
+  //   );
+  // }
   return data;
 };
 

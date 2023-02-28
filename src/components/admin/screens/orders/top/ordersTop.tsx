@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const TopOrders = () => {
   return (
@@ -7,7 +8,7 @@ const TopOrders = () => {
       <div className="flex items-end justify-between mb-[25px]">
         <div>
           <h2 className="capitalize  font-bold text-[28px] leading-[35px]  mb-[13px]">
-            Orders List
+            Liste des commandes
           </h2>
           <div className="flex items-center text-xs text-gray-500 gap-x-[11px]">
             <div className="flex items-center gap-x-1">
@@ -17,9 +18,9 @@ const TopOrders = () => {
                 width={12}
                 height={12}
               />
-              <a className="capitalize" href="index-2.html">
-                home
-              </a>
+              <Link className="capitalize" href="/">
+                Accueil
+              </Link>
             </div>
             <Image
               src="/imgs/icons/icon-arrow-right.svg"
@@ -27,7 +28,9 @@ const TopOrders = () => {
               width={12}
               height={12}
             />
-            <span className="capitalize text-color-brands">Customers List</span>
+            <span className="capitalize text-color-brands">
+              Liste des commandes
+            </span>
           </div>
         </div>
         <div className="flex items-center gap-x-2">
@@ -51,7 +54,7 @@ const TopOrders = () => {
           >
             <div className="flex items-center justify-between !p-4 bg-white border border-neutral rounded-lg w-[225px] dark:bg-dark-neutral-bg dark:border-dark-neutral-border">
               <p className="text-sm leading-4 text-gray-500 dark:text-gray-dark-500">
-                All Category
+                Toutes les catégories
               </p>
               <Image
                 className="cursor-pointer"
@@ -68,28 +71,28 @@ const TopOrders = () => {
               <li className="text-normal mb-[7px]">
                 <div className="flex items-center bg-transparent p-0">
                   <span className="text-gray-500 text-[11px] leading-4 hover:text-gray-700">
-                    Sales report
+                    Rapport de ventes
                   </span>
                 </div>
               </li>
               <li className="text-normal mb-[7px]">
                 <div className="flex items-center bg-transparent p-0">
                   <span className="text-gray-500 text-[11px] leading-4 hover:text-gray-700">
-                    Export report
+                    Rapport d&rsquo;exportation
                   </span>
                 </div>
               </li>
               <li className="text-normal mb-[7px]">
                 <div className="flex items-center bg-transparent p-0">
                   <span className="text-gray-500 text-[11px] leading-4 hover:text-gray-700">
-                    Profit manage
+                    Gestion des profiles
                   </span>
                 </div>
               </li>
               <li className="text-normal mb-[7px]">
                 <div className="flex items-center bg-transparent p-0">
                   <span className="text-gray-500 text-[11px] leading-4 hover:text-gray-700">
-                    Revenue report
+                    Rapport de revenus
                   </span>
                 </div>
               </li>

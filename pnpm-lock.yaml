@@ -27,6 +27,8 @@ specifiers:
   next: 13.2.1
   next-auth: ^4.19.2
   next-redux-wrapper: ^8.1.0
+  next-seo: ^5.15.0
+  next-sitemap: ^3.1.55
   postcss: ^8.4.21
   prop-types: ^15.8.1
   react: 18.2.0
@@ -75,6 +77,8 @@ dependencies:
   next: 13.2.1_6m24vuloj5ihw4zc5lbsktc4fu
   next-auth: 4.19.2_qgtcjgzkkjtbiyvnx7d32fl5vu
   next-redux-wrapper: 8.1.0_nxi43innyhmyod7h75kbi3gzbi
+  next-seo: 5.15.0_qgtcjgzkkjtbiyvnx7d32fl5vu
+  next-sitemap: 3.1.55_next@13.2.1
   prop-types: 15.8.1
   react: 18.2.0
   react-advanced-news-ticker: 1.0.1
@@ -354,6 +358,10 @@ packages:
       '@babel/helper-string-parser': 7.19.4
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
+    dev: false
+
+  /@corex/deepmerge/4.0.37:
+    resolution: {integrity: sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==}
     dev: false
 
   /@emotion/babel-plugin/11.10.5_@babel+core@7.21.0:
@@ -2820,7 +2828,6 @@ packages:
 
   /minimist/1.2.7:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}
-    dev: true
 
   /moment/2.29.4:
     resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
@@ -2877,6 +2884,31 @@ packages:
       next: 13.2.1_6m24vuloj5ihw4zc5lbsktc4fu
       react: 18.2.0
       react-redux: 8.0.5_ctrls2ti7t7iutxbwkm5ipogyy
+    dev: false
+
+  /next-seo/5.15.0_qgtcjgzkkjtbiyvnx7d32fl5vu:
+    resolution: {integrity: sha512-LGbcY91yDKGMb7YI+28n3g+RuChUkt6pXNpa8FkfKkEmNiJkeRDEXTnnjVtwT9FmMhG6NH8qwHTelGrlYm9rgg==}
+    peerDependencies:
+      next: ^8.1.1-canary.54 || >=9.0.0
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      next: 13.2.1_6m24vuloj5ihw4zc5lbsktc4fu
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /next-sitemap/3.1.55_next@13.2.1:
+    resolution: {integrity: sha512-ZjkRfkqoSLbU+e8W9TWWe0zfOGNA47lpvm35kNcUCmj73gpLX2PIn51gwHT/B6bgGVAFYY0OXixJDrxIIwcEHw==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      '@next/env': '*'
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.37
+      minimist: 1.2.7
+      next: 13.2.1_6m24vuloj5ihw4zc5lbsktc4fu
     dev: false
 
   /next/13.2.1_6m24vuloj5ihw4zc5lbsktc4fu:

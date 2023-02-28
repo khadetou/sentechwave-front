@@ -111,6 +111,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>
@@ -121,6 +122,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>
@@ -131,6 +133,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>
@@ -141,6 +144,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>
@@ -151,6 +155,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>
@@ -161,6 +166,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>
@@ -171,6 +177,7 @@ const FeaturedCat = () => {
                         alt="Ecom"
                         width={88}
                         height={20}
+                        className="w-full h-auto"
                       />
                     </a>
                   </div>

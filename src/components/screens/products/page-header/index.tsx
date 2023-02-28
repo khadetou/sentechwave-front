@@ -10,25 +10,27 @@ const PageHeader = () => {
         <div className="containers">
           <ul className="breadcrumb">
             <li>
-              <a className="font-xs color-gray-1000" href="index.html">
-                Home
-              </a>
+              <Link className="font-xs color-gray-1000" href="/">
+                Acueil
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
+              <Link
+                className="font-xs color-gray-500"
+                href="/products?category=electronic"
+              >
                 Electronics
-              </a>
+              </Link>
             </li>
             <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
-                Cell phone
-              </a>
+              <Link
+                className="font-xs color-gray-500"
+                href="/products?category=telephone"
+              >
+                Téléphones
+              </Link>
             </li>
-            <li>
-              <a className="font-xs color-gray-500" href="shop-grid.html">
-                Accessories
-              </a>
-            </li>
+            <li></li>
           </ul>
         </div>
       </div>

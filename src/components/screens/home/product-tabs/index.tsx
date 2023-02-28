@@ -107,43 +107,16 @@ const ProductTabs = () => {
                               {product.name}
                             </a>
                             <div className="rating">
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
+                              <div className="product-rate d-inline-block">
+                                <div
+                                  className="product-rating"
+                                  style={{
+                                    width: `${(100 * product.rating) / 5}%`,
+                                  }}
+                                ></div>
+                              </div>
                               <span className="font-xs color-gray-500">
-                                (65)
+                                ({product.numbReviews})
                               </span>
                             </div>
                             <div className="price-info">
@@ -199,43 +172,16 @@ const ProductTabs = () => {
                               {product.name}
                             </a>
                             <div className="rating">
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
-                              <Image
-                                src="/imgs/template/icons/star.svg"
-                                alt="Ecom"
-                                className="!inline"
-                                width={12}
-                                height={12}
-                              />
+                              <div className="product-rate d-inline-block">
+                                <div
+                                  className="product-rating"
+                                  style={{
+                                    width: `${(100 * product.rating) / 5}%`,
+                                  }}
+                                ></div>
+                              </div>
                               <span className="font-xs color-gray-500">
-                                (65)
+                                ({product.numbReviews})
                               </span>
                             </div>
                             <div className="price-info">

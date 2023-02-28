@@ -1,4 +1,4 @@
-import { useAppDispatch } from "hooks/index";
+import { useAppDispatch, useAppSelector } from "hooks/index";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -14,21 +14,21 @@ import NotificationTab from "./notification-tab";
 moment.locale("fr");
 const MainPage = () => {
   const dispatch = useAppDispatch();
-
+  const { user } = useAppSelector((store) => store.auth);
   return (
     <section className="section-box shop-template mt-30">
       <div className="containers box-account-template">
-        <h3 className="text-[32px] font-bold">Hello Steven</h3>
+        <h3 className="text-[32px] font-bold">Bonjour {user.firstname}</h3>
         <p className="font-md color-gray-500">
-          From your account dashboard. you can easily check & view your recent
-          orders,
+          Depuis votre tableau de bord de compte, vous pouvez facilement
+          consulter et afficher vos commandes récentes,
           <br className="d-none d-lg-block" />
-          manage your shipping and billing addresses and edit your password and
-          account details.
+          gérer vos adresses de livraison et de facturation, et modifier votre
+          mot de passe et les détails de votre compte.
         </p>
         <div className="box-tabs mb-100">
           <ul className="nav nav-tabs nav-tabs-account" role="tablist">
-            <li>
+            {/* <li>
               <a
                 className="active"
                 href="#tab-notification"
@@ -39,20 +39,21 @@ const MainPage = () => {
               >
                 Notification
               </a>
-            </li>
+            </li> */}
 
             <li>
               <a
                 href="#tab-orders"
                 data-bs-toggle="tab"
                 role="tab"
+                className="active"
                 aria-controls="tab-orders"
                 aria-selected="true"
               >
-                Orders
+                Commandes
               </a>
             </li>
-            <li>
+            {/* <li>
               <a
                 href="#tab-order-tracking"
                 data-bs-toggle="tab"
@@ -60,9 +61,9 @@ const MainPage = () => {
                 aria-controls="tab-order-tracking"
                 aria-selected="true"
               >
-                Order Tracking
+                Suivi de commande
               </a>
-            </li>
+            </li> */}
             <li>
               <a
                 href="#tab-setting"
@@ -71,15 +72,15 @@ const MainPage = () => {
                 aria-controls="tab-setting"
                 aria-selected="true"
               >
-                Setting
+                Réglage
               </a>
             </li>
           </ul>
           <div className="border-bottom mt-20 mb-40"></div>
           <div className="tab-content mt-30">
-            <NotificationTab />
+            {/* <NotificationTab /> */}
             <OrdersTab />
-            <TrackTab />
+            {/* <TrackTab /> */}
             <AccountTab />
           </div>
         </div>

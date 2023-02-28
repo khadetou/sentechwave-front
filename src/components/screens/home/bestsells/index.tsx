@@ -294,14 +294,14 @@ const BestSells = () => {
                     </div>
                     <div className="image-box">
                       <span className="label bg-brand-2">-17%</span>
-                      <a href="shop-single-product.html">
+                      <Link href={`/products/${product._id}`}>
                         <Image
                           src={product.images[1].url}
                           alt="Ecom"
                           width={648}
                           height={438}
                         />
-                      </a>
+                      </Link>
                     </div>
                     <div className="info-right">
                       <a
@@ -319,42 +319,17 @@ const BestSells = () => {
                         {product.name}
                       </Link>
                       <div className="rating">
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <Image
-                          src="/imgs/template/icons/star.svg"
-                          alt="Ecom"
-                          width={12}
-                          height={12}
-                          className="inline"
-                        />
-                        <span className="font-xs color-gray-500">(65)</span>
+                        <div className="product-rate d-inline-block">
+                          <div
+                            className="product-rating"
+                            style={{
+                              width: `${(100 * product.rating) / 5}%`,
+                            }}
+                          ></div>
+                        </div>
+                        <span className="font-xs color-gray-500">
+                          ({product.numbReviews})
+                        </span>
                       </div>
                       <div className="price-info">
                         <strong className="font-lg-bold color-brand-3 price-main">

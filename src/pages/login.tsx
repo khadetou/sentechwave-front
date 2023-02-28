@@ -24,8 +24,6 @@ const Login = () => {
     >
       <SEO />
       <Header
-        isLocationOpen={isLocationOpen}
-        setIsLocationOpen={setIsLocationOpen}
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}

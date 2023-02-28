@@ -29,8 +29,6 @@ import { ToastContainer } from "react-toastify";
 import Modal from "components/modal";
 import BannerSec from "components/screens/home/banners/banner-sec";
 import LatestNews from "components/screens/latest-news";
-import Services from "components/screens/home/services";
-import Newsletter from "components/screens/home/newsletter";
 import Footer from "components/Footer";
 import Advantages from "components/advantages";
 import NewsletterProduct from "components/newsletter";
@@ -40,6 +38,13 @@ const Home: NextPage = () => {
   const [isOpenCat, setIsOpenCat] = useState(false);
   const [open, setOpen] = useState(false);
   const [id, setId] = useState("");
+
+  const updateSetIsOpen = (val: boolean) => {
+    setIsOpenCat(val);
+  };
+  const updateSetOpen = (val: boolean) => {
+    setOpen(val);
+  };
   return (
     <Layout
       isLocationOpen={isLocationOpen}
@@ -50,13 +55,10 @@ const Home: NextPage = () => {
       open={open}
     >
       <SEO />
-
       <Header
-        isLocationOpen={isLocationOpen}
-        setIsLocationOpen={setIsLocationOpen}
         isOpenCat={isOpenCat}
-        setIsOpenCat={setIsOpenCat}
-        setOpen={setOpen}
+        setIsOpenCat={updateSetIsOpen}
+        setOpen={updateSetOpen}
         open={open}
       />
       <main className="main">

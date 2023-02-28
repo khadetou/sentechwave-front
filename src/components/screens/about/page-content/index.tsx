@@ -2,401 +2,499 @@ import Image from "next/image";
 
 const PageContent = () => {
   return (
-    <div className="page-content pt-50">
-      <div className="container">
+    <section className="section-box shop-template mt-30">
+      <div className="containers">
         <div className="row">
-          <div className="col-xl-10 col-lg-12 m-auto">
-            <section className="row align-items-center mb-50">
+          <div className="col-lg-10 mx-auto">
+            <h5 className="color-gray-500 mb-10 font-bold text-[20px]">
+              About us
+            </h5>
+            <h2 className="font-bold text-[45px]">
+              Global Leading Online Shop
+            </h2>
+            <div className="row mt-20">
+              <div className="col-lg-6">
+                <p className="font-sm font-medium color-gray-700 mb-15">
+                  Ecom expands global footprint, delivering entertaining
+                  experiences customised to each user. Branches are expanding
+                  both in size and number.
+                </p>
+                <p className="font-sm font-medium color-gray-700 mb-15">
+                  Nunc vel risus commodo viverra maecenas accumsan lacus vel
+                  facilisis. Lacus vel facilisis volutpat est velit. Urna neque
+                  viverra justo nec. Suspendisse faucibus interdum posuere lorem
+                  ipsum dolor. Ut aliquam purus sit amet luctus venenatis lectus
+                  magna fringilla. Tortor vitae purus faucibus ornare.
+                </p>
+                <p className="font-sm font-medium color-gray-700 mb-15">
+                  Tempus iaculis urna id volutpat lacus laoreet. Id neque
+                  aliquam vestibulum morbi blandit. Lacinia quis vel eros donec
+                  ac odio tempor orci. Lectus sit amet est placerat in egestas
+                  erat imperdiet. Nunc congue nisi vitae suscipit. Sed
+                  adipiscing diam donec adipiscing tristique risus.
+                </p>
+                <ul className="list-services mt-20">
+                  <li className="hover-up">We provide qualified & expert</li>
+                  <li className="hover-up">Modern tools & technology use</li>
+                  <li className="hover-up">Neat & cleaning top Services</li>
+                  <li className="hover-up">We Develop Digital Future</li>
+                </ul>
+              </div>
               <div className="col-lg-6">
                 <Image
-                  width={1292}
-                  height={1472}
-                  src="/imgs/page/about-1.png"
-                  alt=""
-                  className="border-radius-15 mb-md-3 mb-lg-0 mb-sm-4"
+                  src="/imgs/page/about/img.png"
+                  alt="Ecom"
+                  width={543}
+                  height={349}
                 />
               </div>
-              <div className="col-lg-6">
-                <div className="pl-25">
-                  <h2 className="mb-30">Welcome to Nest</h2>
-                  <p className="mb-25">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate id est
-                    laborum.
-                  </p>
-                  <p className="mb-50">
-                    Ius ferri velit sanctus cu, sed at soleat accusata. Dictas
-                    prompta et Ut placerat legendos interpre.Donec vitae sapien
-                    ut libero venenatis faucibus. Nullam quis ante Etiam sit
-                    amet orci eget. Quis commodo odio aenean sed adipiscing.
-                    Turpis massa tincidunt dui ut ornare lectus. Auctor elit sed
-                    vulputate mi sit amet. Commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate id est laborum.
-                  </p>
-                  <div className="carausel-3-columns-cover position-relative">
-                    <div id="carausel-3-columns-arrows"></div>
-                    <div className="carausel-3-columns" id="carausel-3-columns">
-                      <Image
-                        width={364}
-                        height={438}
-                        src="/imgs/page/about-2.png"
-                        alt=""
-                      />
-                      <Image
-                        width={364}
-                        height={438}
-                        src="/imgs/page/about-3.png"
-                        alt=""
-                      />
-                      <Image
-                        width={364}
-                        height={438}
-                        src="/imgs/page/about-4.png"
-                        alt=""
-                      />
-                      <Image
-                        width={364}
-                        height={438}
-                        src="/imgs/page/about-2.png"
-                        alt=""
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className="text-center mb-50">
-              <h2 className="title style-3 mb-40">What We Provide?</h2>
+            </div>
+            <div className="box-contact-support pt-80 pb-50 pl-50 pr-50 background-gray-50 mt-50 mb-90">
               <div className="row">
-                <div className="col-lg-4 col-md-6 mb-24">
-                  <div className="featured-card">
-                    <Image
-                      width={100}
-                      height={100}
-                      src="/imgs/theme/icons/icon-1.svg"
-                      alt=""
-                    />
-                    <h4>Best Prices & Offers</h4>
-                    <p>
-                      There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 mb-24">
-                  <div className="featured-card">
-                    <Image
-                      width={100}
-                      height={100}
-                      src="/imgs/theme/icons/icon-2.svg"
-                      alt=""
-                    />
-                    <h4>Wide Assortment</h4>
-                    <p>
-                      There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 mb-24">
-                  <div className="featured-card">
-                    <Image
-                      width={100}
-                      height={100}
-                      src="/imgs/theme/icons/icon-3.svg"
-                      alt=""
-                    />
-                    <h4>Free Delivery</h4>
-                    <p>
-                      There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 mb-24">
-                  <div className="featured-card">
-                    <Image
-                      height={100}
-                      width={100}
-                      src="/imgs/theme/icons/icon-4.svg"
-                      alt=""
-                    />
-                    <h4>Easy Returns</h4>
-                    <p>
-                      There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 mb-24">
-                  <div className="featured-card">
-                    <Image
-                      width={100}
-                      height={100}
-                      src="/imgs/theme/icons/icon-5.svg"
-                      alt=""
-                    />
-                    <h4>100% Satisfaction</h4>
-                    <p>
-                      There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-                <div className="col-lg-4 col-md-6 mb-24">
-                  <div className="featured-card">
-                    <Image
-                      width={100}
-                      height={100}
-                      src="/imgs/theme/icons/icon-6.svg"
-                      alt=""
-                    />
-                    <h4>Great Daily Deal</h4>
-                    <p>
-                      There are many variations of passages of Lorem Ipsum
-                      available, but the majority have suffered alteration in
-                      some form
-                    </p>
-                    <a href="#">Read more</a>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <section className="row align-items-center mb-50">
-              <div className="row mb-50 align-items-center">
-                <div className="col-lg-7 pr-30">
-                  <Image
-                    width={1165}
-                    height={865}
-                    src="/imgs/page/about-5.png"
-                    alt=""
-                    className="mb-md-3 mb-lg-0 mb-sm-4"
-                  />
-                </div>
-                <div className="col-lg-5">
-                  <h4 className="mb-20 text-muted">Our performance</h4>
-                  <h1 className="heading-1 mb-40">
-                    Your Partner for e-commerce grocery solution
-                  </h1>
-                  <p className="mb-30">
-                    Ed ut perspiciatis unde omnis iste natus error sit
-                    voluptatem accusantium doloremque laudantium, totam rem
-                    aperiam, eaque ipsa quae ab illo inventore veritatis et
-                    quasi architecto
+                <div className="col-lg-3 mb-30 text-center text-lg-start">
+                  <h4 className="mb-5">12 Years</h4>
+                  <p className="font-md color-gray-700">
+                    We’ve more than 12 years working experience.
                   </p>
-                  <p>
-                    Pitatis et quasi architecto beatae vitae dicta sunt
-                    explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                    aspernatur aut odit aut fugit, sed quia
+                </div>
+                <div className="col-lg-3 mb-30 text-center text-lg-start">
+                  <h4 className="mb-5">2000+ Employee</h4>
+                  <p className="font-md color-gray-700 mb-5">
+                    We’ve more than 2000 employees working near you.
+                  </p>
+                </div>
+                <div className="col-lg-3 mb-30 text-center text-lg-start">
+                  <h4 className="mb-5">68 Branches</h4>
+                  <p className="font-md color-gray-700 mb-5">
+                    We have 68 branches across the country and are expanding
+                  </p>
+                </div>
+                <div className="col-lg-3 mb-30 text-center text-lg-start">
+                  <h4 className="mb-5">15 Countries</h4>
+                  <p className="font-md color-gray-700 mb-5">
+                    We are present in 15 countries around the world
                   </p>
                 </div>
               </div>
+            </div>
+            <h5 className="color-gray-500 mb-10">Behind The Brands</h5>
+            <h2 className="mb-40">
+              The people who work at Ecom share the vision and values of our
+              community.
+            </h2>
+            <div className="row mb-50">
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft1.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Ronald Richards</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Executive Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft2.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Jenny Wilson</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Financial Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft3.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Cody Fisher</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Operating Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft4.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Jacob Jones</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Technology Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft5.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Leslie Alexander</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Marketing Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft6.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Ralph Edwards</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Human Resources Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft7.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Eleanor Pena</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Legal Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div className="card-staff hover-up">
+                  <div className="image-staff">
+                    <Image
+                      src="/imgs/page/about/staft8.png"
+                      width={257}
+                      height={310}
+                      alt="Ecom"
+                    />
+                  </div>
+                  <div className="info-staff">
+                    <h5>Theresa Webb</h5>
+                    <p className="font-md color-gray-500">
+                      Chief Product Officer
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h5 className="color-gray-500 mb-10">Our Partners</h5>
+            <h2 className="mb-40">Trusted by 18.000+ Vendors</h2>
+            <div className="box-images-logo">
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/microsoft.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/sony.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/acer.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/nokia.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/asus.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/casio.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/dell.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/panasonic.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/vaio.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+              <a className="hover-up" href="shop-vendor-single.html">
+                <Image
+                  src="/imgs/page/about/sharp.svg"
+                  alt="Ecom"
+                  width={171}
+                  height={28}
+                  className="inline"
+                />
+              </a>
+            </div>
+            <div className="border-1 mb-80 mt-50"></div>
+            <h2 className="mb-5">Visit our stores</h2>
+            <p className="font-sm color-gray-700">Find us at these locations</p>
+            <div className="box-contact-address pt-30 pb-50">
               <div className="row">
-                <div className="col-lg-4 pr-30 mb-md-5 mb-lg-0 mb-sm-5">
-                  <h3 className="mb-30">Who we are</h3>
-                  <p>
-                    Volutpat diam ut venenatis tellus in metus. Nec dui nunc
-                    mattis enim ut tellus eros donec ac odio orci ultrices in.
-                    ellus eros donec ac odio orci ultrices in.
-                  </p>
-                </div>
-                <div className="col-lg-4 pr-30 mb-md-5 mb-lg-0 mb-sm-5">
-                  <h3 className="mb-30">Our history</h3>
-                  <p>
-                    Volutpat diam ut venenatis tellus in metus. Nec dui nunc
-                    mattis enim ut tellus eros donec ac odio orci ultrices in.
-                    ellus eros donec ac odio orci ultrices in.
-                  </p>
+                <div className="col-lg-4">
+                  <div className="mb-30">
+                    <h4>Melbourne</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
+                  <div className="mb-30">
+                    <h4>San Francisco</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
+                  <div className="mb-30">
+                    <h4>Byron Bay</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
                 </div>
                 <div className="col-lg-4">
-                  <h3 className="mb-30">Our mission</h3>
-                  <p>
-                    Volutpat diam ut venenatis tellus in metus. Nec dui nunc
-                    mattis enim ut tellus eros donec ac odio orci ultrices in.
-                    ellus eros donec ac odio orci ultrices in.
-                  </p>
+                  <div className="mb-30">
+                    <h4>Sydney</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
+                  <div className="mb-30">
+                    <h4>Sweden</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
+                  <div className="mb-30">
+                    <h4>Ha Noi</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
-      <section className="container mb-50 d-none d-md-block">
-        <div className="row about-count">
-          <div className="col-lg-1-5 col-md-6 text-center mb-lg-0 mb-md-5">
-            <h1 className="heading-1">
-              <span className="count">12</span>+
-            </h1>
-            <h4>Glorious years</h4>
-          </div>
-          <div className="col-lg-1-5 col-md-6 text-center">
-            <h1 className="heading-1">
-              <span className="count">36</span>+
-            </h1>
-            <h4>Happy clients</h4>
-          </div>
-          <div className="col-lg-1-5 col-md-6 text-center">
-            <h1 className="heading-1">
-              <span className="count">58</span>+
-            </h1>
-            <h4>Projects complete</h4>
-          </div>
-          <div className="col-lg-1-5 col-md-6 text-center">
-            <h1 className="heading-1">
-              <span className="count">24</span>+
-            </h1>
-            <h4>Team advisor</h4>
-          </div>
-          <div className="col-lg-1-5 text-center d-none d-lg-block">
-            <h1 className="heading-1">
-              <span className="count">26</span>+
-            </h1>
-            <h4>Products Sale</h4>
-          </div>
-        </div>
-      </section>
-      <div className="container">
-        <div className="row">
-          <div className="col-xl-10 col-lg-12 m-auto">
-            <section className="mb-50">
-              <h2 className="title style-3 mb-40 text-center">Our Team</h2>
-              <div className="row">
-                <div className="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
-                  <h6 className="mb-5 text-brand">Our Team</h6>
-                  <h1 className="mb-30">Meet Our Expert Team</h1>
-                  <p className="mb-30">
-                    Proin ullamcorper pretium orci. Donec necscele risque leo.
-                    Nam massa dolor imperdiet neccon sequata congue idsem.
-                    Maecenas malesuada faucibus finibus.
-                  </p>
-                  <p className="mb-30">
-                    Proin ullamcorper pretium orci. Donec necscele risque leo.
-                    Nam massa dolor imperdiet neccon sequata congue idsem.
-                    Maecenas malesuada faucibus finibus.
-                  </p>
-                  <a href="#" className="btn">
-                    View All Members
-                  </a>
-                </div>
-                <div className="col-lg-8">
-                  <div className="row">
-                    <div className="col-lg-6 col-md-6">
-                      <div className="team-card">
-                        <Image
-                          width={721}
-                          height={755}
-                          src="/imgs/page/about-6.png"
-                          alt=""
-                        />
-                        <div className="content text-center">
-                          <h4 className="mb-5">H. Merinda</h4>
-                          <span>CEO & Co-Founder</span>
-                          <div className="social-network mt-20">
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-facebook-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-twitter-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-instagram-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-youtube-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-6 col-md-6">
-                      <div className="team-card">
-                        <Image
-                          width={721}
-                          height={755}
-                          src="/imgs/page/about-8.png"
-                          alt=""
-                        />
-                        <div className="content text-center">
-                          <h4 className="mb-5">Dilan Specter</h4>
-                          <span>Head Engineer</span>
-                          <div className="social-network mt-20">
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-facebook-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-twitter-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-instagram-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                            <a href="#">
-                              <Image
-                                width={20}
-                                height={20}
-                                src="/imgs/theme/icons/icon-youtube-brand.svg"
-                                alt=""
-                              />
-                            </a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                <div className="col-lg-4">
+                  <div className="mb-30">
+                    <h4>Bangkok</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
+                  <div className="mb-30">
+                    <h4>Seoul</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
+                  </div>
+                  <div className="mb-30">
+                    <h4>Paris</h4>
+                    <p className="font-sm color-gray-700">
+                      205 North Michigan Avenue, Suite 810
+                      <br />
+                      Chicago, 60601, USA
+                    </p>
                   </div>
                 </div>
               </div>
-            </section>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <div className="box-contact-support pt-80 pb-50 background-gray-50">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-10">
+              <div className="row">
+                <div className="col-lg-3 mb-30 text-center text-lg-start">
+                  <h3 className="mb-5">We‘d love to here from you</h3>
+                  <p className="font-sm color-gray-700">
+                    Chat with our friendly team
+                  </p>
+                </div>
+                <div className="col-lg-3 text-center mb-30">
+                  <div className="box-image mb-20">
+                    <Image
+                      src="/imgs/page/contact/chat.svg"
+                      alt="Ecom"
+                      width={50}
+                      height={50}
+                      className="inline"
+                    />
+                  </div>
+                  <h4 className="mb-5">Chat to sales</h4>
+                  <p className="font-sm color-gray-700 mb-5">
+                    Speak to our team.
+                  </p>
+                  <a
+                    className="font-sm color-gray-900"
+                    href="http://wp.alithemes.com/cdn-cgi/l/email-protection#6714060b0214270204080a4904080a"
+                  >
+                    <span
+                      className="__cf_email__"
+                      data-cfemail="4330222f26300326202c2e6d202c2e"
+                    >
+                      [email&#160;protected]
+                    </span>
+                  </a>
+                </div>
+                <div className="col-lg-3 text-center mb-30">
+                  <div className="box-image mb-20">
+                    <Image
+                      src="/imgs/page/contact/call.svg"
+                      alt="Ecom"
+                      width={50}
+                      height={50}
+                      className="inline"
+                    />
+                  </div>
+                  <h4 className="mb-5">Call us</h4>
+                  <p className="font-sm color-gray-700 mb-5">
+                    Mon-Fri from 8am to 5pm
+                  </p>
+                  <a
+                    className="font-sm color-gray-900"
+                    href="tel:+1(555)000-0000"
+                  >
+                    +1(555)000-0000
+                  </a>
+                </div>
+                <div className="col-lg-3 text-center mb-30">
+                  <div className="box-image mb-20">
+                    <Image
+                      src="/imgs/page/contact/map.svg"
+                      alt="Ecom"
+                      width={50}
+                      height={50}
+                      className="inline"
+                    />
+                  </div>
+                  <h4 className="mb-5">Visit us</h4>
+                  <p className="font-sm color-gray-700 mb-5">
+                    Visit our office
+                  </p>
+                  <span className="font-sm color-gray-900">
+                    205 North Michigan Avenue, Suite 810
+                    <br />
+                    Chicago, 60601, USA
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

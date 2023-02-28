@@ -24,17 +24,13 @@ import { filterText } from "utils/index";
 import { FaSearch } from "react-icons/fa";
 
 interface HMiddleProps {
-  setIsLocationOpen: Dispatch<SetStateAction<boolean>>;
-  isLocationOpen: boolean;
   isOpenCat: boolean;
   open: boolean;
-  setIsOpenCat: Dispatch<SetStateAction<boolean>>;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setIsOpenCat: (val: boolean) => void;
+  setOpen: (val: boolean) => void;
 }
 
 const HMiddle: FC<HMiddleProps> = ({
-  setIsLocationOpen,
-  isLocationOpen,
   isOpenCat,
   setIsOpenCat,
   setOpen,

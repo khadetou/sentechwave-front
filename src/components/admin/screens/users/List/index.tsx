@@ -7,6 +7,7 @@ const MySwal = withReactContent(Swal);
 import moment from "moment";
 import "moment/locale/fr";
 import Link from "next/link";
+import { initials } from "utils/index";
 
 moment.locale("fr");
 const UsersList = () => {
@@ -122,19 +123,13 @@ const UsersList = () => {
               />
             </th>
             <th className="font-normal text-normal text-gray-400 text-left pb-[15px] dark:text-gray-dark-400">
-              Name
+              Prénom et Nom
             </th>
             <th className="font-normal text-normal text-gray-400 text-left pb-[15px] dark:text-gray-dark-400">
               Email
             </th>
             <th className="font-normal text-normal text-gray-400 text-left pb-[15px] dark:text-gray-dark-400">
-              Phone
-            </th>
-            <th className="font-normal text-normal text-gray-400 text-left pb-[15px] dark:text-gray-dark-400">
-              Billing Address
-            </th>
-            <th className="font-normal text-normal text-gray-400 text-left pb-[15px] dark:text-gray-dark-400">
-              Status
+              Téléphone
             </th>
             <th className="font-normal text-normal text-gray-400 text-left pb-[15px] dark:text-gray-dark-400">
               Joined
@@ -158,16 +153,19 @@ const UsersList = () => {
               </td>
               <td className="py-[25px]">
                 <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full overflow-hidden">
+                  {/* <div className="w-6 h-6 rounded-full overflow-hidden">
                     <Image
                       src="/imgs/seller-avatar-1.png"
                       alt="user avatar"
                       width={24}
                       height={24}
                     />
+                  </div> */}
+                  <div className="p-3 font-bold text-sm shadow-md rounded-full overflow-hidden">
+                    {initials(user.firstname, user.lastname)}
                   </div>
                   <p className="text-normal text-gray-1100 dark:text-gray-dark-1100">
-                    {user.name} {user.lastname}
+                    {user.firstname} {user.lastname}
                   </p>
                 </div>
               </td>
@@ -184,19 +182,6 @@ const UsersList = () => {
               </td>
               <td>
                 <span>{user.phone}</span>
-              </td>
-              <td className="max-w-[196px]">
-                <p className="max-w-[20ch]">
-                  1126 S San Jose Dr Abilene, Texas(TX), 79605
-                </p>
-              </td>
-              <td>
-                <div className="flex items-center gap-x-2">
-                  <div className="w-2 h-2 rounded-full bg-green"></div>
-                  <p className="text-normal text-gray-1100 dark:text-gray-dark-1100">
-                    Online
-                  </p>
-                </div>
               </td>
               <td>
                 <span>{moment(user.createdAt).format("LL")}</span>
@@ -222,7 +207,7 @@ const UsersList = () => {
                       <li className="text-normal mb-[7px]">
                         <Link
                           className="flex items-center bg-transparent p-0 gap-[7px]"
-                          href="/profile"
+                          href={`/admin/users/${user._id}`}
                         >
                           {" "}
                           <span className="text-gray-500 text-[11px] leading-4 hover:text-gray-700">

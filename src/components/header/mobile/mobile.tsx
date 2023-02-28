@@ -19,7 +19,7 @@ import { logout } from "redux/auth/authSlice";
 
 interface MobileProps {
   open: boolean;
-  setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpen: (val: boolean) => void;
 }
 
 const Mobile: FC<MobileProps> = ({ open, setOpen }) => {

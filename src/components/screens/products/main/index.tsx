@@ -74,6 +74,15 @@ const Main = () => {
     }
   };
 
+  //  CALCULATE THE TOTAL PERCENTAGE OF RATINGS
+  const calculate_the_percentage = (numbReviews: number, rating: number) => {
+    if (numbReviews !== 0 && rating !== 0) {
+      return (rating * 100) / numbReviews;
+    } else {
+      return 0;
+    }
+  };
+
   return (
     <div className="section-box shop-template mt-30">
       <div className="containers">
@@ -86,6 +95,7 @@ const Main = () => {
                   alt="Ecom"
                   width={1269}
                   height={269}
+                  priority
                 />
               </a>
             </div>
@@ -116,7 +126,7 @@ const Main = () => {
                         data-bs-toggle="dropdown"
                         aria-expanded="false"
                       >
-                        Latest products
+                        Derniers produits
                       </button>
                       <ul
                         className="dropdown-menu dropdown-menu-light"
@@ -125,17 +135,17 @@ const Main = () => {
                       >
                         <li>
                           <a className="dropdown-item active" href="#">
-                            Latest products
+                            Derniers produits
                           </a>
                         </li>
                         <li>
                           <a className="dropdown-item" href="#">
-                            Oldest products
+                            Plus anciens produits
                           </a>
                         </li>
                         <li>
                           <a className="dropdown-item" href="#">
-                            Comments products
+                            Produits commentés
                           </a>
                         </li>
                       </ul>
@@ -255,42 +265,20 @@ const Main = () => {
                           {product.name}
                         </Link>
                         <div className="rating">
-                          <Image
-                            src="/imgs/template/icons/star.svg"
-                            alt="Ecom"
-                            width={12}
-                            height={12}
-                            className="inline"
-                          />
-                          <Image
-                            src="/imgs/template/icons/star.svg"
-                            alt="Ecom"
-                            width={12}
-                            height={12}
-                            className="inline"
-                          />
-                          <Image
-                            src="/imgs/template/icons/star.svg"
-                            alt="Ecom"
-                            width={12}
-                            height={12}
-                            className="inline"
-                          />
-                          <Image
-                            src="/imgs/template/icons/star.svg"
-                            alt="Ecom"
-                            width={12}
-                            height={12}
-                            className="inline"
-                          />
-                          <Image
-                            src="/imgs/template/icons/star.svg"
-                            alt="Ecom"
-                            width={12}
-                            height={12}
-                            className="inline"
-                          />
-                          <span className="font-xs color-gray-500">(65)</span>
+                          <div className="product-rate d-inline-block mr-15">
+                            <div
+                              className="product-rating"
+                              style={{
+                                width: `${
+                                  product &&
+                                  calculate_the_percentage(5, product.rating)
+                                }%`,
+                              }}
+                            ></div>
+                          </div>
+                          <span className="font-xs color-gray-500">
+                            ({product.numbReviews})
+                          </span>
                         </div>
                         <div className="price-info">
                           <strong className="font-lg-bold color-brand-3 price-main">

@@ -9,9 +9,9 @@ import Link from "next/link";
 import moment from "moment";
 import "moment/locale/fr";
 import { initials } from "utils/index";
-import RelatedProducts from "./relatedProducts";
-import MayLike from "./maylike";
-import RecViewed from "./recviewed";
+import RelatedProducts from "../../../../relatedProducts";
+import MayLike from "../../../../maylike";
+import RecViewed from "../../../../recviewed";
 
 moment.locale("fr");
 const Bottom = () => {

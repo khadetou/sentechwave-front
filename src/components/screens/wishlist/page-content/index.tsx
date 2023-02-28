@@ -1,5 +1,5 @@
-import MayLike from "components/screens/product/main/bottom/maylike";
-import RecViewed from "components/screens/product/main/bottom/recviewed";
+import MayLike from "components/maylike";
+import RecViewed from "components/recviewed";
 import { useWishlist } from "context/wishlistContext";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,7 +26,7 @@ const PageContent = () => {
           <div className="head-wishlist">
             <div className="item-wishlist">
               <div className="wishlist-cb">
-                <input className="cb-layout cb-all" type="checkbox" />
+                <input className="cb-layout cb-all" type="checkbox" readOnly />
               </div>
               <div className="wishlist-product">
                 <span className="font-md-bold color-brand-3">Produit</span>
@@ -52,7 +52,11 @@ const PageContent = () => {
               Items.map((item) => (
                 <div key={item.id} className="item-wishlist">
                   <div className="wishlist-cb">
-                    <input className="cb-layout cb-select" type="checkbox" />
+                    <input
+                      className="cb-layout cb-select"
+                      type="checkbox"
+                      readOnly
+                    />
                   </div>
                   <div className="wishlist-product">
                     <div className="product-wishlist">

@@ -1,7 +1,7 @@
 import { useAppSelector } from "hooks/index";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import InputRange from "react-input-range";
 import BannerLeft from "./banner";
 import Bestseller from "./bestseller";
@@ -19,7 +19,20 @@ const LeftSidebar = () => {
   const cat1 = categories.slice(0, 9);
   const cat2 = categories.slice(9, 17);
   const Lastprod = sortedDate.slice(0, 3);
-  const [value, setValue] = useState<any>({ min: "20000", max: "150000" });
+  const [value, setValue] = useState<{ min: number; max: number }>({
+    min: 20000,
+    max: 150000,
+  });
+
+  const [interval, setInterval] = useReducer(
+    (prev: any, next: any) => {
+      return { ...prev, ...next };
+    },
+    {
+      price: 0,
+    }
+  );
+
   return (
     <div className="col-lg-3 order-last order-lg-first">
       <div className="sidebar-border mb-0">
@@ -138,26 +151,12 @@ const LeftSidebar = () => {
                   })}
                 </span>
               </div>
-              <div className="col-lg-12">
-                <input
-                  className="form-control min-value"
-                  type="hidden"
-                  name="min-value"
-                  value=""
-                />
-                <input
-                  className="form-control max-value"
-                  type="hidden"
-                  name="max-value"
-                  value=""
-                />
-              </div>
             </div>
           </div>
           <ul className="list-checkbox">
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">5 000 F CFA - 15 000 F CFA</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -165,7 +164,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">25 000 F CFA - 35 000 F CFA</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -173,7 +172,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">35 000 F CFA - 45 000 F CFA</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -181,7 +180,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">45 000 F CFA - 55 000 F CFA</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -189,7 +188,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">55 000 F CFA - 65 000 F CFA</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -197,7 +196,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">Plus de 65 000 F CFA</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -210,7 +209,7 @@ const LeftSidebar = () => {
           <ul className="list-checkbox">
             <li>
               <label className="cb-container">
-                <input type="checkbox" checked />
+                <input type="checkbox" readOnly checked />
                 <span className="text-small">Apple</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -218,7 +217,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">Sony</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -226,7 +225,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">Toshiba</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -234,7 +233,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">Assus</span>
                 <span className="checkmark"></span>{" "}
               </label>
@@ -242,7 +241,7 @@ const LeftSidebar = () => {
             </li>
             <li>
               <label className="cb-container">
-                <input type="checkbox" />
+                <input type="checkbox" readOnly />
                 <span className="text-small">Samsung</span>
                 <span className="checkmark"></span>{" "}
               </label>

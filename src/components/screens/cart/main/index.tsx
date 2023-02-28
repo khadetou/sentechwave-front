@@ -1,5 +1,5 @@
-import MayLike from "components/screens/product/main/bottom/maylike";
-import RecViewed from "components/screens/product/main/bottom/recviewed";
+import MayLike from "components/maylike";
+import RecViewed from "components/recviewed";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -39,7 +39,7 @@ const MainCart = () => {
   };
 
   // SHIPPING PRICING CALCULATION
-  const shippingRegions = {
+  const shippingRegions: any = {
     "Dakar-Plateau": 0.05,
     Almadies: 0.05,
     Medina: 0.05,
@@ -88,7 +88,7 @@ const MainCart = () => {
     Matam: 0.5,
   };
 
-  const calculateShipping = (totalCost, selectedRegion) => {
+  const calculateShipping = (totalCost: number, selectedRegion: string) => {
     if (selectedRegion in shippingRegions) {
       return totalCost * shippingRegions[selectedRegion];
     } else {
@@ -97,14 +97,14 @@ const MainCart = () => {
   };
 
   const handleFreeShipping = () => {
-    if (totalCost >= 250000) {
+    if (totalCost >= 2250000) {
       return 0;
     } else {
       return calculateShipping(totalCost, selectedRegion);
     }
   };
 
-  const handleRegionChange = (e) => {
+  const handleRegionChange = (e: any) => {
     setSelectedRegion(e.target.value);
   };
 
@@ -273,7 +273,7 @@ const MainCart = () => {
                       </div>
                       <p className="font-sm-bold d-inline-block color-brand-3">
                         Frais Total:{" "}
-                        {totalCost >= 250000
+                        {totalCost >= 2250000
                           ? "GRATUITS"
                           : `${handleFreeShipping().toLocaleString()} FCFA`}
                       </p>
@@ -295,7 +295,7 @@ const MainCart = () => {
                       <div className="col-lg-6 mb-10">
                         <input
                           className="form-control"
-                          placeholder="Stage / Country"
+                          placeholder="Stage / Pays"
                         />
                       </div>
                       <div className="col-lg-6 mb-10">
@@ -347,13 +347,17 @@ const MainCart = () => {
               </div>
               <div className="border-bottom mb-10">
                 <div className="row">
-                  <div className="col-6">
+                  <div className="col-4">
                     <span className="font-md-bold color-gray-500">
                       Livraison
                     </span>
                   </div>
-                  <div className="col-6 text-end">
-                    <h4 className="text-2xl font-bold"> Gratuit</h4>
+                  <div className="col-8 text-end">
+                    <h4 className="text-2xl font-bold">
+                      {totalCost >= 2250000
+                        ? "GRATUITS"
+                        : `${handleFreeShipping().toLocaleString()} FCFA`}
+                    </h4>
                   </div>
                 </div>
               </div>
@@ -365,7 +369,7 @@ const MainCart = () => {
                     </span>
                   </div>
                   <div className="col-6 text-end">
-                    <h6 className="text-base font-bold">United Kingdom</h6>
+                    <h6 className="text-base font-bold">{selectedRegion}</h6>
                   </div>
                 </div>
               </div>
@@ -377,18 +381,25 @@ const MainCart = () => {
                   <div className="col-8 text-end">
                     <h4 className="text-2xl font-bold">
                       {" "}
-                      {Number(totalCost).toLocaleString("fr-Fr", {
-                        style: "currency",
-                        currency: "XOF",
-                      })}
+                      {totalCost >= 2250000
+                        ? Number(totalCost).toLocaleString("fr-Fr", {
+                            style: "currency",
+                            currency: "XOF",
+                          })
+                        : Number(
+                            totalCost + handleFreeShipping()
+                          ).toLocaleString("fr-Fr", {
+                            style: "currency",
+                            currency: "XOF",
+                          })}
                     </h4>
                   </div>
                 </div>
               </div>
               <div className="box-button">
-                <a className="btn btn-buy" href="shop-checkout.html">
+                <Link className="btn btn-buy" href="/checkout">
                   Passer à la caisse.
-                </a>
+                </Link>
               </div>
             </div>
           </div>

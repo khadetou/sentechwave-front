@@ -66,7 +66,7 @@ const Bestseller = () => {
             <div className="swiper-slide">
               {products.slice(0, 4).map((product: any) => (
                 <div
-                  key={products._id}
+                  key={product._id}
                   className="card-grid-style-2 card-grid-none-border border-bottom mb-10"
                 >
                   <div className="image-box max-h-[100px]">
@@ -88,42 +88,17 @@ const Bestseller = () => {
                       {product.name}
                     </Link>
                     <div className="rating">
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <span className="font-xs color-gray-500">(65)</span>
+                      <div className="product-rate d-inline-block">
+                        <div
+                          className="product-rating"
+                          style={{
+                            width: `${(100 * product.rating) / 5}%`,
+                          }}
+                        ></div>
+                      </div>
+                      <span className="font-xs color-gray-500">
+                        ({product.numbReviews})
+                      </span>
                     </div>
                     <div className="price-info">
                       <strong className="font-md-bold color-brand-3 price-main">
@@ -147,7 +122,7 @@ const Bestseller = () => {
             <div className="swiper-slide">
               {products.slice(0, 4).map((product: any) => (
                 <div
-                  key={products._id}
+                  key={product._id}
                   className="card-grid-style-2 card-grid-none-border border-bottom mb-10"
                 >
                   <div className="image-box max-h-[100px]">
@@ -169,42 +144,17 @@ const Bestseller = () => {
                       {product.name}
                     </Link>
                     <div className="rating">
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <Image
-                        src="/imgs/template/icons/star.svg"
-                        alt="Ecom"
-                        className="!inline"
-                        width={12}
-                        height={12}
-                      />
-                      <span className="font-xs color-gray-500">(65)</span>
+                      <div className="product-rate d-inline-block">
+                        <div
+                          className="product-rating"
+                          style={{
+                            width: `${(100 * product.rating) / 5}%`,
+                          }}
+                        ></div>
+                      </div>
+                      <span className="font-xs color-gray-500">
+                        ({product.numbReviews})
+                      </span>
                     </div>
                     <div className="price-info">
                       <strong className="font-md-bold color-brand-3 price-main">

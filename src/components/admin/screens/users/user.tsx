@@ -4,8 +4,13 @@ import { deleteUser } from "redux/auth/authSlice";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import UserTop from "./top/userTop";
+import { initials } from "utils/index";
+import moment from "moment";
+import "moment/locale/fr";
 
 const MySwal = withReactContent(Swal);
+
+moment.locale("fr");
 const UserPage = () => {
   const { customer } = useAppSelector((store) => store.auth);
   const dispatch = useAppDispatch();
@@ -33,18 +38,21 @@ const UserPage = () => {
       <div className="flex justify-between flex-col xl:py-[20px] xl:px-[20px] gap-x-[38px] xl:flex-row">
         <div className="flex flex-col gap-y-6">
           <div className="border bg-white border-neutral rounded-2xl dark:bg-dark-neutral-bg dark:border-dark-neutral-border px-[30px] pt-[30px] pb-[43px] md:w-[50%] md:mx-auto xl:w-full xl:mx-0">
-            <Image
+            {/* <Image
               className="mb-5 mx-auto w-[150px]"
               src="/imgs/crm-cus-details-1.png"
               alt="avatar"
               width={150}
               height={150}
-            />
+            /> */}
+            <div className="text-lg flex items-center justify-center mx-auto font-bold w-[150px] h-[150px] shadow-lg rounded-full text-center !mb-5">
+              {customer && initials(customer.firstname, customer.lastname)}
+            </div>
             <h2 className="font-semibold text-center text-[20px] leading-[18px] text-[#313442] mb-[5px]">
-              Steven Jonh
+              {customer && customer.firstname} {customer && customer.lastname}
             </h2>
             <p className="leading-4 text-gray-500 text-center text-[14px] dark:text-gray-dark-500 mb-[15px]">
-              Cchicago, 6015, USA
+              {customer && customer.email}
             </p>
             <button className="flex items-center justify-center bg-color-brands rounded-md mx-auto w-[250px] gap-x-[6px] py-[10px] mb-[27px]">
               <Image
@@ -53,7 +61,7 @@ const UserPage = () => {
                 width={15}
                 height={14}
               />
-              <span className="leading-4 font-semibold text-[#FCFCFC] text-[14px]">
+              <span className="leading-4 font-semibold text-[#919191] text-[14px]">
                 Edit Profile
               </span>
             </button>
@@ -69,61 +77,31 @@ const UserPage = () => {
                       className="__cf_email__"
                       data-cfemail="3340475645565d595c5b5d73545e525a5f1d505c5e"
                     >
-                      [email&#160;protected]
+                      {customer && customer.email}
                     </a>
                   </td>
                 </tr>
+
                 <tr>
                   <th className="text-gray-400 font-normal capitalize text-left leading-4 dark:text-gray-dark-400 text-[14px] pb-[15px]">
-                    Birthday:
+                    Téléphone:
                   </th>
                   <td className="leading-4 text-gray-1100 text-left dark:text-gray-dark-1100 text-[14px] pb-[15px]">
-                    18 September 1985
+                    {customer && customer.phone}
                   </td>
                 </tr>
+
                 <tr>
                   <th className="text-gray-400 font-normal capitalize text-left leading-4 dark:text-gray-dark-400 text-[14px] pb-[15px]">
-                    Phone:
+                    Inscrit(e):
                   </th>
                   <td className="leading-4 text-gray-1100 text-left dark:text-gray-dark-1100 text-[14px] pb-[15px]">
-                    +88 879 23249
-                  </td>
-                </tr>
-                <tr>
-                  <th className="text-gray-400 font-normal capitalize text-left leading-4 dark:text-gray-dark-400 text-[14px] pb-[15px]">
-                    Country:
-                  </th>
-                  <td className="leading-4 text-gray-1100 text-left dark:text-gray-dark-1100 text-[14px] pb-[15px]">
-                    France
-                  </td>
-                </tr>
-                <tr>
-                  <th className="text-gray-400 font-normal capitalize text-left leading-4 dark:text-gray-dark-400 text-[14px] pb-[15px]">
-                    State/Region:
-                  </th>
-                  <td className="leading-4 text-gray-1100 text-left dark:text-gray-dark-1100 text-[14px] pb-[15px]">
-                    Paris
-                  </td>
-                </tr>
-                <tr>
-                  <th className="text-gray-400 font-normal capitalize text-left leading-4 dark:text-gray-dark-400 text-[14px] pb-[15px]">
-                    Address:
-                  </th>
-                  <td className="leading-4 text-gray-1100 text-left dark:text-gray-dark-1100 text-[14px] pb-[15px]">
-                    15 No, Bondi Street
-                  </td>
-                </tr>
-                <tr>
-                  <th className="text-gray-400 font-normal capitalize text-left leading-4 dark:text-gray-dark-400 text-[14px] pb-[15px]">
-                    Joined:
-                  </th>
-                  <td className="leading-4 text-gray-1100 text-left dark:text-gray-dark-1100 text-[14px] pb-[15px]">
-                    28 March 2015
+                    {customer && moment(customer.createdAt).format("lll")}
                   </td>
                 </tr>
               </tbody>
             </table>
-            <p className="text-color-brands leading-4 mb-4 text-[14px]">
+            {/* <p className="text-color-brands leading-4 mb-4 text-[14px]">
               Social Network
             </p>
             <div className="flex items-center gap-x-3">
@@ -159,9 +137,9 @@ const UserPage = () => {
                   height={26}
                 />
               </a>
-            </div>
+            </div> */}
           </div>
-          <div className="rounded-2xl relative bg-[#5192FF] h-[242px] pt-[30px] pl-[42px] mb-6 sm:min-w-[364px]">
+          {/* <div className="rounded-2xl relative bg-[#5192FF] h-[242px] pt-[30px] pl-[42px] mb-6 sm:min-w-[364px]">
             <h3 className="text-white font-bold text-lg mb-4 leading-[22px]">
               Recruiting?
             </h3>
@@ -185,13 +163,13 @@ const UserPage = () => {
               width={205}
               height={126}
             />
-          </div>
+          </div> */}
         </div>
         <div className="flex-1">
           <div className="border bg-white border-neutral rounded-2xl mb-9 px-[28px] pb-[18px] pt-[22px] dark:bg-dark-neutral-bg dark:border-dark-neutral-border">
             <div className="flex justify-between pb-5 border-b border-neutral flex-col items-stretch gap-y-3 dark:border-dark-neutral-border sm:items-center mb-[11px] sm:flex-row">
               <h3 className="text-base leading-5 font-semibold text-gray-500 dark:text-gray-dark-500">
-                Orders List
+                Listes des commandes
               </h3>
               <select className="select w-full border rounded-lg font-normal text-sm leading-4 text-gray-400 !py-4 h-fit min-h-fit border-[#E8EDF2] dark:border-[#313442] focus:outline-none pl-[13px] min-w-[252px] dark:text-gray-dark-400 mb-0 max-w-[173px]">
                 <option disabled selected>

@@ -1,5 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
+import moment from "moment";
+import "moment/locale/fr";
 
+moment.locale("fr");
 const TopUsers = () => {
   return (
     <>
@@ -7,7 +11,7 @@ const TopUsers = () => {
       <div className="flex items-end justify-between mb-[25px]">
         <div>
           <h2 className="capitalize  font-bold text-[28px] leading-[35px]  mb-[13px]">
-            Customers List
+            Liste des clients
           </h2>
           <div className="flex items-center text-xs text-gray-500 gap-x-[11px]">
             <div className="flex items-center gap-x-1">
@@ -17,9 +21,9 @@ const TopUsers = () => {
                 width={12}
                 height={12}
               />
-              <a className="capitalize" href="index-2.html">
-                home
-              </a>
+              <Link className="capitalize" href="/">
+                Acceuil
+              </Link>
             </div>
             <Image
               src="/imgs/icons/icon-arrow-right.svg"
@@ -39,7 +43,7 @@ const TopUsers = () => {
             height={12}
           />
           <time className="text-xs text-gray-500">
-            Feb 15, 2022 - Feb 21, 2022
+            {moment().format("lll")}
           </time>
         </div>
       </div>

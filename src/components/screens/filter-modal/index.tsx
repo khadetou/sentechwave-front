@@ -34,77 +34,77 @@ const FilterModal = () => {
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" checked />
+                      <input type="checkbox" readOnly checked />
                       <span className="text-small">Apple</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Samsung</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Baseus</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Remax</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Handtown</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Elecom</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Razer</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Auto Focus</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Nillkin</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Logitech</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">ChromeBook</span>
                       <span className="checkmark"></span>
                     </label>
@@ -118,28 +118,28 @@ const FilterModal = () => {
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">En solde</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" checked />
+                      <input type="checkbox" readOnly checked />
                       <span className="text-small">Livraison GRATUITE</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Grosses affaires</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Shop Mall</span>
                       <span className="checkmark"></span>
                     </label>
@@ -151,28 +151,28 @@ const FilterModal = () => {
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">1 jour ouvrable</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" checked />
+                      <input type="checkbox" readOnly checked />
                       <span className="text-small">1 à 3 jours ouvrables</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">en 1 semaine</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Expédition immédiate</span>
                       <span className="checkmark"></span>
                     </label>
@@ -186,7 +186,7 @@ const FilterModal = () => {
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">
                         Accepte les cartes-cadeaux
                       </span>
@@ -195,14 +195,14 @@ const FilterModal = () => {
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Personnalisable</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" checked />
+                      <input type="checkbox" readOnly checked />
                       <span className="text-small">
                         Peut être emballé en cadeau
                       </span>
@@ -211,7 +211,7 @@ const FilterModal = () => {
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">
                         0% d&rsquo;intérêt sur versements
                       </span>
@@ -442,21 +442,21 @@ const FilterModal = () => {
                 <ul className="list-checkbox">
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Nylon (8)</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">Verre trempé (5)</span>
                       <span className="checkmark"></span>
                     </label>
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" checked />
+                      <input type="checkbox" readOnly checked />
                       <span className="text-small">
                         Caoutchouc de silicone liquide (5)
                       </span>
@@ -465,7 +465,7 @@ const FilterModal = () => {
                   </li>
                   <li>
                     <label className="cb-container">
-                      <input type="checkbox" />
+                      <input type="checkbox" readOnly />
                       <span className="text-small">
                         Alliage d&rsquo;aluminium (3)
                       </span>

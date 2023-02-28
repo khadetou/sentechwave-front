@@ -20,11 +20,7 @@ import {
   getAllSubCategories,
 } from "redux/products/productSlice";
 
-interface HSidebarProps {
-  setOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-const HSidebar: FC<HSidebarProps> = ({ setOpen }) => {
+const HSidebar = () => {
   const [catOpen, setCatOpen] = useState(false);
   const [slide, setSlide] = useState(true);
   const { pathname } = useRouter();
@@ -52,6 +48,7 @@ const HSidebar: FC<HSidebarProps> = ({ setOpen }) => {
       setFixed(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", callback);
     return () => window.removeEventListener("scroll", callback);

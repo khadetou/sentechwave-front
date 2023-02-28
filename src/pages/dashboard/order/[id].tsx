@@ -1,6 +1,7 @@
 import Header from "components/header";
 import Layout from "components/Layout";
 import OrderPage from "components/screens/dashboard/order";
+import OrderHeader from "components/screens/dashboard/order/order-header";
 import SEO from "components/SEO";
 import jwtDecode from "jwt-decode";
 import { GetServerSideProps } from "next";
@@ -29,8 +30,6 @@ const Order = () => {
       <SEO />
 
       <Header
-        isLocationOpen={isLocationOpen}
-        setIsLocationOpen={setIsLocationOpen}
         isOpenCat={isOpenCat}
         setIsOpenCat={setIsOpenCat}
         setOpen={setOpen}
@@ -38,6 +37,7 @@ const Order = () => {
       />
 
       <main className="main">
+        <OrderHeader />
         <OrderPage />
         <Advantages />
         <NewsletterProduct />
